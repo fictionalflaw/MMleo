@@ -1,0 +1,101 @@
+{
+    "StartUp": {
+        "timeout": 3600000,
+        "doc": "进入主界面，点击循环和主界面识别还没做",
+        "roi": [
+            272,
+            413,
+            762,
+            277
+        ],
+        "recognition": "OCR",
+        "expected": "点击画面开始",
+        "action": "Click",
+        "next": "Flag_Main",
+        "interrupt": "Click_Before_Main"
+    },
+    "Flag_Main": {
+        "doc": "主界面标识，必须具备唯一性",
+        "roi": [
+            129,
+            7,
+            43,
+            40
+        ],
+        "recognition": "OCR",
+        "expected": "等级"
+    },
+    "Flag_Main_By_ESC": {
+        "doc": "按ESC会弹出的那个退出游戏提示",
+        "roi": [
+            547,
+            275,
+            167,
+            55
+        ],
+        "recognition": "OCR",
+        "expected": "确认退出游戏?",
+        "next": "取消退出游戏"
+    },
+    "取消退出游戏": {
+        "doc": "按ESC会弹出的那个退出游戏提示",
+        "roi": [
+            339,
+            401,
+            113,
+            62
+        ],
+        "recognition": "OCR",
+        "expected": "取消",
+        "action": "Click"
+    },
+    "Click_Before_Main": {
+        "doc": "",
+        "target": [
+            676,
+            377,
+            81,
+            68
+        ],
+        "action": "Click"
+    },
+    "CallOutMenu": {
+        "doc": "右上角菜单",
+        "roi": [
+            1174,
+            5,
+            100,
+            99
+        ],
+        "recognition": "OCR",
+        "expected": "菜单",
+        "action": "Click"
+    },
+    "BackMainByMenu": {
+        "doc": "点击右上角菜单",
+        "roi": [
+            1174,
+            5,
+            100,
+            99
+        ],
+        "recognition": "OCR",
+        "expected": "菜单",
+        "action": "Click",
+        "next": [
+            "BackMainInMenu"
+        ]
+    },
+    "BackMainInMenu": {
+        "doc": "点击主页按钮，在菜单中",
+        "roi": [
+            1084,
+            16,
+            74,
+            75
+        ],
+        "recognition": "OCR",
+        "expected": "主页",
+        "action": "Click"
+    }
+}

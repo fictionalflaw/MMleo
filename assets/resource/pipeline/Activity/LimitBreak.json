@@ -1,0 +1,45 @@
+{
+    "LBInMain": {
+        "doc": "在主界面识别LBicon",
+        "roi": [
+            4,
+            387,
+            330,
+            179
+        ],
+        "recognition": "TemplateMatch",
+        "template": "temp_activity/LimitBreak/LBInMain.png",
+        "action": "Click",
+        "next": [
+            "LBDailyInActivity"
+        ]
+    },
+    "LBDailyInActivity": {
+        "doc": "在活动界面寻找LB日常任务入口",
+        "timeout": 60000,
+        "roi": [
+            0,
+            584,
+            989,
+            127
+        ],
+        "recognition": "OCR",
+        "expected": "前往活动",
+        "action": "Click"
+    },
+    "FouthTaskForLB": {
+        "doc": "打最下面那个特别歌曲挑战",
+        "roi": [
+            1057,
+            544,
+            223,
+            176
+        ],
+        "recognition": "OCR",
+        "expected": "挑战",
+        "action": "Click",
+        "next": [
+            "ConfirmConcert"
+        ]
+    }
+}

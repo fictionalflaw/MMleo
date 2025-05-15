@@ -1,0 +1,120 @@
+{
+    "Entry_Store": {
+        "doc": "在不同地方找到商店入口",
+        "next": [
+            "StoreIcon",
+            "CallOutMenu"
+        ]
+    },
+    "StoreIcon": {
+        "doc": "寻找商店入口，注意roi范围包括整个侧边四栏，可复用",
+        "roi": [
+            1080,
+            95,
+            187,
+            342
+        ],
+        "recognition": "OCR",
+        "expected": "商店",
+        "action": "Click",
+        "next": [
+            "VipInStore"
+        ]
+    },
+    "VipInStore": {
+        "doc": "在商店界面寻找会员入口,这个roi也是可复用",
+        "roi": [
+            0,
+            108,
+            149,
+            607
+        ],
+        "recognition": "OCR",
+        "expected": "会员",
+        "action": "Click",
+        "next": [
+            "DiamondInVip"
+        ]
+    },
+    "DiamondInVip": {
+        "doc": "在会员界面领取小月卡,如果出错就回主界面执行下一步",
+        "roi": [
+            305,
+            580,
+            265,
+            116
+        ],
+        "recognition": "OCR",
+        "expected": "领取",
+        "action": "Click",
+        "next": "点击屏幕获取奖励",
+        "on_error": [
+            "BackMainInMenu"
+        ]
+    },
+    "BigCardInVip": {
+        "doc": "在会员界面领取大月卡,如果出错就回主界面执行下一步",
+        "roi": [
+            926,
+            299,
+            272,
+            106
+        ],
+        "recognition": "OCR",
+        "expected": "领取",
+        "action": "Click",
+        "next": "点击屏幕获取奖励",
+        "on_error": [
+            "BackMainInMenu"
+        ]
+    },
+    "点击屏幕获取奖励": {
+        "doc": "用于获取奖励后总会出现的那个展示奖励并要求你点击的界面",
+        "roi": [
+            504,
+            555,
+            280,
+            137
+        ],
+        "recognition": "OCR",
+        "expected": "点击屏幕",
+        "action": "Click"
+    },
+    "Entry_Recruit": {
+        "doc": "在不同地方找到招募入口",
+        "next": [
+            "RecruitIcon",
+            "CallOutMenu"
+        ]
+    },
+    "RecruitIcon": {
+        "doc": "寻找招募入口",
+        "roi": [
+            815,
+            436,
+            464,
+            285
+        ],
+        "recognition": "OCR",
+        "expected": "招募",
+        "action": "Click",
+        "next": [
+            "AuditionInRecruit"
+        ],
+        "interrupt": [
+            "SwipeMaxInReCruit"
+        ]
+    },
+    "AuditionInRecruit": {
+        "doc": "找到海选招募",
+        "roi": [
+            736,
+            168,
+            347,
+            145
+        ],
+        "recognition": "OCR",
+        "expected": "海选招募",
+        "action": "Click"
+    }
+}

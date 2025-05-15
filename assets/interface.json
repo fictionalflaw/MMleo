@@ -31,50 +31,84 @@
     "agent": {
         "child_exec": "python",
         "child_args": [
-            "{PROJECT_DIR}/agent/main.py"
+            "{PROJECT_DIR}/../agent/main.py",
+            "-u"
         ]
     },
     "task": [
         {
-            "name": "普通任务",
-            "entry": "MyTask1"
+            "name": "启动",
+            "entry": "StartUp"
         },
         {
-            "name": "选项任务",
-            "entry": "MyTask2",
+            "name": "领取月卡钻石",
+            "entry": "Entry_Store",
+            "pipeline_override": {
+                "CallOutMenu": {
+                    "next": "StoreIcon"
+                }
+            }
+        },
+        {
+            "name": "每日海选",
+            "entry": "Entry_Recruit",
+            "pipeline_override": {
+                "CallOutMenu": {
+                    "next": "RecruitIcon"
+                }
+            },
             "option": [
-                "任务选项1"
+                "海选招募次数"
             ]
         },
         {
-            "name": "参数任务",
-            "entry": "MyTask3",
-            "option": [
-                "任务选项1"
-            ],
-            "pipeline_override": {}
+            "name": "星光演唱会",
+            "entry": "Entry_StarConcert",
+            "pipeline_override": {
+                "前往歌曲选择": {
+                    "doc": "一般来讲这里得有override,但我写烦了直接写死（，后期再改",
+                    "next": "奖励领取"
+                }
+            }
         },
         {
-            "name": "带Custom的任务",
-            "entry": "MyTask4"
+            "name": "检测打歌点位",
+            "entry": "MusicTargetAreaSearch"
+        },
+        {
+            "name": "9周年通行证",
+            "entry": "9Activity",
+            "pipeline_override": {
+                "9IconInMain": {
+                    "template": "temp_activity/九周年系列/九周年火组活动主界面icon.png"
+                }
+            }
         }
     ],
     "option": {
-        "任务选项1": {
+        "海选招募次数": {
             "cases": [
                 {
-                    "name": "文本1",
+                    "name": "招募一次",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
+                        "AuditionInRecruit": {
+                            "next": "Scout1InAudition"
                         }
                     }
                 },
                 {
-                    "name": "文本2",
+                    "name": "招募十次",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
+                        "AuditionInRecruit": {
+                            "next": "Scout10InAudition"
+                        }
+                    }
+                },
+                {
+                    "name": "招募百次",
+                    "pipeline_override": {
+                        "AuditionInRecruit": {
+                            "next": "Scout100InAudition"
                         }
                     }
                 }

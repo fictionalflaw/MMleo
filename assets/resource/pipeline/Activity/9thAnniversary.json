@@ -1,0 +1,36 @@
+{
+    "9Activity": {
+        "doc": "入口",
+        "next": [
+            "9IconInMain"
+        ]
+    },
+    "9IconInMain": {
+        "doc": "在主界面识别九周年活动icon",
+        "roi": [
+            4,
+            387,
+            330,
+            179
+        ],
+        "recognition": "TemplateMatch",
+        "template_code": "在interface.json中修改template:",
+        "action": "Click",
+        "next": [
+            "9DailyInActivity"
+        ]
+    },
+    "9DailyInActivity": {
+        "doc": "在活动界面寻找9周年日常任务入口",
+        "timeout": 60000,
+        "roi": [
+            94,
+            547,
+            277,
+            173
+        ],
+        "recognition": "OCR",
+        "expected": "前往任务",
+        "action": "Click"
+    }
+}

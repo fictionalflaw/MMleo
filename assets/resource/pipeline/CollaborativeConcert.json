@@ -1,0 +1,313 @@
+{
+  "协同演唱会期间icon": {
+    "roi": [
+      412,
+      0,
+      189,
+      125
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "协同演唱会期间.png"
+    ],
+    "action": "Click",
+    "next": [
+      "合奏演唱会"
+    ]
+  },
+  "合奏演唱会": {
+    "roi": [
+      707,
+      120,
+      331,
+      345
+    ],
+    "recognition": "OCR",
+    "expected": "合奏演唱会",
+    "action": "Click",
+    "next": [
+      "接受邀请_指定对象"
+    ]
+  },
+  "接受邀请_指定对象": {
+    "roi": [
+      0,
+      298,
+      244,
+      235
+    ],
+    "recognition": "OCR",
+    "expected": "接受邀请",
+    "action": "Click",
+    "next": "搜索对象"
+  },
+  "搜索对象": {
+    "timeout": 60000,
+    "action": "Swipe",
+    "begin": [
+      0,
+      298,
+      113,
+      128
+    ],
+    "end": [
+      0,
+      573,
+      113,
+      128
+    ],
+    "next": [
+      "找到对象",
+      "搜索对象"
+    ]
+  },
+  "找到对象": {
+    "roi": [
+      0,
+      77,
+      181,
+      643
+    ],
+    "recognition": "OCR",
+    "expected": "忙啊",
+    "action": "Click",
+    "next": [
+      "完成组队"
+    ]
+  },
+  "完成组队": {
+    "roi": [
+      773,
+      458,
+      391,
+      181
+    ],
+    "recognition": "OCR",
+    "expected": "完成组队",
+    "action": "Click",
+    "next": "前往演唱会任务"
+  },
+  "前往演唱会任务": {
+    "roi": [
+      957,
+      152,
+      250,
+      304
+    ],
+    "recognition": "OCR",
+    "expected": "前往",
+    "action": "Click",
+    "next": "确认演唱会任务"
+  },
+  "确认演唱会任务": {
+    "doc": "这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
+    "roi": [
+      882,
+      493,
+      398,
+      201
+    ],
+    "recognition": "OCR",
+    "expected": "确认",
+    "action": "Click",
+    "next": "换上原唱"
+  },
+  "换上原唱": {
+    "roi": [
+      807,
+      90,
+      157,
+      30
+    ],
+    "recognition": "OCR",
+    "expected": "原唱成员",
+    "target": [
+      945,
+      151,
+      1,
+      1
+    ],
+    "action": "Click",
+    "next": [
+      "确定_原唱"
+    ]
+  },
+  "确定_原唱": {
+    "roi": [
+      655,
+      535,
+      185,
+      75
+    ],
+    "recognition": "OCR",
+    "expected": "确定",
+    "action": "Click",
+    "next": [
+      "支援空着",
+      "检查体力"
+    ]
+  },
+  "支援空着": {
+    "roi": [
+      869,
+      238,
+      329,
+      253
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "空的支援.png"
+    ],
+    "action": "Click"
+  },
+  "检查体力": {
+    "roi": [
+      566,
+      582,
+      214,
+      138
+    ],
+    "recognition": "OCR",
+    "expected": "BP消耗",
+    "action": "Click",
+    "next": [
+      "切到1BP"
+    ]
+  },
+  "切到1BP": {
+    "roi": [
+      286,
+      172,
+      709,
+      343
+    ],
+    "recognition": "OCR",
+    "expected": "消耗1BP",
+    "target_offset": [
+      520,
+      0,
+      0,
+      0
+    ],
+    "action": "Click",
+    "next": [
+      "关闭BP消耗设置"
+    ]
+  },
+  "关闭BP消耗设置": {
+    "roi": [
+      546,
+      575,
+      184,
+      85
+    ],
+    "recognition": "OCR",
+    "expected": "关闭",
+    "action": "Click",
+    "next": [
+      "开启自动",
+      "无需开启自动"
+    ]
+  },
+  "开启自动": {
+    "roi": [
+      832,
+      571,
+      105,
+      118
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "暗的自动.png"
+    ],
+    "action": "Click",
+    "next": [
+      "开始演唱会"
+    ]
+  },
+  "无需开启自动": {
+    "roi": [
+      832,
+      571,
+      105,
+      118
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "亮的自动.png"
+    ],
+    "next": [
+      "开始演唱会"
+    ]
+  },
+  "开始演唱会": {
+    "roi": [
+      934,
+      580,
+      238,
+      109
+    ],
+    "recognition": "OCR",
+    "expected": "开始演唱会",
+    "action": "Click"
+  },
+  "邀请对象": {
+    "doc": "默认已进入协同演唱会界面",
+    "roi": [
+      32,
+      179,
+      140,
+      144
+    ],
+    "recognition": "OCR",
+    "expected": "邀请好友",
+    "action": "Click",
+    "next": [
+      "邀请指定对象"
+    ],
+    "interrupt": [
+      "搜索待邀请对象"
+    ]
+  },
+  "邀请指定对象": {
+    "doc": "搜索对象名称,不够精确，主要是到邀请的距离具备随机性，推荐去custom写",
+    "roi": [
+      32,
+      179,
+      140,
+      144
+    ],
+    "recognition": "OCR",
+    "expected": "忙啊",
+    "target_offset": [
+      600,
+      50,
+      1,
+      1
+    ],
+    "action": "Click",
+    "next": [
+      "邀请指定对象"
+    ],
+    "interrupt": [
+      "搜索待邀请对象"
+    ]
+  },
+  "搜索待邀请对象": {
+    "doc": "划动距离影响识别精确度，不像招募有自动回弹，配置error或者看看方舟的怎么写的，要配置回划",
+    "timeout": 60000,
+    "action": "Swipe",
+    "begin": [
+      600,
+      450,
+      1,
+      1
+    ],
+    "end": [
+      600,
+      180,
+      1,
+      1
+    ]
+  }
+}

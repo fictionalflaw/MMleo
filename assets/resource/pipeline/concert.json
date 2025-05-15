@@ -1,0 +1,170 @@
+{
+    "ConfirmConcert": {
+        "doc": "这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
+        "roi": [
+            882,
+            493,
+            398,
+            201
+        ],
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "next": "InspectBP"
+    },
+    "InspectBP": {
+        "roi": [
+            566,
+            582,
+            214,
+            138
+        ],
+        "recognition": "OCR",
+        "expected": "BP消耗",
+        "action": "Click",
+        "next": [
+            "Choose1BP"
+        ]
+    },
+    "Choose1BP": {
+        "roi": [
+            286,
+            172,
+            709,
+            343
+        ],
+        "recognition": "OCR",
+        "expected": "消耗1BP",
+        "target_offset": [
+            520,
+            0,
+            0,
+            0
+        ],
+        "action": "Click",
+        "next": [
+            "CloseBP"
+        ]
+    },
+    "CloseBP": {
+        "roi": [
+            546,
+            575,
+            184,
+            85
+        ],
+        "recognition": "OCR",
+        "expected": "关闭",
+        "action": "Click",
+        "next": [
+            "EnableAutomatic",
+            "NoNeedToEnableAutomatic"
+        ]
+    },
+    "EnableAutomatic": {
+        "doc": "开启自动",
+        "roi": [
+            832,
+            571,
+            105,
+            118
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "暗的自动.png"
+        ],
+        "action": "Click",
+        "next": [
+            "StartTheConcert"
+        ]
+    },
+    "NoNeedToEnableAutomatic": {
+        "doc": "无需开启自动",
+        "roi": [
+            832,
+            571,
+            105,
+            118
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "亮的自动.png"
+        ],
+        "next": [
+            "StartTheConcert"
+        ]
+    },
+    "StartTheConcert": {
+        "roi": [
+            934,
+            580,
+            238,
+            109
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "action": "Click"
+    },
+    "ComeToConcert_ByMenu": {
+        "doc": "点击右上角菜单",
+        "roi": [
+            1174,
+            5,
+            100,
+            99
+        ],
+        "recognition": "OCR",
+        "expected": "菜单",
+        "action": "Click",
+        "next": [
+            "ComeToConcert"
+        ]
+    },
+    "ComeToConcert": {
+        "doc": "点击演唱会图标，主界面也在相同位置",
+        "roi": [
+            1085,
+            439,
+            189,
+            176
+        ],
+        "recognition": "OCR",
+        "expected": "演唱会",
+        "action": "Click"
+    },
+    "下载歌曲": {
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": "下载歌曲",
+        "action": "Click",
+        "next": "确认下载"
+    },
+    "确认下载": {
+        "roi": [
+            654,
+            533,
+            179,
+            79
+        ],
+        "recognition": "OCR",
+        "expected": "好的",
+        "action": "Click",
+        "next": "确认歌曲"
+    },
+    "确认歌曲": {
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click"
+    }
+}

@@ -1,0 +1,199 @@
+{
+    "Entry_StarConcert": {
+        "doc": "在不同位置进入星光演唱会",
+        "next": [
+            "Flag_StarConcertIcon_on",
+            "Flag_StarConcertIcon_off"
+        ],
+        "interrupt": [
+            "ComeToConcert_ByMenu"
+        ]
+    },
+    "Flag_StarConcertIcon_on": {
+        "doc": "已在星光演唱会界面的识别",
+        "roi": [
+            291,
+            0,
+            212,
+            122
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StartConcertIcon.png"
+        ],
+        "next": "星光打歌循环"
+    },
+    "Flag_StarConcertIcon_off": {
+        "doc": "不在星光演唱会界面，但存在进入入口",
+        "roi": [
+            291,
+            0,
+            212,
+            122
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StarConcertIcon_off.png"
+        ],
+        "action": "Click",
+        "next": "Flag_StarConcertIcon_on"
+    },
+    "星光打歌循环": {
+        "next": [
+            "Flag_无歌可打"
+        ],
+        "interrupt": "寻找打歌入口"
+    },
+    "Flag_无歌可打": {
+        "doc": "复制的确认歌曲模版，直到识别不到打歌入口（因为只有两种字符显示就这么写，如果有第三种还是更换识别方式吧）为止，本层不放action",
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "确认",
+            "下载歌曲"
+        ],
+        "inverse": true
+    },
+    "寻找打歌入口": {
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "下载歌曲",
+            "确认"
+        ],
+        "next": [
+            "下载歌曲_星光ver",
+            "确认歌曲_星光ver"
+        ]
+    },
+    "下载歌曲_星光ver": {
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": "下载歌曲",
+        "action": "Click",
+        "next": "确认下载_星光ver"
+    },
+    "确认下载_星光ver": {
+        "roi": [
+            654,
+            533,
+            179,
+            79
+        ],
+        "recognition": "OCR",
+        "expected": "好的",
+        "action": "Click",
+        "next": "确认歌曲"
+    },
+    "确认歌曲_星光ver": {
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": "确认",
+        "action": "Click",
+        "next": "StartTheConcert_星光ver"
+    },
+    "StartTheConcert_星光ver": {
+        "roi": [
+            934,
+            580,
+            238,
+            109
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "action": "Click",
+        "next": "星光演唱会打歌中"
+    },
+    "奖励领取": {
+        "doc": "已回到星光界面，领取奖励，然后循环查找未打歌标志",
+        "roi": [
+            496,
+            205,
+            173,
+            155
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "钻石礼盒.png"
+        ],
+        "template_doc": "有时候这里会是通信证标志，找到icon放进template列表",
+        "action": "Click",
+        "next": "寻找打歌入口_星光循环内ver",
+        "interrupt": "Click_星光ver"
+    },
+    "寻找打歌入口_星光循环内ver": {
+        "doc": "不接next，只做内层再循环结束标志",
+        "roi": [
+            948,
+            554,
+            272,
+            76
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "下载歌曲",
+            "确认"
+        ]
+    },
+    "Click_星光ver": {
+        "doc": "只要在星光演唱会界面就click，不在那肯定是出bug了",
+        "roi": [
+            291,
+            0,
+            212,
+            122
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StartConcertIcon.png"
+        ],
+        "action": "Click",
+        "target": [
+            418,
+            173,
+            18,
+            13
+        ]
+    },
+    "星光演唱会打歌中": {
+        "doc": "中途退出和中途暂停都丢入内层了",
+        "recognition": "OCR",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "expected": [
+            "演唱会热度",
+            "通关"
+        ],
+        "action": "Custom",
+        "custom_action": "MusicPlayer",
+        "next": [
+            "for_end_after_concert_1",
+            "for_end_after_concert_2",
+            "for_end_after_concert_3"
+        ]
+    }
+}

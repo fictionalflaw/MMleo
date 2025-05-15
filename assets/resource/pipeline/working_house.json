@@ -1,0 +1,82 @@
+{
+  "点击聊天框": {
+    "timeout": 30000,
+    "roi": [
+      355,
+      387,
+      363,
+      307
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "聊天框.png"
+    ],
+    "action": "Click"
+  },
+  "收音符": {
+    "timeout": 30000,
+    "roi": [
+      355,
+      387,
+      363,
+      307
+    ],
+    "threshold": 0.6,
+    "recognition": "TemplateMatch",
+    "template": [
+      "working_house/音符1.png"
+    ],
+    "action": "Click"
+  },
+  "点击聊天框_无限制版": {
+    "timeout": 60000,
+    "roi": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "聊天框.png"
+    ],
+    "action": "Click",
+    "next": [
+      "SKIP"
+    ]
+  },
+  "SKIP": {
+    "roi": [
+      969,
+      0,
+      311,
+      181
+    ],
+    "recognition": "OCR",
+    "expected": "SKIP",
+    "action": "Click"
+  },
+  "偶像工作_期间限定": {
+    "roi": [
+      998,
+      457,
+      282,
+      263
+    ],
+    "recognition": "OCR",
+    "expected": "偶像工作",
+    "action": "Click",
+    "next": "期间限定_切换"
+  },
+  "期间限定_切换": {
+    "roi": [
+      998,
+      457,
+      282,
+      263
+    ],
+    "recognition": "OCR",
+    "expected": "偶像工作",
+    "action": "Click"
+  }
+}

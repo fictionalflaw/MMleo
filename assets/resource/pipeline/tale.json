@@ -1,0 +1,145 @@
+{
+    "StartReading": {
+        "doc": "默认已在选择话数界面",
+        "roi": [
+            1145,
+            120,
+            93,
+            600
+        ],
+        "recognition": "OCR",
+        "expected": "详情",
+        "action": "Click",
+        "order_by": "Vertical",
+        "target_offset": [
+            -300,
+            0,
+            0,
+            0
+        ],
+        "next": "RequiredClickForMenu"
+    },
+    "RequiredClickForMenu": {
+        "timeout": 60000,
+        "doc": "呼出菜单，启动跳过，但是要先点击",
+        "roi": [
+            969,
+            640,
+            44,
+            44
+        ],
+        "recognition": "TemplateMatch",
+        "template": "talestar1.png",
+        "action": "Click",
+        "next": "ClickMenuIntale"
+    },
+    "ClickMenuIntale": {
+        "doc": "点击菜单图标，好执行后续跳过",
+        "roi": [
+            1192,
+            23,
+            68,
+            61
+        ],
+        "recognition": "TemplateMatch",
+        "template": "菜单icon.png",
+        "action": "Click",
+        "next": "Flag_EndReading",
+        "interrupt": "SkipInTale"
+    },
+    "Flag_EndReading": {
+        "doc": "终止阅读的标志",
+        "roi": [
+            1145,
+            120,
+            93,
+            600
+        ],
+        "recognition": "OCR",
+        "expected": "详情"
+    },
+    "SkipInTale": {
+        "doc": "跳过识别",
+        "roi": [
+            1064,
+            198,
+            193,
+            66
+        ],
+        "recognition": "OCR",
+        "expected": "跳过",
+        "action": "Click",
+        "next": "Flag_SureSkip"
+    },
+    "Flag_SureSkip": {
+        "doc": "先识别后点确定，避免bug",
+        "roi": [
+            531,
+            302,
+            214,
+            95
+        ],
+        "recognition": "OCR",
+        "expected": "即将跳过故事。",
+        "next": "SureSkip"
+    },
+    "SureSkip": {
+        "doc": "确定跳过",
+        "roi": [
+            655,
+            525,
+            194,
+            90
+        ],
+        "recognition": "OCR",
+        "expected": "好的",
+        "action": "Click",
+        "next": [
+            "ClickScreenForSkip",
+            "ContinueRead",
+            "Flag_EndReading"
+        ]
+    },
+    "ClickScreenForSkip": {
+        "doc": "点击屏幕,但是只有未阅读过的故事有",
+        "roi": [
+            578,
+            599,
+            126,
+            46
+        ],
+        "recognition": "OCR",
+        "expected": "点击屏幕",
+        "action": "Click",
+        "next": [
+            "ContinueRead",
+            "Flag_EndReading"
+        ]
+    },
+    "ContinueRead": {
+        "doc": "继续阅读",
+        "roi": [
+            643,
+            506,
+            211,
+            117
+        ],
+        "recognition": "OCR",
+        "expected": "阅读",
+        "action": "Click",
+        "next": "RequiredClickForSkip"
+    },
+    "RequiredClickForSkip": {
+        "timeout": 60000,
+        "doc": "为了继续跳过必要的点击操作,注意，后面不接其他的，已经构成循环了",
+        "roi": [
+            969,
+            640,
+            44,
+            44
+        ],
+        "recognition": "TemplateMatch",
+        "template": "talestar1.png",
+        "action": "Click"
+    }
+}

@@ -1,11 +1,238 @@
 {
-    "MyTask1": {},
-    "MyTask2": {},
-    "MyTask3": {},
-    "MyTask4": {
-        "recognition": "Custom",
-        "custom_recognition": "my_reco_222",
+    "StarUp": {
+        "timeout": 3600000,
+        "roi": [
+            272,
+            413,
+            762,
+            277
+        ],
+        "recognition": "OCR",
+        "expected": "点击画面开始",
+        "action": "Click",
+        "next": [
+            "是主界面",
+            "进入主界面前的点击循环"
+        ]
+    },
+    "进入主界面前的点击循环": {},
+    "是主界面": {},
+    "temp_9活动索引_完成通行证": {
+        "roi": [
+            0,
+            351,
+            245,
+            178
+        ],
+        "recognition": "TemplateMatch",
+        "template": "temp_activity/九周年系列/九周年火组活动主界面icon.png",
+        "action": "Click",
+        "next": [
+            "temp_9通行证"
+        ]
+    },
+    "temp_9通行证": {
+        "timeout": 60000,
+        "roi": [
+            94,
+            547,
+            277,
+            173
+        ],
+        "recognition": "OCR",
+        "expected": "前往任务",
+        "action": "Click"
+    },
+    "MusicTargetAreaSearch": {
+        "doc": "识别是否在打歌界面",
+        "recognition": "OCR",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "expected": [
+            "演唱会热度",
+            "通关"
+        ],
         "action": "Custom",
-        "custom_action": "my_action_111"
+        "custom_action": "TargetAreaSearchAndSave"
+    },
+    "MusicalTargetRco": {
+        "doc": "用于获取音符目标白圈位置",
+        "recognition": "TemplateMatch",
+        "roi": [
+            0,
+            166,
+            1280,
+            554
+        ],
+        "template": "音符目标5__814_591_68_68__764_541_168_168.png",
+        "order_by": "Horizontal",
+        "index": 0
+    },
+    "MusicalTargetRco_ByFeature": {
+        "doc": "用于获取音符目标白圈位置,使用特征匹配，会精确识别到只剩一个目标，慎用",
+        "recognition": "FeatureMatch",
+        "roi": [
+            0,
+            166,
+            1280,
+            554
+        ],
+        "template": "音符目标5__814_591_68_68__764_541_168_168.png",
+        "order_by": "Horizontal",
+        "index": 0
+    },
+    "for_MusicCheck": {
+        "doc": "roi在action里设置，用于启动线程",
+        "recognition": "ColorMatch",
+        "lower": [
+            255,
+            255,
+            255
+        ],
+        "upper": [
+            255,
+            255,
+            255
+        ],
+        "roi": [
+            119,
+            349,
+            1,
+            1
+        ]
+    },
+    "for_pause_in_concert": {
+        "doc": "打歌中暂停，使用精确ocr",
+        "recognition": "OCR",
+        "roi": [
+            609,
+            175,
+            61,
+            32
+        ],
+        "expected": [
+            "暂停"
+        ],
+        "only_rec": true
+    },
+    "for_stop_in_concert": {
+        "doc": "打歌中终止，使用精确ocr",
+        "recognition": "OCR",
+        "roi": [
+            563,
+            274,
+            155,
+            39
+        ],
+        "expected": [
+            "终止演唱会"
+        ],
+        "only_rec": true
+    },
+    "for_end_after_concert_1": {
+        "doc": "打歌后结束，使用精确ocr",
+        "recognition": "OCR",
+        "roi": [
+            747,
+            599,
+            171,
+            71
+        ],
+        "expected": [
+            "歌曲奖励"
+        ],
+        "only_rec": true,
+        "pre_delay": 500,
+        "next": [
+            "退出打歌结算界面"
+        ]
+    },
+    "for_end_after_concert_2": {
+        "doc": "打歌后结束，使用精确ocr",
+        "recognition": "OCR",
+        "roi": [
+            608,
+            607,
+            64,
+            34
+        ],
+        "expected": [
+            "关闭"
+        ],
+        "only_rec": true,
+        "action": "Click",
+        "pre_delay": 500,
+        "next": "for_end_after_concert_1"
+    },
+    "for_end_after_concert_3": {
+        "doc": "还没写，因为要识别的是刷新记录界面，电脑端很难的啦",
+        "recognition": "OCR",
+        "roi": [
+            608,
+            607,
+            64,
+            34
+        ],
+        "expected": [
+            "关闭"
+        ],
+        "only_rec": true,
+        "action": "Click",
+        "pre_delay": 500,
+        "next": "for_end_after_concert_1"
+    },
+    "退出打歌结算界面": {
+        "doc": "识别继续按钮，假设打歌成功,会卡住，估计是识别到了第三种模式，忘截了，先用这个interrup将就下",
+        "recognition": "OCR",
+        "roi": [
+            965,
+            595,
+            272,
+            77
+        ],
+        "expected": [
+            "继续"
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "next": [
+            "前往歌曲选择",
+            "退出打歌结算界面"
+        ]
+    },
+    "前往歌曲选择": {
+        "doc": "点击继续后出现的界面，前往歌曲选择",
+        "recognition": "OCR",
+        "roi": [
+            964,
+            599,
+            267,
+            74
+        ],
+        "expected": [
+            "前往歌曲选择"
+        ],
+        "pre_delay": 500,
+        "action": "Click"
+    },
+    "testmusicplayer": {
+        "doc": "测试",
+        "recognition": "OCR",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "expected": [
+            "演唱会热度",
+            "通关"
+        ],
+        "action": "Custom",
+        "custom_action": "MusicPlayer"
     }
 }

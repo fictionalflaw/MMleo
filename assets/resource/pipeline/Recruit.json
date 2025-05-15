@@ -1,0 +1,154 @@
+{
+    "OKInRecruit": {
+        "doc": "点击招募决策的ok键，只推荐用于海选",
+        "roi": [
+            653,
+            527,
+            191,
+            84
+        ],
+        "recognition": "OCR",
+        "expected": "OK",
+        "action": "Click",
+        "next": [
+            "点击屏幕开始招募"
+        ]
+    },
+    "点击屏幕开始招募": {
+        "doc": "因为招募就是纯净版背景连字都没有，没做roi",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "OCR",
+        "expected": "点击屏幕",
+        "action": "Click",
+        "next": [
+            "跳过，在招募结算",
+            "OK，在招募结算"
+        ]
+    },
+    "跳过，在招募结算": {
+        "doc": "跳过",
+        "roi": [
+            1073,
+            0,
+            207,
+            121
+        ],
+        "recognition": "OCR",
+        "expected": "跳过",
+        "action": "Click",
+        "next": [
+            "OK，在招募结算"
+        ]
+    },
+    "OK，在招募结算": {
+        "doc": "OK",
+        "roi": [
+            905,
+            532,
+            375,
+            188
+        ],
+        "recognition": "OCR",
+        "expected": "OK",
+        "action": "Click",
+        "pre_wait_freezes": 500
+    },
+    "Scout1InAudition": {
+        "doc": "在海选招募招募1次",
+        "roi": [
+            687,
+            529,
+            582,
+            153
+        ],
+        "recognition": "OCR",
+        "expected": "1",
+        "action": "Click",
+        "next": [
+            "OKInRecruit"
+        ]
+    },
+    "Scout10InAudition": {
+        "doc": "在海选招募招募10次",
+        "roi": [
+            687,
+            529,
+            582,
+            153
+        ],
+        "recognition": "OCR",
+        "expected": "10",
+        "action": "Click",
+        "next": [
+            "OKInRecruit"
+        ]
+    },
+    "Scout100InAudition": {
+        "doc": "在海选招募招募100次",
+        "roi": [
+            687,
+            529,
+            582,
+            153
+        ],
+        "recognition": "OCR",
+        "expected": "100",
+        "action": "Click",
+        "next": [
+            "OKInRecruit"
+        ]
+    },
+    "Swipe1InReCruit": {
+        "doc": "在招募界面划动1个招募格的距离",
+        "action": "Swipe",
+        "begin": [
+            95,
+            334,
+            1,
+            1
+        ],
+        "end": [
+            74,
+            224,
+            1,
+            1
+        ],
+        "post_wait_freezes": {
+            "target": [
+                7,
+                103,
+                221,
+                406
+            ]
+        }
+    },
+    "SwipeMaxInReCruit": {
+        "doc": "有多少划多少（4格，以适配招募界面初始位置），一般用于找海选（必定在最底部）,如果用于其他得回划和全招募banner识别",
+        "action": "Swipe",
+        "begin": [
+            106,
+            675,
+            9,
+            8
+        ],
+        "end": [
+            91,
+            342,
+            14,
+            17
+        ],
+        "post_wait_freezes": {
+            "target": [
+                7,
+                103,
+                221,
+                406
+            ]
+        }
+    }
+}

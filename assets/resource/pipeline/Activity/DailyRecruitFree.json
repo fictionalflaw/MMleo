@@ -1,0 +1,42 @@
+{
+    "ScoutFreeInMain": {
+        "doc": "在主界面寻找免费送抽字样，找到就执行后续，没找到说明抽了，卡死，继续下个任务就好",
+        "roi": [
+            976,
+            539,
+            171,
+            169
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "招募",
+            "1日1次",
+            "免费！"
+        ],
+        "action": "Click",
+        "next": [
+            "ScoutFreeInRecruit"
+        ],
+        "interrupt": [
+            "Swipe1InReCruit"
+        ]
+    },
+    "ScoutFreeInRecruit": {
+        "doc": "在招募界面寻找免费1次招募，后接确认招募的标准流程",
+        "roi": [
+            846,
+            484,
+            252,
+            200
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "限定每日1次！",
+            "免费1次"
+        ],
+        "action": "Click",
+        "next": [
+            "OKInRecruit"
+        ]
+    }
+}
