@@ -19,6 +19,13 @@ on:
       - "**.py"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  actions: write
+env:
+  MaaFw_tag: v4.2.1
+  MFA_tag: v1.2.5
+  app_name: MMleo
 jobs:
   meta:
     runs-on: ubuntu-latest
@@ -49,12 +56,66 @@ jobs:
       tag: ${{ steps.set_tag.outputs.tag }}
       is_release: ${{ steps.set_tag.outputs.is_release }}
 
-  install:
+  windows:
     needs: meta
-    runs-on: macos-latest
+    runs-on: windows-latest
     strategy:
       matrix:
-        os: [win, macos, linux, android]
+        arch: [x86_64]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download MaaFramework
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: MaaXYZ/MaaFramework
+          fileName: "MAA-win-${{ matrix.arch }}*"
+          latest: true
+          preRelease: true
+          out-file-path: "deps"
+          extract: true
+
+      - name: Download MFAAvalonia  
+        uses: robinraju/release-downloader@v1  
+        with:
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*-win-x64*"
+          latest: true
+          out-file-path: "MFA"
+          extract: true
+
+      - name: Setup Embed Python
+        shell: powershell
+        run: |
+          ./tools/ci/setup_embed_python.ps1
+
+      - name: Install
+        shell: bash
+        run: |
+          python ./tools/install.py ${{ needs.meta.outputs.tag }}
+
+      - name: Copy MFAAvalonia
+        shell: bash
+        run: |
+          cp MFA/MFAAvalonia.exe MFA/MFAUpdater.exe MFA/MFAUpdater.dll MFA/MFAUpdater.runtimeconfig.json MFA/av_libglesv2.dll MFA/libHarfBuzzSharp.dll MFA/libonigwrap.dll MFA/libSkiaSharp.dll MFA/uiohook.dll install/
+          jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
+          mv -f install/interface.json.tmp install/interface.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M9A-win-${{ matrix.arch }}
+          path: "install"
+
+  unix:
+    needs: meta
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
         arch: [aarch64, x86_64]
       fail-fast: false
 
@@ -67,57 +128,48 @@ jobs:
         uses: robinraju/release-downloader@v1
         with:
           repository: MaaXYZ/MaaFramework
-          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
+          fileName: "MAA-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}*"
           latest: true
+          preRelease: true
           out-file-path: "deps"
+          extract: true
+
+      - name: Download MFAAvalonia  
+        uses: robinraju/release-downloader@v1  
+        with:
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'osx' }}-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}*"
+          latest: true
+          out-file-path: "MFA"
           extract: true
 
       - name: Install
         shell: bash
         run: |
-          python ./install.py ${{ needs.meta.outputs.tag }}
+          python ./tools/install.py ${{ needs.meta.outputs.tag }}
 
-      - name: Download MFAWPF
-        if: ${{ matrix.os == 'win' }}
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: SweetSmellFox/MFAWPF
-          fileName: "MFAWPF*"
-          latest: true
-          out-file-path: "MFAWPF"
-          extract: true
-
-      - name: Install MFAWPF
-        if: ${{ matrix.os == 'win' }}
-        shell: bash
-        run: |
-          cp MFAWPF/MFAWPF.exe install
-
-      - name: Download MFW
-        if: ${{ matrix.os != 'win' && matrix.os != 'android' }}
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: overflow65537/MFW-PyQt6
-          fileName: "MFW-PyQt6-${{ matrix.os }}-${{ matrix.arch }}*"
-          latest: true
-          out-file-path: "MFW-PyQt6"
-          extract: true
-
-      - name: Install MFW-PyQt6
-        if: ${{ matrix.os != 'win' && matrix.os != 'android' }}
-        shell: bash
-        run: |
-          rm -rf MFW-PyQt6/MFW_resource/model
-          cp -r MFW-PyQt6/* install
+          if [[ "${{ matrix.os }}" != "android" ]]; then
+            if [ -d "MFA" ]; then
+              echo "Copying MFA files to install directory..."
+              mkdir -p install
+              rsync -av --ignore-existing MFA/ install/
+            else
+              echo "MFA directory not found, skipping copy."
+            fi
+          else
+            echo "Skipping copy MFA for Android."
+          fi
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MaaXXX-${{ matrix.os }}-${{ matrix.arch }}
+          name: M9A-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}
           path: "install"
+
 
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
-    needs: install
+    #needs:install
+    needs: [meta,windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4

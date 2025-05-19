@@ -1,48 +1,4 @@
 {
-    "StarUp": {
-        "timeout": 3600000,
-        "roi": [
-            272,
-            413,
-            762,
-            277
-        ],
-        "recognition": "OCR",
-        "expected": "点击画面开始",
-        "action": "Click",
-        "next": [
-            "是主界面",
-            "进入主界面前的点击循环"
-        ]
-    },
-    "进入主界面前的点击循环": {},
-    "是主界面": {},
-    "temp_9活动索引_完成通行证": {
-        "roi": [
-            0,
-            351,
-            245,
-            178
-        ],
-        "recognition": "TemplateMatch",
-        "template": "temp_activity/九周年系列/九周年火组活动主界面icon.png",
-        "action": "Click",
-        "next": [
-            "temp_9通行证"
-        ]
-    },
-    "temp_9通行证": {
-        "timeout": 60000,
-        "roi": [
-            94,
-            547,
-            277,
-            173
-        ],
-        "recognition": "OCR",
-        "expected": "前往任务",
-        "action": "Click"
-    },
     "MusicTargetAreaSearch": {
         "doc": "识别是否在打歌界面",
         "recognition": "OCR",
@@ -134,7 +90,7 @@
         "only_rec": true
     },
     "for_end_after_concert_1": {
-        "doc": "打歌后结束，使用精确ocr",
+        "doc": "打歌后结束，使用精确ocr，加入interrupt列表，不在打歌前界面会依次识别interrupt可能内容,此处interrup列表除了故事列表都应是不可更改的单层节点",
         "recognition": "OCR",
         "roi": [
             747,
@@ -148,11 +104,20 @@
         "only_rec": true,
         "pre_delay": 500,
         "next": [
-            "退出打歌结算界面"
+            "Flag_星光演唱会",
+            "Flag_演唱会"
+        ],
+        "interrupt": [
+            "退出打歌结算界面_NC",
+            "粉丝数up_NC",
+            "活动奖励领取_NC",
+            "FlagandAction_迷你对话_1",
+            "FlagandAction_迷你对话_2",
+            "OK_pt增加时弹出的奖励界面"
         ]
     },
     "for_end_after_concert_2": {
-        "doc": "打歌后结束，使用精确ocr",
+        "doc": "打歌后结束，使用精确ocr，注意此处涉及好几个动画",
         "recognition": "OCR",
         "roi": [
             608,
@@ -165,28 +130,40 @@
         ],
         "only_rec": true,
         "action": "Click",
-        "pre_delay": 500,
-        "next": "for_end_after_concert_1"
+        "pre_wait_freezes": {
+            "time": 2000,
+            "target": [
+                101,
+                134,
+                1108,
+                557
+            ]
+        },
+        "pre_delay": 2000,
+        "next": [
+            "for_end_after_concert_3",
+            "for_end_after_concert_1"
+        ]
     },
     "for_end_after_concert_3": {
-        "doc": "还没写，因为要识别的是刷新记录界面，电脑端很难的啦",
+        "doc": "更新记录界面",
         "recognition": "OCR",
         "roi": [
-            608,
-            607,
-            64,
-            34
+            699,
+            575,
+            182,
+            79
         ],
         "expected": [
-            "关闭"
+            "更新"
         ],
         "only_rec": true,
         "action": "Click",
         "pre_delay": 500,
         "next": "for_end_after_concert_1"
     },
-    "退出打歌结算界面": {
-        "doc": "识别继续按钮，假设打歌成功,会卡住，估计是识别到了第三种模式，忘截了，先用这个interrup将就下",
+    "退出打歌结算界面_NC": {
+        "doc": "识别继续按钮",
         "recognition": "OCR",
         "roi": [
             965,
@@ -198,14 +175,10 @@
             "继续"
         ],
         "pre_delay": 500,
-        "action": "Click",
-        "next": [
-            "前往歌曲选择",
-            "退出打歌结算界面"
-        ]
+        "action": "Click"
     },
-    "前往歌曲选择": {
-        "doc": "点击继续后出现的界面，前往歌曲选择",
+    "粉丝数up_NC": {
+        "doc": "点击继续后出现的粉丝数结算界面，识别特征是那个黄色的前往歌曲选择",
         "recognition": "OCR",
         "roi": [
             964,
@@ -215,6 +188,21 @@
         ],
         "expected": [
             "前往歌曲选择"
+        ],
+        "pre_delay": 500,
+        "action": "Click"
+    },
+    "活动奖励领取_NC": {
+        "doc": "活动奖励领取，一般建议在acitvity文件夹中定期维护",
+        "recognition": "OCR",
+        "roi": [
+            543,
+            543,
+            185,
+            77
+        ],
+        "expected": [
+            "OK"
         ],
         "pre_delay": 500,
         "action": "Click"

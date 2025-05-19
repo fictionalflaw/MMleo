@@ -30,6 +30,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "talestar1.png",
+        "threshold": 0.6,
         "action": "Click",
         "next": "ClickMenuIntale"
     },
@@ -131,7 +132,7 @@
     },
     "RequiredClickForSkip": {
         "timeout": 60000,
-        "doc": "为了继续跳过必要的点击操作,注意，后面不接其他的，已经构成循环了",
+        "doc": "为了继续跳过必要的点击操作,注意，后面不接其他的,这是循环末尾",
         "roi": [
             969,
             640,
@@ -140,6 +141,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "talestar1.png",
+        "threshold": 0.6,
         "action": "Click"
     }
 }

@@ -6,7 +6,8 @@
             "Flag_StarConcertIcon_off"
         ],
         "interrupt": [
-            "ComeToConcert_ByMenu"
+            "ComeToConcert_ByMenu",
+            "ComeToConcert"
         ]
     },
     "Flag_StarConcertIcon_on": {
@@ -39,6 +40,7 @@
         "next": "Flag_StarConcertIcon_on"
     },
     "星光打歌循环": {
+        "doc": "现在是无歌可打，不过还是得上全灰，因为无歌可打唯一性不足",
         "next": [
             "Flag_无歌可打"
         ],
@@ -47,10 +49,10 @@
     "Flag_无歌可打": {
         "doc": "复制的确认歌曲模版，直到识别不到打歌入口（因为只有两种字符显示就这么写，如果有第三种还是更换识别方式吧）为止，本层不放action",
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": [
@@ -61,10 +63,10 @@
     },
     "寻找打歌入口": {
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": [
@@ -78,10 +80,10 @@
     },
     "下载歌曲_星光ver": {
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": "下载歌曲",
@@ -98,18 +100,36 @@
         "recognition": "OCR",
         "expected": "好的",
         "action": "Click",
-        "next": "确认歌曲"
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "确认歌曲_星光ver"
     },
     "确认歌曲_星光ver": {
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": "确认",
         "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
         "next": "StartTheConcert_星光ver"
     },
     "StartTheConcert_星光ver": {
@@ -122,9 +142,39 @@
         "recognition": "OCR",
         "expected": "开始演唱会",
         "action": "Click",
+        "next": [
+            "选择消耗通行证的数量",
+            "星光演唱会打歌中",
+            "彩歌需要数据下载"
+        ]
+    },
+    "选择消耗通行证的数量": {
+        "doc": "只做识别用，不推荐加动作（不会真有人喜欢5倍通行证打A吧）",
+        "roi": [
+            238,
+            75,
+            810,
+            549
+        ],
+        "recognition": "OCR",
+        "expected": "选择消耗通行证的数量",
+        "next": [
+            "通行证确认_开始演唱会"
+        ]
+    },
+    "通行证确认_开始演唱会": {
+        "roi": [
+            638,
+            506,
+            230,
+            108
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "action": "Click",
         "next": "星光演唱会打歌中"
     },
-    "奖励领取": {
+    "奖励领取_星光ver": {
         "doc": "已回到星光界面，领取奖励，然后循环查找未打歌标志",
         "roi": [
             496,
@@ -134,20 +184,61 @@
         ],
         "recognition": "TemplateMatch",
         "template": [
-            "钻石礼盒.png"
+            "钻石礼盒.png",
+            "通行证礼盒.png",
+            "宝石礼盒.png"
         ],
         "template_doc": "有时候这里会是通信证标志，找到icon放进template列表",
         "action": "Click",
-        "next": "寻找打歌入口_星光循环内ver",
-        "interrupt": "Click_星光ver"
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": [
+            "找回昨日次数",
+            "寻找打歌入口_星光循环内ver"
+        ],
+        "interrupt": [
+            "点击屏幕获取奖励",
+            "OK_pt增加时弹出的奖励界面",
+            "Click_星光ver"
+        ]
+    },
+    "找回昨日次数": {
+        "doc": "不接next，只做内层再循环结束标志",
+        "roi": [
+            142,
+            582,
+            358,
+            117
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "找回昨日次数"
+        ],
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
     },
     "寻找打歌入口_星光循环内ver": {
         "doc": "不接next，只做内层再循环结束标志",
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": [
@@ -156,7 +247,7 @@
         ]
     },
     "Click_星光ver": {
-        "doc": "只要在星光演唱会界面就click，不在那肯定是出bug了",
+        "doc": "不在星光界面也点(",
         "roi": [
             291,
             0,
@@ -173,7 +264,28 @@
             173,
             18,
             13
-        ]
+        ],
+        "pre_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
+    "OK_pt增加时弹出的奖励界面": {
+        "doc": "累计活动积分andOK",
+        "roi": [
+            952,
+            602,
+            288,
+            84
+        ],
+        "recognition": "OCR",
+        "expected": "OK",
+        "action": "Click"
     },
     "星光演唱会打歌中": {
         "doc": "中途退出和中途暂停都丢入内层了",

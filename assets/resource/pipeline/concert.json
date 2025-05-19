@@ -130,14 +130,23 @@
         ],
         "recognition": "OCR",
         "expected": "演唱会",
-        "action": "Click"
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
     },
     "下载歌曲": {
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": "下载歌曲",
@@ -154,17 +163,61 @@
         "recognition": "OCR",
         "expected": "好的",
         "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
         "next": "确认歌曲"
     },
     "确认歌曲": {
         "roi": [
-            948,
-            554,
-            272,
-            76
+            886,
+            491,
+            394,
+            229
         ],
         "recognition": "OCR",
         "expected": "确认",
         "action": "Click"
+    },
+    "彩歌需要数据下载": {
+        "roi": [
+            417,
+            261,
+            410,
+            178
+        ],
+        "recognition": "OCR",
+        "expected": "估计下载时间",
+        "next": "彩歌需要数据下载_好的"
+    },
+    "彩歌需要数据下载_好的": {
+        "roi": [
+            652,
+            516,
+            190,
+            102
+        ],
+        "recognition": "OCR",
+        "expected": "好的",
+        "action": "Click"
+    },
+    "打歌界面识别": {
+        "recognition": "OCR",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "expected": [
+            "演唱会热度",
+            "通关"
+        ]
     }
 }

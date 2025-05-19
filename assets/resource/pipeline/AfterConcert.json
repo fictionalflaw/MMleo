@@ -1,0 +1,105 @@
+{
+    "等待演唱会结束": {
+        "timeout": 180000,
+        "doc": "代打有自己的结束演算，现在的目的是解决自动的等待结束,1和2这两个节点会直接回到不论星光或是普通演唱会的选歌界面",
+        "next": [
+            "for_end_after_concert_1",
+            "for_end_after_concert_2"
+        ]
+    },
+    "FlagandAction_迷你对话_1": {
+        "doc": "打歌后跳出来的迷你对话logo，活动时需要点击，有时候是动画一闪而过",
+        "roi": [
+            425,
+            245,
+            451,
+            220
+        ],
+        "recognition": "OCR",
+        "expected": "触发迷你对话",
+        "action": "Click",
+        "next": [
+            "Flag_星光演唱会",
+            "Flag_演唱会"
+        ],
+        "interrupt": [
+            "Click_迷你对话ing",
+            "对话框_迷你对话ing"
+        ]
+    },
+    "FlagandAction_迷你对话_2": {
+        "doc": "动画式迷你对话",
+        "roi": [
+            969,
+            640,
+            44,
+            44
+        ],
+        "recognition": "TemplateMatch",
+        "template": "talestar1.png",
+        "threshold": 0.6,
+        "action": "Click",
+        "next": [
+            "Flag_星光演唱会",
+            "Flag_演唱会"
+        ],
+        "interrupt": [
+            "Click_迷你对话ing",
+            "对话框_迷你对话ing"
+        ]
+    },
+    "对话框_迷你对话ing": {
+        "doc": "固定选识别到的第一个，建议前面接一个故事黄星识别",
+        "roi": [
+            252,
+            32,
+            788,
+            429
+        ],
+        "threshold": 0.8,
+        "recognition": "TemplateMatch",
+        "template": [
+            "迷你对话.png"
+        ],
+        "action": "Click"
+    },
+    "Click_迷你对话ing": {
+        "doc": "在对话框未出来前一直click",
+        "roi": [
+            969,
+            640,
+            44,
+            44
+        ],
+        "recognition": "TemplateMatch",
+        "threshold": 0.6,
+        "template": "talestar1.png",
+        "action": "Click"
+    },
+    "Flag_星光演唱会": {
+        "doc": "回到星光演唱会界面的识别,要加next去interface加",
+        "roi": [
+            63,
+            0,
+            544,
+            143
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StartConcertIcon.png"
+        ]
+    },
+    "Flag_演唱会": {
+        "doc": "回到演唱会界面的识别,要加next去interface加",
+        "roi": [
+            63,
+            0,
+            544,
+            143
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "演唱会icon.png"
+        ]
+    }
+}

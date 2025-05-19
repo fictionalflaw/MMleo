@@ -1,0 +1,88 @@
+{
+    "没有符合条件的歌曲": {
+        "roi": [
+            22,
+            166,
+            616,
+            189
+        ],
+        "recognition": "OCR",
+        "expected": "没有符合条件的歌曲",
+        "next": "无符合处理_属性"
+    },
+    "无符合处理_属性": {
+        "roi": [
+            241,
+            547,
+            116,
+            138
+        ],
+        "recognition": "OCR",
+        "expected": "属性",
+        "next": [
+            "全部歌曲_属性"
+        ],
+        "interrupt": [
+            "属性_切换"
+        ]
+    },
+    "属性_切换": {
+        "roi": [
+            241,
+            547,
+            116,
+            138
+        ],
+        "recognition": "OCR",
+        "expected": "属性",
+        "action": "Click"
+    },
+    "全部歌曲_属性": {
+        "roi": [
+            241,
+            547,
+            116,
+            138
+        ],
+        "recognition": "OCR",
+        "expected": "全部歌曲",
+        "next": "无符合处理_类别"
+    },
+    "无符合处理_类别": {
+        "roi": [
+            368,
+            560,
+            96,
+            117
+        ],
+        "recognition": "OCR",
+        "expected": "类别",
+        "next": [
+            "全部歌曲_类别"
+        ],
+        "interrupt": [
+            "类别_切换"
+        ]
+    },
+    "类别_切换": {
+        "roi": [
+            368,
+            560,
+            96,
+            117
+        ],
+        "recognition": "OCR",
+        "expected": "类别",
+        "action": "Click"
+    },
+    "全部歌曲_类别": {
+        "roi": [
+            368,
+            560,
+            96,
+            117
+        ],
+        "recognition": "OCR",
+        "expected": "全部歌曲"
+    }
+}

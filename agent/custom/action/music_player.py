@@ -20,8 +20,8 @@ class   TargetAreaSearchAndSave(CustomAction):
         if reco is None:
             print("识别出错，内容为空")
             return CustomAction.RunResult(success=False)
-        elif len(reco.all_results)<7:
-            print("目标点不足七个，请重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
+        elif not (len(reco.all_results)==7) :
+            print("目标点不为7个，请检查难度重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
             return CustomAction.RunResult(success=False)
         target=reco.all_results[0:7]#只针对简单模式，其他模式再看
         clickpoints={}
@@ -69,7 +69,6 @@ class   MusicPlayer(CustomAction):
                 for key in points:#注意必须是y,x的顺序，"别问，这就是计算机视觉"                    
                     if not (img[key[1], key[0]] == [255,255,255]).all():
                         context.tasker.controller.post_click(key[0],key[1]).wait()
-                        print(f"点了嗷:",key[0],key[1])
                         flag+=1
                 if(flag>=2):
                     if((context.run_recognition("for_end_after_concert_1",img))or(context.run_recognition("for_end_after_concert_2",img))):

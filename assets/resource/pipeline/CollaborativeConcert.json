@@ -97,10 +97,15 @@
     "recognition": "OCR",
     "expected": "前往",
     "action": "Click",
-    "next": "确认演唱会任务"
+    "next": [
+      "确认歌曲",
+      "下载歌曲",
+      "确认演唱会任务"
+    ],
+    "interrupt": "没有符合条件的歌曲"
   },
   "确认演唱会任务": {
-    "doc": "这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
+    "doc": "已使用enabled做不进行处理，如需要改线性再说:这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
     "roi": [
       882,
       493,
@@ -110,7 +115,8 @@
     "recognition": "OCR",
     "expected": "确认",
     "action": "Click",
-    "next": "换上原唱"
+    "next": "换上原唱",
+    "enabled": false
   },
   "换上原唱": {
     "roi": [
@@ -142,12 +148,22 @@
     "recognition": "OCR",
     "expected": "确定",
     "action": "Click",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
     "next": [
       "支援空着",
       "检查体力"
     ]
   },
   "支援空着": {
+    "doc": "还没做卡牌补充,回头再补",
     "roi": [
       869,
       238,
@@ -249,7 +265,11 @@
     ],
     "recognition": "OCR",
     "expected": "开始演唱会",
-    "action": "Click"
+    "action": "Click",
+    "next": [
+      "彩歌需要数据下载",
+      "打歌界面识别"
+    ]
   },
   "邀请对象": {
     "doc": "默认已进入协同演唱会界面",

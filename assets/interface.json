@@ -65,15 +65,29 @@
             "name": "星光演唱会",
             "entry": "Entry_StarConcert",
             "pipeline_override": {
-                "前往歌曲选择": {
-                    "doc": "一般来讲这里得有override,但我写烦了直接写死（，后期再改",
-                    "next": "奖励领取"
+                "for_end_after_concert_1": {
+                    "next": "Flag_星光演唱会"
+                },
+                "Flag_星光演唱会": {
+                    "next": "奖励领取_星光ver"
+                },
+                "彩歌需要数据下载_好的": {
+                    "next": "星光演唱会打歌中"
                 }
             }
         },
         {
             "name": "检测打歌点位",
             "entry": "MusicTargetAreaSearch"
+        },
+        {
+            "name": "合奏演唱会",
+            "entry": "协同演唱会期间icon",
+            "pipeline_override": {
+                "确认歌曲": {
+                    "next": "换上原唱"
+                }
+            }
         },
         {
             "name": "9周年通行证",
