@@ -176,7 +176,7 @@ jobs:
   #         path: "install"
 
   release:
-    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    #if: ${{ needs.meta.outputs.is_release == 'true' }}
     # needs: [meta, windows, ubuntu, macos]
     needs: [meta, windows]
     runs-on: ubuntu-latest
