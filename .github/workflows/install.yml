@@ -98,7 +98,7 @@ jobs:
         shell: bash
         run: |
           cp MFA/MFAAvalonia.exe MFA/MFAUpdater.exe MFA/MFAUpdater.dll MFA/MFAUpdater.runtimeconfig.json MFA/av_libglesv2.dll MFA/libHarfBuzzSharp.dll MFA/libonigwrap.dll MFA/libSkiaSharp.dll MFA/uiohook.dll install/
-          jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/Coxwtwo/MaaTOT"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
+          jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
           mv -f install/interface.json.tmp install/interface.json
 
       - name: Upload
