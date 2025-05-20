@@ -94,6 +94,10 @@ jobs:
         run: |
           ./tools/ci/setup_embed_python.ps1
 
+      - name: Install
+        shell: bash
+        run: python ./install.py ${{ needs.meta.outputs.tag }}
+        
       - name: Copy MFAAvalonia
         shell: bash
         run: |
