@@ -90,7 +90,7 @@
             }
         },
         {
-            "name": "9周年通行证",
+            "name": "9周年通行证_测试用",
             "entry": "9Activity",
             "pipeline_override": {
                 "9IconInMain": {

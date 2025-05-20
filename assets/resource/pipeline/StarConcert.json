@@ -275,18 +275,6 @@
             ]
         }
     },
-    "OK_pt增加时弹出的奖励界面": {
-        "doc": "累计活动积分andOK",
-        "roi": [
-            952,
-            602,
-            288,
-            84
-        ],
-        "recognition": "OCR",
-        "expected": "OK",
-        "action": "Click"
-    },
     "星光演唱会打歌中": {
         "doc": "中途退出和中途暂停都丢入内层了",
         "recognition": "OCR",
