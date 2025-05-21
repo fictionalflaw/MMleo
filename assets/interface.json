@@ -62,6 +62,10 @@
             ]
         },
         {
+            "name": "检测打歌点位",
+            "entry": "MusicTargetAreaSearch"
+        },
+        {
             "name": "星光演唱会",
             "entry": "Entry_StarConcert",
             "pipeline_override": {
@@ -75,10 +79,6 @@
                     "next": "星光演唱会打歌中"
                 }
             }
-        },
-        {
-            "name": "检测打歌点位",
-            "entry": "MusicTargetAreaSearch"
         },
         {
             "name": "合奏演唱会",
