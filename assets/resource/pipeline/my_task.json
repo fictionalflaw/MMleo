@@ -114,7 +114,8 @@
             "FlagandAction_迷你对话_1",
             "FlagandAction_迷你对话_2",
             "OK_pt增加时弹出的奖励界面",
-            "活动期间pt达标跳出的卡面领取"
+            "活动期间pt达标跳出的卡面领取",
+            "点击屏幕获取奖励"
         ]
     },
     "for_end_after_concert_2": {
@@ -194,7 +195,7 @@
         "action": "Click"
     },
     "活动奖励领取_NC": {
-        "doc": "活动奖励领取，一般建议在acitvity文件夹中定期维护",
+        "doc": "活动奖励领取(比如lb的硬币领取)，一般建议在acitvity文件夹中定期维护",
         "recognition": "OCR",
         "roi": [
             543,
