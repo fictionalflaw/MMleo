@@ -183,6 +183,7 @@
             155
         ],
         "recognition": "TemplateMatch",
+        "threshold": 0.6,
         "template": [
             "钻石礼盒.png",
             "通行证礼盒.png",
