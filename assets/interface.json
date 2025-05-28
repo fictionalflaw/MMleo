@@ -81,6 +81,15 @@
             }
         },
         {
+            "name": "临时打歌",
+            "entry": "星光演唱会打歌中",
+            "pipeline_override": {
+                "星光演唱会打歌中": {
+                    "next": []
+                }
+            }
+        },
+        {
             "name": "合奏演唱会",
             "entry": "协同演唱会期间icon",
             "pipeline_override": {
@@ -88,6 +97,24 @@
                     "next": "换上原唱"
                 }
             }
+        },
+        {
+            "name": "自动阅读",
+            "entry": "StartReading"
+        },
+        {
+            "name": "生日纪念活动",
+            "entry": "Entry_BirthdayActivity",
+            "pipeline_override": {
+                "Flag_Main": {
+                    "next": "BA_fromBanner",
+                    "interrupt": "Swipe_forBA"
+                }
+            }
+        },
+        {
+            "name": "test",
+            "entry": "test3"
         },
         {
             "name": "9周年通行证_测试用",

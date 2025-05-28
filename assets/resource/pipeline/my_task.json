@@ -108,6 +108,7 @@
             "Flag_演唱会"
         ],
         "interrupt": [
+            "更新记录界面_NC",
             "退出打歌结算界面_NC",
             "粉丝数up_NC",
             "活动奖励领取_NC",
@@ -163,6 +164,21 @@
         "action": "Click",
         "pre_delay": 500,
         "next": "for_end_after_concert_1"
+    },
+    "更新记录界面_NC": {
+        "doc": "更新记录界面",
+        "recognition": "OCR",
+        "roi": [
+            699,
+            575,
+            182,
+            79
+        ],
+        "expected": [
+            "更新"
+        ],
+        "action": "Click",
+        "pre_delay": 500
     },
     "退出打歌结算界面_NC": {
         "doc": "识别继续按钮",

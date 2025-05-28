@@ -113,6 +113,7 @@
         "expected": "点击屏幕",
         "action": "Click",
         "next": [
+            "ClickScreenForSkip",
             "ContinueRead",
             "Flag_EndReading"
         ]

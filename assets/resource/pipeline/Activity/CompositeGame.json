@@ -1,0 +1,186 @@
+{
+    "test1": {
+        "timeout": 60000,
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "FeatureMatch",
+        "template": "合成游戏/15.png",
+        "threshold": 0.4
+    },
+    "test2": {
+        "timeout": 60000,
+        "roi": [
+            330,
+            40,
+            724,
+            519
+        ],
+        "recognition": "TemplateMatch",
+        "template": "合成游戏/11.png"
+    },
+    "test2_ocr": {
+        "timeout": 60000,
+        "roi": "test2",
+        "roi_offset": [
+            0,
+            0,
+            0,
+            10
+        ],
+        "recognition": "OCR",
+        "expected": "/",
+        "replace": [
+            "77",
+            "/2"
+        ]
+    },
+    "for_reco_in_composite_game": {
+        "roi": [
+            330,
+            40,
+            724,
+            519
+        ],
+        "green_mask": true,
+        "recognition": "TemplateMatch",
+        "threshold": 0.6,
+        "template": "合成游戏/51.png"
+    },
+    "for_reco_in_composite_game_2": {
+        "doc": "识别打钩icon",
+        "roi": [
+            330,
+            40,
+            724,
+            519
+        ],
+        "recognition": "TemplateMatch",
+        "template": "合成游戏/1.png"
+    },
+    "for_reco_in_composite_game_3": {
+        "doc": "识别有没有能提交的订单，只识别前3个",
+        "roi": [
+            93,
+            206,
+            225,
+            388
+        ],
+        "recognition": "OCR",
+        "expected": "提交"
+    },
+    "for_reco_魔法装备资源箱": {
+        "doc": "识别魔法装备资源箱的剩余数量上限是60",
+        "roi": [
+            328,
+            644,
+            115,
+            54
+        ],
+        "expected": "",
+        "recognition": "OCR"
+    },
+    "for_reco_种子资源箱": {
+        "doc": "识别种子资源箱的剩余数量，上限100",
+        "roi": [
+            467,
+            640,
+            82,
+            54
+        ],
+        "expected": "",
+        "recognition": "OCR"
+    },
+    "for_reco_剑士装备资源箱": {
+        "doc": "识别剑士装备资源箱的剩余数量",
+        "roi": [
+            566,
+            638,
+            82,
+            54
+        ],
+        "expected": "",
+        "recognition": "OCR"
+    },
+    "for_reco_药水资源箱": {
+        "doc": "药水资源箱的剩余数量",
+        "roi": [
+            667,
+            645,
+            82,
+            54
+        ],
+        "expected": "",
+        "recognition": "OCR"
+    },
+    "for_order_reco_1": {
+        "doc": "识别订单,custom中为expected置空值",
+        "roi": [
+            104,
+            236,
+            74,
+            25
+        ],
+        "recognition": "OCR",
+        "expected": ""
+    },
+    "for_order_reco_2": {
+        "doc": "识别订单,custom中为expected置空值",
+        "roi": [
+            106,
+            355,
+            73,
+            25
+        ],
+        "recognition": "OCR",
+        "expected": ""
+    },
+    "for_order_reco_3": {
+        "doc": "识别订单,custom中为expected置空值",
+        "roi": [
+            105,
+            477,
+            73,
+            25
+        ],
+        "recognition": "OCR",
+        "expected": ""
+    },
+    "for_click_magic_wand": {
+        "next": "click_magic_wand",
+        "interrupt": "for_leave_resource_box"
+    },
+    "click_magic_wand": {
+        "doc": "点击魔法棒，整理棋盘",
+        "roi": [
+            49,
+            0,
+            324,
+            278
+        ],
+        "recognition": "TemplateMatch",
+        "template": "合成游戏/魔法棒.png",
+        "action": "Click",
+        "post_wait_freezes": 500
+    },
+    "for_leave_resource_box": {
+        "doc": "离开资源箱",
+        "roi": [
+            388,
+            533,
+            200,
+            71
+        ],
+        "recognition": "OCR",
+        "expected": "取消",
+        "action": "Click",
+        "post_wait_freezes": 500
+    },
+    "test3": {
+        "action": "Custom",
+        "custom_action": "CompositeGamePlayer"
+    }
+}

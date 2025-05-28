@@ -1,0 +1,172 @@
+{
+    "Entry_BirthdayActivity": {
+        "doc": "找寻生日界面入口，只有banner",
+        "next": "Flag_Main",
+        "interrupt": [
+            "BackMainInMenu",
+            "BackMainByMenu"
+        ]
+    },
+    "Swipe_forBA": {
+        "doc": "划动左下角banner",
+        "roi": [
+            129,
+            7,
+            43,
+            40
+        ],
+        "recognition": "OCR",
+        "expected": "等级",
+        "action": "Swipe",
+        "begin": [
+            66,
+            622,
+            14,
+            12
+        ],
+        "end": [
+            250,
+            622,
+            12,
+            9
+        ],
+        "post_wait_freezes": {
+            "time": 200,
+            "target": [
+                31,
+                575,
+                288,
+                124
+            ]
+        }
+    },
+    "BA_fromBanner": {
+        "roi": [
+            31,
+            575,
+            288,
+            124
+        ],
+        "recognition": "OCR",
+        "expected": "生日纪念限定活动",
+        "action": "Click",
+        "next": "BA_ComeToPho"
+    },
+    "BA_ComeToPho": {
+        "roi": [
+            599,
+            226,
+            676,
+            348
+        ],
+        "recognition": "OCR",
+        "expected": "前往生日摄影会",
+        "action": "Click",
+        "next": [
+            "BA_故事阅读",
+            "Flag_拍摄"
+        ]
+    },
+    "BA_故事阅读": {
+        "doc": "呼出菜单，启动跳过，但是要先点击",
+        "roi": [
+            969,
+            640,
+            44,
+            44
+        ],
+        "recognition": "TemplateMatch",
+        "template": "talestar1.png",
+        "threshold": 0.6,
+        "action": "Click",
+        "next": "BA_ClickMenuIntale"
+    },
+    "BA_ClickMenuIntale": {
+        "doc": "点击菜单图标，好执行后续跳过",
+        "roi": [
+            1192,
+            23,
+            68,
+            61
+        ],
+        "recognition": "TemplateMatch",
+        "template": "菜单icon.png",
+        "action": "Click",
+        "next": "BA_SkipInTale"
+    },
+    "BA_SkipInTale": {
+        "doc": "跳过识别",
+        "roi": [
+            1064,
+            198,
+            193,
+            66
+        ],
+        "recognition": "OCR",
+        "expected": "跳过",
+        "action": "Click",
+        "next": "BA_Flag_SureSkip"
+    },
+    "BA_Flag_SureSkip": {
+        "doc": "先识别后点确定，避免bug",
+        "roi": [
+            531,
+            302,
+            214,
+            95
+        ],
+        "recognition": "OCR",
+        "expected": "即将跳过故事。",
+        "next": "BA_SureSkip"
+    },
+    "BA_SureSkip": {
+        "doc": "确定跳过",
+        "roi": [
+            655,
+            525,
+            194,
+            90
+        ],
+        "recognition": "OCR",
+        "expected": "好的",
+        "action": "Click",
+        "next": "Flag_拍摄"
+    },
+    "Flag_拍摄": {
+        "roi": [
+            405,
+            495,
+            485,
+            225
+        ],
+        "recognition": "OCR",
+        "expected": "拍摄",
+        "next": "Flag_结束拍摄",
+        "interrupt": "Click_拍摄"
+    },
+    "Flag_结束拍摄": {
+        "roi": [
+            405,
+            495,
+            485,
+            225
+        ],
+        "recognition": "OCR",
+        "expected": "再次观看"
+    },
+    "Click_拍摄": {
+        "roi": [
+            405,
+            495,
+            485,
+            225
+        ],
+        "recognition": "OCR",
+        "expected": "拍摄",
+        "action": "Click",
+        "next": [
+            "点击屏幕获取奖励",
+            "BA_故事阅读"
+        ]
+    }
+}
