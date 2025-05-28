@@ -8,7 +8,7 @@
 由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 强力驱动！
 **先行测试版<u>ver0.1.0</u>**,目前已能在大部分情况下稳定运行自动星光演唱会功能
 以`1~2`个miss为您节省每天`9*3~12*3`min的时间(`27~36`min)
-~~本来想完善日常流程的，但是得先做24号要上的合成大西瓜~~
+**现在能支持基础的合成和提交订单了,算法改进ing。使用方法：进入合成页面，启动"Test"任务**
 </div>
 <p align="center">
   <img alt="license" src="https://img.shields.io/github/license/KhazixW2/MaaGumballs">
