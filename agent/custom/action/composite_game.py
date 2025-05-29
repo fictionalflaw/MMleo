@@ -83,6 +83,7 @@ class   CompositeGamePlayer(CustomAction):
                     for i in range(4):
                         context.tasker.controller.post_click(x,y).wait()
                         time.sleep(0.5)
+            if context.tasker.stopping:return CustomAction.RunResult(success=True)
 
 
             
