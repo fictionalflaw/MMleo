@@ -157,7 +157,7 @@ class   CompositeGamePlayer(CustomAction):
          return matrix
     def load_data(self):
         """加载或初始化数据文件"""
-
+        os.makedirs(self.path, exist_ok=True)
         if os.path.exists(self.file_path):
             with open(self.file_path, 'r') as f:
                 try:
@@ -167,7 +167,7 @@ class   CompositeGamePlayer(CustomAction):
                     else:return data.get('count')
                 except json.JSONDecodeError:
                     return 0
-        else:os.makedirs(self.file_path, exist_ok=True)
+        
         return 0
     def save_data(self):
         """保存数据到文件"""
