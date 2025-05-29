@@ -167,7 +167,7 @@ class   CompositeGamePlayer(CustomAction):
                     else:return data.get('count')
                 except json.JSONDecodeError:
                     return 0
-        
+        else:os.makedirs(self.file_path, exist_ok=True)
         return 0
     def save_data(self):
         """保存数据到文件"""
