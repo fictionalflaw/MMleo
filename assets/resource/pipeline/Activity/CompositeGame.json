@@ -20,7 +20,7 @@
             519
         ],
         "recognition": "TemplateMatch",
-        "template": "合成游戏/11.png"
+        "template": "合成游戏/54.png"
     },
     "test2_ocr": {
         "timeout": 60000,
@@ -47,7 +47,6 @@
         ],
         "green_mask": true,
         "recognition": "TemplateMatch",
-        "threshold": 0.6,
         "template": "合成游戏/51.png"
     },
     "for_reco_in_composite_game_2": {
@@ -75,24 +74,46 @@
     "for_reco_魔法装备资源箱": {
         "doc": "识别魔法装备资源箱的剩余数量上限是60",
         "roi": [
-            328,
-            644,
-            115,
-            54
+            392,
+            658,
+            41,
+            34
         ],
         "expected": "",
-        "recognition": "OCR"
+        "recognition": "OCR",
+        "only_rec": true,
+        "replace": [
+            [
+                "O",
+                "0"
+            ],
+            [
+                "o",
+                "0"
+            ]
+        ]
     },
     "for_reco_种子资源箱": {
         "doc": "识别种子资源箱的剩余数量，上限100",
         "roi": [
-            467,
-            640,
-            82,
-            54
+            473,
+            656,
+            63,
+            36
         ],
         "expected": "",
-        "recognition": "OCR"
+        "recognition": "OCR",
+        "only_rec": true,
+        "replace": [
+            [
+                "O",
+                "0"
+            ],
+            [
+                "o",
+                "0"
+            ]
+        ]
     },
     "for_reco_剑士装备资源箱": {
         "doc": "识别剑士装备资源箱的剩余数量",
@@ -103,18 +124,40 @@
             54
         ],
         "expected": "",
-        "recognition": "OCR"
+        "recognition": "OCR",
+        "only_rec": true,
+        "replace": [
+            [
+                "O",
+                "0"
+            ],
+            [
+                "o",
+                "0"
+            ]
+        ]
     },
     "for_reco_药水资源箱": {
         "doc": "药水资源箱的剩余数量",
         "roi": [
-            667,
-            645,
-            82,
-            54
+            697,
+            656,
+            51,
+            37
         ],
         "expected": "",
-        "recognition": "OCR"
+        "recognition": "OCR",
+        "only_rec": true,
+        "replace": [
+            [
+                "O",
+                "0"
+            ],
+            [
+                "o",
+                "0"
+            ]
+        ]
     },
     "for_order_reco_1": {
         "doc": "识别订单,custom中为expected置空值",

@@ -20,16 +20,24 @@ class   CompositeGamePlayer(CustomAction):
           
 
         image = context.tasker.controller.post_screencap().wait().get() 
-        try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).all_results[0].text
-        except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).all_results[0].text
-        zz_count=context.run_recognition("for_reco_种子资源箱",image).all_results[0].text
-        js_count=context.run_recognition("for_reco_剑士装备资源箱",image).all_results[0].text
-        ys_count=context.run_recognition("for_reco_药水资源箱",image).all_results[0].text
+        try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).best_result.text
+        except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).best_result.text        
+        try:zz_count=context.run_recognition("for_reco_种子资源箱",image).best_result.text
+        except:zz_count=context.run_recognition("for_reco_种子资源箱",image,{"for_reco_种子资源箱":{"roi":[512,656,24,36]}}).best_result.text    
+        try:js_count=context.run_recognition("for_reco_剑士装备资源箱",image).best_result.text
+        except:js_count=context.run_recognition("for_reco_剑士装备资源箱",image,{"for_reco_剑士装备资源箱":{"roi":[619,656,25,36]}}).best_result.text
+        try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
+        except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
+
         while mf_count != "0" or zz_count != "0" or js_count != "0" or ys_count != "0":
-            mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).all_results[0].text
-            zz_count=context.run_recognition("for_reco_种子资源箱",image).all_results[0].text
-            js_count=context.run_recognition("for_reco_剑士装备资源箱",image).all_results[0].text
-            ys_count=context.run_recognition("for_reco_药水资源箱",image).all_results[0].text
+            try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).best_result.text
+            except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).best_result.text
+            try:zz_count=context.run_recognition("for_reco_种子资源箱",image).best_result.text
+            except:zz_count=context.run_recognition("for_reco_种子资源箱",image,{"for_reco_种子资源箱":{"roi":[512,656,24,36]}}).best_result.text
+            try:js_count=context.run_recognition("for_reco_剑士装备资源箱",image).best_result.text
+            except:js_count=context.run_recognition("for_reco_剑士装备资源箱",image,{"for_reco_剑士装备资源箱":{"roi":[619,656,25,36],"only_rec":True}}).best_result.text
+            try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
+            except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
             x,y=385,640
             
             if mf_count !="0":
@@ -66,7 +74,7 @@ class   CompositeGamePlayer(CustomAction):
                             else: order[f"{matrix[i][j]}"]-=1
                         
             zz_positions={k: v for k, v in element_positions.items() if k==24}
-            composite_positions={k: v for k, v in element_positions.items() if len(v) > 1 and k>10 and k not in [19,24,39,49,54,70]}
+            composite_positions={k: v for k, v in element_positions.items() if len(v) > 1 and k>10 and k not in [19,24,39,49,54,68,69,70]}#屏蔽名单，各单位最高元素和财宝最后三级元素（用升级卡升）
             for po in composite_positions.values():
                 self.post_composite(context,po)
             for po in zz_positions.values():
@@ -94,12 +102,17 @@ class   CompositeGamePlayer(CustomAction):
          chain=[9,4,9,9,4,10]#图鉴中各合成链的上限
              
          for j in range(len(chain)):#棋盘生成
+                threshold=0.6
+                if j==4:threshold=0.8#规定药水组检测下限
+                elif j==5:threshold=0.7#金币组检测下限
                 for i in range(chain[j]):
+                    
+                    
                     template_path=f"合成游戏/{(j+1)*10+i+1}.png"
                     reco_detail=context.run_recognition(
                     "for_reco_in_composite_game",
                     image,
-                    {"for_reco_in_composite_game": {"recognition": "TemplateMatch","template":template_path }},
+                    {"for_reco_in_composite_game": {"recognition": "TemplateMatch","template":template_path,"threshold": threshold}},
                 )
                     matrix=self.fill_chessboard(reco_detail,matrix,(j+1)*10+i+1)                    
                     #不用了，换templatematch
@@ -260,7 +273,7 @@ class   CompositeGamePlayer(CustomAction):
             while(flag<len(compose_list)):
                 x1,y1=self.get_swipe_position(compose_list[flag-1][0],compose_list[flag-1][1])
                 x2,y2=self.get_swipe_position(compose_list[flag][0],compose_list[flag][1])
-                context.tasker.controller.post_click(x1,y1).wait()
+                # context.tasker.controller.post_click(x1,y1).wait()
                 context.tasker.controller.post_swipe(x1, y1, x2, y2, duration=500).wait()
                 time.sleep(0.5)
                 print(f"移动:{compose_list[flag-1]}到{compose_list[flag]}")
