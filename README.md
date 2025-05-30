@@ -77,6 +77,10 @@
 - MAA framework 2.0 版本已支持 mumu 后台保活，会在 run task 时获取 mumu 最前台的 tab
 - 基于mumu模拟器1280x720 dpi240开发，其它模拟器或分辨率如遇到问题，可首先尝试上述配置
 - 反馈问题请附上日志文件 `debug/maa.log`以及问题界面的截图，谢谢！
+## Join us
+
+- 交流反馈 QQ 群：961390173
+- MaaFramework 开发交流 QQ 群: 595990173
 ## 鸣谢
 
 本项目由 **[MaaFramework](https://github.com/MaaXYZ/MaaFramework)** 强力驱动！
