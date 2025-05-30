@@ -3,6 +3,7 @@ import json
 import time
 from datetime import datetime
 from collections import defaultdict
+from utils import logger
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
@@ -83,11 +84,13 @@ class   CompositeGamePlayer(CustomAction):
                     for i in range(4):
                         context.tasker.controller.post_click(x,y).wait()
                         time.sleep(0.5)
-            if context.tasker.stopping:return CustomAction.RunResult(success=True)
+            if context.tasker.stopping:
+                logger.info("检测到停止任务, 开始退出agent")
+                return CustomAction.RunResult(success=False)
 
 
             
-        
+        logger.info("资源箱不足, 终止合成")
         return CustomAction.RunResult(success=True)
     def parse_chessboard(self,context,image):
          """解析棋盘
