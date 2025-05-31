@@ -1,0 +1,29 @@
+name: mirrorchyan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirrorchyan:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [win]
+        arch: [aarch64, x86_64]
+        exclude:
+          - os: win
+            arch: aarch64
+    steps:
+      - uses: MirrorChyan/uploading-action@v1
+        with:
+          filetype: latest-release
+          filename: "MMleo-${{ matrix.os }}-${{ matrix.arch }}-*.zip"
+          mirrorchyan_rid: MMleo
+
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: fictionalflaw
+          repo: MMleo
+          upload_token: ${{ secrets.MirrorChyanUploadToken }}
+          os: ${{ matrix.os }}
+          arch: ${{ matrix.arch }}
