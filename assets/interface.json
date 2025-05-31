@@ -1,4 +1,8 @@
 {
+    "name": "MMleo",
+    "url": "https://github.com/fictionalflaw/MMleo",
+    "mirrorchyan_rid": "MMleo",
+    "mirrorchyan_multiplatform": true,
     "controller": [
         {
             "name": "安卓端",
