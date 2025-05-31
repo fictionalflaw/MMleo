@@ -18,8 +18,8 @@ class   CompositeGamePlayer(CustomAction):
         self.path = "local/temp"
         self.file_path=f"{self.path}/order.json"
         self.today = datetime.now().strftime("%Y-%m-%d")
-          
-
+        
+        zyx4_flag=json.loads(argv.custom_action_param)["zyx4"]
         image = context.tasker.controller.post_screencap().wait().get() 
         try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).best_result.text
         except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).best_result.text        
@@ -27,9 +27,10 @@ class   CompositeGamePlayer(CustomAction):
         except:zz_count=context.run_recognition("for_reco_种子资源箱",image,{"for_reco_种子资源箱":{"roi":[512,656,24,36]}}).best_result.text    
         try:js_count=context.run_recognition("for_reco_剑士装备资源箱",image).best_result.text
         except:js_count=context.run_recognition("for_reco_剑士装备资源箱",image,{"for_reco_剑士装备资源箱":{"roi":[619,656,25,36]}}).best_result.text
-        try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
-        except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
-
+        if(zyx4_flag):
+            try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
+            except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
+        else:ys_count="0"
         while mf_count != "0" or zz_count != "0" or js_count != "0" or ys_count != "0":
             try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).best_result.text
             except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).best_result.text
@@ -37,8 +38,10 @@ class   CompositeGamePlayer(CustomAction):
             except:zz_count=context.run_recognition("for_reco_种子资源箱",image,{"for_reco_种子资源箱":{"roi":[512,656,24,36]}}).best_result.text
             try:js_count=context.run_recognition("for_reco_剑士装备资源箱",image).best_result.text
             except:js_count=context.run_recognition("for_reco_剑士装备资源箱",image,{"for_reco_剑士装备资源箱":{"roi":[619,656,25,36],"only_rec":True}}).best_result.text
-            try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
-            except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
+            if(zyx4_flag):
+                try:ys_count=context.run_recognition("for_reco_药水资源箱",image).best_result.text
+                except:ys_count=context.run_recognition("for_reco_药水资源箱",image,{"for_reco_药水资源箱":{"roi":[718,660,27,32]}}).best_result.text
+            else:ys_count="0"
             x,y=385,640
             
             if mf_count !="0":
@@ -53,7 +56,7 @@ class   CompositeGamePlayer(CustomAction):
             order=self.submit_order(context)    
             context.tasker.controller.post_swipe(x, y, x, y, duration=3000).wait()
             context.run_task("for_click_magic_wand")
-            
+
             image = context.tasker.controller.post_screencap().wait().get() 
             
             matrix_dd=self.parse_tick(context,image,order)
@@ -73,7 +76,7 @@ class   CompositeGamePlayer(CustomAction):
                                 element = matrix[i][j]
                                 element_positions[element].append((i, j))
                             else: order[f"{matrix[i][j]}"]-=1
-                        
+                      
             zz_positions={k: v for k, v in element_positions.items() if k==24}
             composite_positions={k: v for k, v in element_positions.items() if len(v) > 1 and k>10 and k not in [19,24,39,49,54,68,69,70]}#屏蔽名单，各单位最高元素和财宝最后三级元素（用升级卡升）
             for po in composite_positions.values():
@@ -108,7 +111,8 @@ class   CompositeGamePlayer(CustomAction):
          for j in range(len(chain)):#棋盘生成
                 threshold=0.6
                 if j==4:threshold=0.8#规定药水组检测下限
-                elif j==5:threshold=0.7#金币组检测下限
+                elif j==5 or j==2:threshold=0.7#金币、食物组检测下限
+                
                 for i in range(chain[j]):
                     
                     
@@ -187,7 +191,7 @@ class   CompositeGamePlayer(CustomAction):
                 context.tasker.controller.post_click(item.box[0],item.box[1]).wait()
                 time.sleep(0.5)
                 print("提交1次")
-                order_count+=1
+                self.order_count+=1
         self.save_data()
         return self.get_order(context)
     def get_order(self,context):

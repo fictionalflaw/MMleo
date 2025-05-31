@@ -19,13 +19,6 @@
             "path": [
                 "{PROJECT_DIR}/resource"
             ]
-        },
-        {
-            "name": "B 服",
-            "path": [
-                "{PROJECT_DIR}/resource",
-                "{PROJECT_DIR}/resource_bilibili"
-            ]
         }
     ],
     "agent": {
@@ -113,8 +106,11 @@
             }
         },
         {
-            "name": "test",
-            "entry": "test3"
+            "name": "合成游戏",
+            "entry": "Entry_CompositeGame",
+            "option": [
+                "不使用药水资源箱"
+            ]
         },
         {
             "name": "9周年通行证_测试用",
@@ -127,6 +123,30 @@
         }
     ],
     "option": {
+        "不使用药水资源箱": {
+            "cases": [
+                {
+                    "name": "yes",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "zyx4": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "no",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "海选招募次数": {
             "cases": [
                 {

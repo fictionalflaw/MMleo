@@ -47,7 +47,7 @@
         ],
         "green_mask": true,
         "recognition": "TemplateMatch",
-        "template": "合成游戏/51.png"
+        "template": "合成游戏/34.png"
     },
     "for_reco_in_composite_game_2": {
         "doc": "识别打钩icon",
@@ -222,8 +222,11 @@
         "action": "Click",
         "post_wait_freezes": 500
     },
-    "test3": {
+    "Entry_CompositeGame": {
         "action": "Custom",
-        "custom_action": "CompositeGamePlayer"
+        "custom_action": "CompositeGamePlayer",
+        "custom_action_param": {
+            "zyx4": 1
+        }
     }
 }
