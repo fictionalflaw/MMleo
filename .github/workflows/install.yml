@@ -193,6 +193,8 @@ jobs:
         with:
           files: assets/*
           tag_name: ${{ needs.meta.outputs.tag }}
+          body: |
+            [已有 Mirror酱 CDK？前往 Mirror酱 高速下载](https://mirrorchyan.com/zh/projects?rid=MMleo)
 
       - name: Trigger MirrorChyanUploading
         run: |
