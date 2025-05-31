@@ -80,6 +80,7 @@ class   MusicPlayer(CustomAction):
             if(not(context.run_recognition("for_pause_in_concert",img))):pause_flag=False
             if(context.run_recognition("for_stop_in_concert",img)):break#因为识别速度过快，所以中途停止界面一定会被识别到（除非通过脚本发送快过截图时间的操作）
             elif(context.run_recognition("ConfirmConcert",img)):break#外层堆再多延迟也是应该的，这就是中途暂停的代价
+            elif(context.tasker.stopping):break
             if end_flag:break            
            #超过合理时间必须强制结束，及时释放资源，同时得再加入错误识别，即为什么会停止这么久，如果只是暂停就一直暂停（这是不合理行为，不做判定），如果是在打歌画面却不动，直接引入画面判断——>成功就强制结束/重启es2
         return CustomAction.RunResult(success=True)
