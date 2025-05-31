@@ -226,7 +226,8 @@
         "action": "Custom",
         "custom_action": "CompositeGamePlayer",
         "custom_action_param": {
-            "zyx4": 1
+            "zyx4": 1,
+            "submit_order": 1
         }
     }
 }

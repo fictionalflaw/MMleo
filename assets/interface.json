@@ -113,7 +113,7 @@
             "name": "合成游戏",
             "entry": "Entry_CompositeGame",
             "option": [
-                "不使用药水资源箱"
+                "订单与资源箱管理"
             ]
         },
         {
@@ -127,24 +127,48 @@
         }
     ],
     "option": {
-        "不使用药水资源箱": {
+        "订单与资源箱管理": {
             "cases": [
                 {
-                    "name": "yes",
+                    "name": "自动提交订单and使用药水资源箱",
                     "pipeline_override": {
                         "Entry_CompositeGame": {
                             "custom_action_param": {
+                                "submit_order": 1,
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "自动提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 1,
                                 "zyx4": 0
                             }
                         }
                     }
                 },
                 {
-                    "name": "no",
+                    "name": "不提交订单and使用药水资源箱",
                     "pipeline_override": {
                         "Entry_CompositeGame": {
                             "custom_action_param": {
+                                "submit_order": 0,
                                 "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "不提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 0,
+                                "zyx4": 0
                             }
                         }
                     }

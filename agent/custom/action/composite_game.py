@@ -20,6 +20,8 @@ class   CompositeGamePlayer(CustomAction):
         self.today = datetime.now().strftime("%Y-%m-%d")
         
         zyx4_flag=json.loads(argv.custom_action_param)["zyx4"]
+        submit_order_flag=json.loads(argv.custom_action_param)["submit_order"]
+
         image = context.tasker.controller.post_screencap().wait().get() 
         try:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image).best_result.text
         except:mf_count=context.run_recognition("for_reco_魔法装备资源箱",image,{"for_reco_魔法装备资源箱":{"roi":[409,660,33,33]}}).best_result.text        
@@ -52,8 +54,9 @@ class   CompositeGamePlayer(CustomAction):
                 x=595
             elif ys_count!="0":
                 x=690
-                
-            order=self.submit_order(context)    
+            if(submit_order_flag):order=self.submit_order(context) 
+            else:order=self.get_order(context)
+               
             context.tasker.controller.post_swipe(x, y, x, y, duration=3000).wait()
             context.run_task("for_click_magic_wand")
 
