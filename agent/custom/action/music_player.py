@@ -3,6 +3,7 @@ import json
 import time
 from datetime import datetime
 from PIL import Image
+from utils import logger
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
@@ -18,10 +19,10 @@ class   TargetAreaSearchAndSave(CustomAction):
         img = context.tasker.controller.post_screencap().wait().get()
         reco = context.run_recognition("MusicalTargetRco", img)#在该识别域中识别结果自动按横轴排序，不用再处理
         if reco is None:
-            print("识别出错，内容为空")
+            logger.info("识别出错，内容为空")
             return CustomAction.RunResult(success=False)
         elif not (len(reco.all_results)==7) :
-            print("目标点不为7个，请检查难度重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
+            logger.info("目标点不为7个，请检查难度重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
             return CustomAction.RunResult(success=False)
         target=reco.all_results[0:7]#只针对简单模式，其他模式再看
         clickpoints={}
@@ -39,10 +40,10 @@ class   TargetAreaSearchAndSave(CustomAction):
             with open(file_path, 'w', encoding='utf-8') as file:
                 json.dump(clickpoints,file)
         
-            print(f"数据已成功写入文件: {file_path}")
+            logger.info(f"数据已成功写入文件: {file_path}")
     
         except Exception as e:
-            print(f"写入文件时出错: {e}")
+            logger.info(f"写入文件时出错: {e}")
         return CustomAction.RunResult(success=True)
 
 @AgentServer.custom_action("MusicPlayer")

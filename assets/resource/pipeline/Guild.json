@@ -1,0 +1,40 @@
+{
+    "Entry_GuildNormal": {
+        "doc": "找寻协会入口",
+        "next": [
+            "GuildIcon",
+            "Flag_Guild"
+        ],
+        "interrupt": [
+            "CallOutMenu",
+            "BackMainInMenu"
+        ]
+    },
+    "GuildIcon": {
+        "doc": "寻找协会入口，注意roi范围包括整个侧边四栏，可复用",
+        "roi": [
+            1080,
+            95,
+            187,
+            342
+        ],
+        "recognition": "OCR",
+        "expected": "协会",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": [
+            "协会签到",
+            "Flag_Guild"
+        ]
+    },
+    "协会签到": {},
+    "Flag_Guild": {}
+}

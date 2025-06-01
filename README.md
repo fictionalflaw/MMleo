@@ -77,7 +77,7 @@
 - 提示“应用程序错误”，一般是缺少运行库，请安装一下 [vc_redist](https://aka.ms/vs/17/release/vc_redist.x64.exe)
 - 添加 `-d` 参数可跳过交互直接运行任务，如 `./MaaPiCli.exe -d`
 - MAA framework 2.0 版本已支持 mumu 后台保活，会在 run task 时获取 mumu 最前台的 tab
-- 基于mumu模拟器1280x720 dpi240开发，其它模拟器或分辨率如遇到问题，可首先尝试上述配置
+- 基于mumu模拟器1920x1080 dpi280开发，其它模拟器或分辨率如遇到问题，可首先尝试上述配置
 - 反馈问题请附上日志文件 `debug/maa.log`以及问题界面的截图，谢谢！
 ## Join us
 

@@ -1,7 +1,10 @@
 {
     "Entry_BirthdayActivity": {
         "doc": "找寻生日界面入口，只有banner",
-        "next": "Flag_Main",
+        "next": [
+            "Flag_Main",
+            "BA_ComeToPho"
+        ],
         "interrupt": [
             "BackMainInMenu",
             "BackMainByMenu"
@@ -53,6 +56,7 @@
         "next": "BA_ComeToPho"
     },
     "BA_ComeToPho": {
+        "timeout": 60000,
         "roi": [
             599,
             226,
@@ -130,7 +134,20 @@
         "recognition": "OCR",
         "expected": "好的",
         "action": "Click",
-        "next": "Flag_拍摄"
+        "next": [
+            "BA_点击屏幕",
+            "Flag_拍摄"
+        ]
+    },
+    "BA_点击屏幕": {
+        "roi": "点击屏幕获取奖励",
+        "recognition": "OCR",
+        "expected": "点击屏幕",
+        "action": "Click",
+        "next": [
+            "BA_点击屏幕",
+            "Flag_拍摄"
+        ]
     },
     "Flag_拍摄": {
         "roi": [
@@ -139,8 +156,8 @@
             485,
             225
         ],
-        "recognition": "OCR",
-        "expected": "拍摄",
+        "recognition": "TemplateMatch",
+        "template": "BA_拍摄icon.png",
         "next": "Flag_结束拍摄",
         "interrupt": "Click_拍摄"
     },
@@ -154,7 +171,50 @@
         "recognition": "OCR",
         "expected": "再次观看"
     },
+    "BA_收尾拍摄": {
+        "roi": [
+            1043,
+            242,
+            223,
+            229
+        ],
+        "recognition": "TemplateMatch",
+        "template": "BA_收尾拍摄.png",
+        "next": "BA_选择拍立得"
+    },
+    "BA_选择拍立得": {
+        "doc": "默认选第二个，如果需要加选项，直接修改target范围，但是第二个在大部分界面都是安全点，不推荐改",
+        "roi": [
+            354,
+            508,
+            541,
+            188
+        ],
+        "recognition": "OCR",
+        "expected": "选择喜欢的拍立得照片吧",
+        "action": "Click",
+        "target": [
+            602,
+            199,
+            48,
+            48
+        ],
+        "next": "BA_TP"
+    },
+    "BA_TP": {
+        "doc": "TAPSCREEN",
+        "roi": [
+            490,
+            577,
+            306,
+            143
+        ],
+        "recognition": "OCR",
+        "expected": "TAPSCREEN",
+        "action": "Click"
+    },
     "Click_拍摄": {
+        "timeout": 60000,
         "roi": [
             405,
             495,
@@ -166,7 +226,8 @@
         "action": "Click",
         "next": [
             "点击屏幕获取奖励",
-            "BA_故事阅读"
+            "BA_故事阅读",
+            "BA_收尾拍摄"
         ]
     }
 }
