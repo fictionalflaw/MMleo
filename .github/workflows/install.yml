@@ -197,11 +197,17 @@ jobs:
           for f in *; do
             (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
           done
+      - name: Generate Changelog
+        uses: toolkit/github-release-notes@v1
+        id: changelog
+        with:
+          version: ${{ needs.meta.outputs.tag }}
       - uses: softprops/action-gh-release@v2
         with:
           files: assets/*
           tag_name: ${{ needs.meta.outputs.tag }}
           body: |
+            ${{ steps.changelog.outputs.text }}
             [已有 Mirror酱 CDK？前往 Mirror酱 高速下载](https://mirrorchyan.com/zh/projects?rid=MMleo)
 
       - name: Trigger MirrorChyanUploading
