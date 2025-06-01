@@ -21,7 +21,7 @@ on:
 
 env:
   MaaFw_tag: v4.2.1
-  MFA_tag: v1.2.5
+  MFA_tag: v1.2.8
   app_name: MMleo
 
 permissions:
@@ -132,7 +132,15 @@ jobs:
   #         tag: "${{ env.MaaFw_tag }}"
   #         out-file-path: "deps"
   #         extract: true
-
+      
+  #     - name: Download MFAAvalonia
+  #       uses: robinraju/release-downloader@v1
+  #       with:
+  #         repository: SweetSmellFox/MFAAvalonia
+  #         fileName: "MFAAvalonia-*-linux-${{ matrix.arch }}*"
+  #         tag: "${{ env.MFA_tag }}"
+  #         out-file-path: "MFA"
+  #         extract: true
   #     - name: Install
   #       shell: bash
   #       run: |
