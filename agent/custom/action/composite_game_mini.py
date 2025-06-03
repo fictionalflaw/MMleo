@@ -75,7 +75,7 @@ class   CompositeGamePlayer_mini(CustomAction):
                     if temp==24 and reco_detail:#稻米四连击
                         for item in reco_detail.filterd_results:
                             x,y,w,h=item.box
-                            for i in range(4):
+                            for i in range(5):
                                 context.tasker.controller.post_click(x+w//2,y+h//2).wait()
                                 time.sleep(0.5)
                     elif reco_detail:

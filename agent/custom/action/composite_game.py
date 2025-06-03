@@ -87,7 +87,7 @@ class   CompositeGamePlayer(CustomAction):
             for po in zz_positions.values():
                 for po_click in po:
                     x,y=self.get_swipe_position(po_click[0],po_click[1])
-                    for i in range(4):
+                    for i in range(5):
                         context.tasker.controller.post_click(x,y).wait()
                         time.sleep(0.5)
             if context.tasker.stopping:
