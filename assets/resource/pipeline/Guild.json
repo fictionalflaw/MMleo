@@ -3,7 +3,7 @@
         "doc": "找寻协会入口",
         "next": [
             "GuildIcon",
-            "Flag_Guild"
+            "Flag_Guild_next"
         ],
         "interrupt": [
             "CallOutMenu",
@@ -41,6 +41,15 @@
         ],
         "recognition": "TemplateMatch",
         "template": "协会签到右上角退出.png",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                782,
+                0,
+                498,
+                285
+            ]
+        },
         "action": "Click",
         "next": [
             "NO_协会签到",

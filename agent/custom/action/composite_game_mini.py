@@ -18,7 +18,7 @@ class   CompositeGamePlayer_mini(CustomAction):
         self.path = "local/temp"
         self.file_path=f"{self.path}/order.json"
         self.today = datetime.now().strftime("%Y-%m-%d")
-        print("mini启动！")
+        logger.info("mini启动！")
         zyx4_flag=json.loads(argv.custom_action_param)["zyx4"]
         submit_order_flag=json.loads(argv.custom_action_param)["submit_order"]
         if(zyx4_flag):reco_list=["for_reco_魔法装备资源箱","for_reco_种子资源箱","for_reco_剑士装备资源箱"]

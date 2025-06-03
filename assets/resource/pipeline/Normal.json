@@ -110,7 +110,16 @@
         ],
         "recognition": "OCR",
         "expected": "点击屏幕",
-        "action": "Click"
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
     },
     "Entry_Recruit": {
         "doc": "在不同地方找到招募入口",
@@ -118,6 +127,240 @@
             "RecruitIcon",
             "CallOutMenu"
         ]
+    },
+    "Entry_NormalAward": {
+        "doc": "日常奖励入口",
+        "next": [
+            "NormalAwardIcon"
+        ],
+        "interrupt": [
+            "BackMainInMenu",
+            "CallOutMenu"
+        ]
+    },
+    "NormalAwardIcon": {
+        "doc": "日常奖励",
+        "roi": [
+            0,
+            55,
+            170,
+            209
+        ],
+        "recognition": "OCR",
+        "expected": "工作计划",
+        "action": "Click",
+        "target_offset": [
+            0,
+            -5,
+            0,
+            0
+        ],
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Click_计划奖励"
+    },
+    "Click_计划奖励": {
+        "doc": "计划奖励",
+        "roi": [
+            14,
+            63,
+            219,
+            424
+        ],
+        "recognition": "OCR",
+        "expected": "计划奖励",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "一键领取_计划"
+    },
+    "一键领取_计划": {
+        "doc": "计划奖励中的一键领取按钮",
+        "roi": [
+            942,
+            521,
+            296,
+            197
+        ],
+        "recognition": "OCR",
+        "expected": "键领取",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Flag_日常事务_next",
+        "interrupt": "Click_日常事务"
+    },
+    "Flag_日常事务_next": {
+        "doc": "日常事务Flag,左上角能量棒",
+        "roi": [
+            843,
+            0,
+            250,
+            155
+        ],
+        "recognition": "OCR",
+        "expected": "使用能量棒",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "一键领取_日常"
+    },
+    "Click_日常事务": {
+        "doc": "日常事务",
+        "roi": [
+            14,
+            63,
+            219,
+            424
+        ],
+        "recognition": "OCR",
+        "expected": "日常事务",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
+    "一键领取_日常": {
+        "doc": "日常事务中的一键领取按钮",
+        "roi": [
+            942,
+            521,
+            296,
+            197
+        ],
+        "recognition": "OCR",
+        "expected": "键领取",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Flag_专项事务_next",
+        "interrupt": "Click_专项事务"
+    },
+    "Click_专项事务": {
+        "doc": "专项事务",
+        "roi": [
+            14,
+            63,
+            219,
+            424
+        ],
+        "recognition": "OCR",
+        "expected": "专项事务",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
+    "Flag_专项事务_next": {
+        "doc": "其实用的和计划奖励一样的识别内容",
+        "roi": [
+            843,
+            0,
+            250,
+            155
+        ],
+        "recognition": "OCR",
+        "expected": "兑换商店",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "一键领取_专项"
+    },
+    "一键领取_专项": {
+        "doc": "专项事务中的一键领取按钮",
+        "roi": [
+            942,
+            521,
+            296,
+            197
+        ],
+        "recognition": "OCR",
+        "expected": "键领取",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Flag_Main",
+        "interrupt": "Click_工作计划退出"
+    },
+    "Click_工作计划退出": {
+        "doc": "点击退出按钮",
+        "roi": [
+            1084,
+            0,
+            183,
+            158
+        ],
+        "recognition": "TemplateMatch",
+        "template": "工作计划右上角退出键.png",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
     },
     "RecruitIcon": {
         "doc": "寻找招募入口",

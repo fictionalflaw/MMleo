@@ -22,7 +22,7 @@ class   TargetAreaSearchAndSave(CustomAction):
             logger.info("识别出错，内容为空")
             return CustomAction.RunResult(success=False)
         elif not (len(reco.all_results)==7) :
-            logger.info("目标点不为7个，请检查难度重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
+            logger.info("目标点不为7个，请检查难度或者更换打歌背景重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
             return CustomAction.RunResult(success=False)
         target=reco.all_results[0:7]#只针对简单模式，其他模式再看
         clickpoints={}

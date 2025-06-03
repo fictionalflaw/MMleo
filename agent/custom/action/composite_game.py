@@ -18,7 +18,7 @@ class   CompositeGamePlayer(CustomAction):
         self.path = "local/temp"
         self.file_path=f"{self.path}/order.json"
         self.today = datetime.now().strftime("%Y-%m-%d")
-        print("normal启动！")
+        
         zyx4_flag=json.loads(argv.custom_action_param)["zyx4"]
         submit_order_flag=json.loads(argv.custom_action_param)["submit_order"]
 
