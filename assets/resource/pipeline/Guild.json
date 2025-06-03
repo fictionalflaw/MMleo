@@ -30,11 +30,103 @@
                 65
             ]
         },
+        "next": "Flag_Guild_next"
+    },
+    "协会签到": {
+        "roi": [
+            782,
+            0,
+            498,
+            285
+        ],
+        "recognition": "TemplateMatch",
+        "template": "协会签到右上角退出.png",
+        "action": "Click",
         "next": [
-            "协会签到",
-            "Flag_Guild"
+            "NO_协会签到",
+            "协会签到"
         ]
     },
-    "协会签到": {},
-    "Flag_Guild": {}
+    "NO_协会签到": {
+        "doc": "标志是右上角没有退出icon",
+        "roi": [
+            782,
+            0,
+            498,
+            285
+        ],
+        "recognition": "TemplateMatch",
+        "template": "协会签到右上角退出.png",
+        "inverse": true,
+        "next": [
+            "Search_协会房间偶像互动",
+            "偶像互动"
+        ]
+    },
+    "Search_协会房间偶像互动": {
+        "doc": "为了便于找聊天框，注意偶像互动结束会自动退出隐藏界面，所以不必加显示",
+        "roi": [
+            782,
+            0,
+            498,
+            285
+        ],
+        "recognition": "TemplateMatch",
+        "template": "协会_隐藏.png",
+        "action": "Click",
+        "next": "偶像互动"
+    },
+    "偶像互动": {
+        "doc": "偶像互动ing",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "TemplateMatch",
+        "template": "聊天框.png",
+        "green_mask": true,
+        "action": "Click",
+        "interrupt": [
+            "SKIP",
+            "点击屏幕获取奖励",
+            "OK_协会任务奖励"
+        ],
+        "next": "Flag_Guild"
+    },
+    "OK_协会任务奖励": {
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "OCR",
+        "expected": "已获得协会每日任务奖励",
+        "next": "OK_屏幕中央"
+    },
+    "Flag_Guild": {
+        "doc": "已在协会界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "制作人协会"
+    },
+    "Flag_Guild_next": {
+        "doc": "已在协会界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "制作人协会",
+        "next": "协会签到"
+    }
 }

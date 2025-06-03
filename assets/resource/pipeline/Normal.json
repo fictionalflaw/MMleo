@@ -68,6 +68,38 @@
             "BackMainInMenu"
         ]
     },
+    "SKIP": {
+        "roi": [
+            969,
+            0,
+            311,
+            181
+        ],
+        "recognition": "OCR",
+        "expected": "SKIP",
+        "action": "Click"
+    },
+    "OK_屏幕中央": {
+        "doc": "一般是各种活动奖励出现位置，推荐加入interrupt",
+        "roi": [
+            477,
+            483,
+            338,
+            193
+        ],
+        "recognition": "OCR",
+        "expected": "OK",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
     "点击屏幕获取奖励": {
         "doc": "用于获取奖励后总会出现的那个展示奖励并要求你点击的界面",
         "roi": [

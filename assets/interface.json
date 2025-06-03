@@ -48,6 +48,7 @@
         },
         {
             "name": "每日海选",
+            "doc": "支持选择海选次数",
             "entry": "Entry_Recruit",
             "pipeline_override": {
                 "CallOutMenu": {
@@ -59,12 +60,19 @@
             ]
         },
         {
+            "name": "协会日常",
+            "entry": "Entry_GuildNormal",
+            "doc": "只会进行签到和偶像互动，推荐放在任务列表中前置任务活跃度足够80的位置"
+        },
+        {
             "name": "检测打歌点位",
-            "entry": "MusicTargetAreaSearch"
+            "entry": "MusicTargetAreaSearch",
+            "doc": "不更换界面布局的情况下只需要成功执行一次，更换后重新识别"
         },
         {
             "name": "星光演唱会",
             "entry": "Entry_StarConcert",
+            "doc": "自动导航到星光演唱会，需要已检测过打歌点位",
             "pipeline_override": {
                 "for_end_after_concert_1": {
                     "next": "Flag_星光演唱会"
@@ -79,6 +87,7 @@
         },
         {
             "name": "临时打歌",
+            "doc": "用于各种需要临时打歌的情况，需要处于打歌界面",
             "entry": "星光演唱会打歌中",
             "pipeline_override": {
                 "星光演唱会打歌中": {
@@ -102,6 +111,7 @@
         {
             "name": "生日纪念活动",
             "entry": "Entry_BirthdayActivity",
+            "doc": "自动导航到纪念活动界面并上交礼物，不提供礼物购买功能",
             "pipeline_override": {
                 "Flag_Main": {
                     "next": "BA_fromBanner",
@@ -112,8 +122,22 @@
         {
             "name": "合成游戏",
             "entry": "Entry_CompositeGame",
+            "doc": "每年只活一个月",
             "option": [
                 "订单与资源箱管理"
+            ]
+        },
+        {
+            "name": "合成游戏_AC",
+            "entry": "Entry_CompositeGame",
+            "doc": "舍弃了部分稳定性的重构版，来体验加速的世界叭",
+            "pipeline_override": {
+                "Entry_CompositeGame": {
+                    "custom_action": "CompositeGamePlayer_mini"
+                }
+            },
+            "option": [
+                "订单与资源箱管理_AC"
             ]
         },
         {
@@ -166,6 +190,58 @@
                     "name": "不提交订单and不使用药水资源箱",
                     "pipeline_override": {
                         "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 0,
+                                "zyx4": 0
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "订单与资源箱管理_AC": {
+            "cases": [
+                {
+                    "name": "自动提交订单and使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action": "CompositeGamePlayer_mini",
+                            "custom_action_param": {
+                                "submit_order": 1,
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "自动提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action": "CompositeGamePlayer_mini",
+                            "custom_action_param": {
+                                "submit_order": 1,
+                                "zyx4": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "不提交订单and使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action": "CompositeGamePlayer_mini",
+                            "custom_action_param": {
+                                "submit_order": 0,
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "不提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action": "CompositeGamePlayer_mini",
                             "custom_action_param": {
                                 "submit_order": 0,
                                 "zyx4": 0

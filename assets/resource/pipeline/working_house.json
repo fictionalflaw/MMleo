@@ -40,21 +40,12 @@
     "template": [
       "聊天框.png"
     ],
+    "green_mask": true,
     "action": "Click",
-    "next": [
-      "SKIP"
+    "interrupt": [
+      "SKIP",
+      "点击屏幕获取奖励"
     ]
-  },
-  "SKIP": {
-    "roi": [
-      969,
-      0,
-      311,
-      181
-    ],
-    "recognition": "OCR",
-    "expected": "SKIP",
-    "action": "Click"
   },
   "偶像工作_期间限定": {
     "roi": [
