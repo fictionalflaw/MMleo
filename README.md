@@ -6,7 +6,7 @@
 ## MMleo
 基于全新架构的偶像梦幻祭2小助手。图像技术 + 模拟控制，解放双手！
 由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 强力驱动！
-**先行测试版<u>ver0.2</u>**,目前已能在大部分情况下稳定运行自动星光演唱会功能
+**先行测试版<u>ver0.3</u>**,目前已能在大部分情况下稳定运行自动星光演唱会功能
 以`1~2`个miss为您节省每天`9*3~12*3`min的时间(`27~36`min)
 **现在能支持基础的合成和提交订单了,算法改进ing。使用方法：进入合成页面，启动"合成游戏"任务**
 </div>
@@ -14,7 +14,7 @@
   <img alt="license" src="https://img.shields.io/github/license/KhazixW2/MaaGumballs">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blueviolet">
-  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/fictionalflaw/MMleo ">
+  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/fictionalflaw/MMleo">
 </p>
 ---
 
@@ -29,7 +29,9 @@
  ## 主要功能
 
 - [x] 启动游戏
-- [x] 领取月卡钻石 
+- [x] 领取月卡钻石
+- [x] 协会日常
+- [x] 领取日常奖励
 - [x] 每日海选
   - [x] 招募一次
   - [x] 招募十次
@@ -39,6 +41,7 @@
       ：由于尊重游戏规则，该功能只支持简单模式下运行，请勿妄图挑战该难度以上模式（做不到的，会fail）
 - [x] 合成游戏
       :可选是否使用药水资源箱
+
 - [ ] **其他功能待开发、测试**
 > **注意事项：**
 > - 初次运行**星光演唱会**任务前务必先运行**检测打歌点位**任务。后续不更改打歌界面布局的情况下不必再次运行。
@@ -57,13 +60,21 @@
 - 若确定自己的电脑是 arm 架构，请下载 MMleo-win-aarch64.zip
 - 请注意！Windows 的电脑几乎全都是 x86_64 的，可能占 99.999%，除非你非常确定自己是 arm，否则别下这个！_
 - 解压后运行 MFAAvalonia.exe（图形化界面，推荐使用，老版本UI为MFAWPF.exe）或 MaaPiCli.exe（命令行）即可
+- 
 ### macOS
 
-~~还没加，有需求提issue~~
+- 若使用 Intel 处理器，请下载 `MMleo-macos-x86_64.zip`
+- 若使用 M1, M2 等 arm 处理器，请下载 `MMleo-macos-aarch64.zip`
+- 使用方式：
 
+  ```bash
+  chmod a+x MaaPiCli
+  ./MaaPiCli
+  ```
+  
 ### Linux
 
-~~还没加，有需求提issue~~
+~~用 Linux 的大佬应该不需要我教~~
 
 ## 图形化界面
 
@@ -83,6 +94,7 @@
 
 - 交流反馈 QQ 群：961390173
 - MaaFramework 开发交流 QQ 群: 595990173
+  
 ## 鸣谢
 
 本项目由 **[MaaFramework](https://github.com/MaaXYZ/MaaFramework)** 强力驱动！
