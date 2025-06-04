@@ -56,7 +56,7 @@ body = """
 footer = """
 
 [已有 Mirror酱 CDK？点击前往高速下载](https://mirrorchyan.com/zh/projects?rid=MMleo)
-**本软件完全免费，若您有付费购买请立即退款并举报！**
+<!--本软件完全免费，若您有付费购买请立即退款并举报！-->
 """
 
 [git]
