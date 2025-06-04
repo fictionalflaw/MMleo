@@ -20,8 +20,8 @@ on:
   workflow_dispatch:
 
 env:
-  MaaFw_tag: v4.2.3
-  MFA_tag: v1.2.8
+  #MaaFw_tag: v4.2.3
+  #MFA_tag: v1.2.8
   app_name: MMleo
 
 permissions:
@@ -57,12 +57,13 @@ jobs:
     outputs:
       tag: ${{ steps.set_tag.outputs.tag }}
       is_release: ${{ steps.set_tag.outputs.is_release }}
-
-  windows:
+      
+  install:
     needs: meta
     runs-on: windows-latest
     strategy:
       matrix:
+        os: [win, macos, linux]
         arch: [aarch64, x86_64]
       fail-fast: false
 
@@ -70,50 +71,80 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-
+          
       - name: Download MaaFramework
         uses: robinraju/release-downloader@v1
         with:
           repository: MaaXYZ/MaaFramework
-          fileName: "MAA-win-${{ matrix.arch }}*"
-          tag: "${{ env.MaaFw_tag }}"
+          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
+          latest: true
+          preRelease: false
           out-file-path: "deps"
           extract: true
-
-      - name: Download  MFAAvalonia
-        uses: robinraju/release-downloader@v1  
-        with:
-          repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*-win-x64*"
-          tag: "${{ env.MFA_tag }}"
-          out-file-path: "MFA"
-          extract: true
-
+          
       - name: Setup Embed Python
         shell: powershell
         run: |
           ./tools/ci/setup_embed_python.ps1
-
+          
       - name: Install
         shell: bash
-        run: python ./install.py ${{ needs.meta.outputs.tag }}
-        
-      - name: Copy MFAAvalonia
+        # env:
+        #   TARGET_OS: ${{ matrix.os }}
+        #   # 根本没用上
+        run: |
+          python ./install.py ${{ needs.meta.outputs.tag }}
+          
+      - name: Set up MFAAvalonia naming
+        id: mfa_naming
         shell: bash
         run: |
-          cp MFA/MFAAvalonia.exe MFA/MFAUpdater.exe MFA/MFAUpdater.dll MFA/MFAUpdater.runtimeconfig.json MFA/av_libglesv2.dll MFA/libHarfBuzzSharp.dll MFA/libonigwrap.dll MFA/libSkiaSharp.dll MFA/uiohook.dll install/
-          jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
-          mv -f install/interface.json.tmp install/interface.json
-
-      - name: Upload
-        uses: actions/upload-artifact@v4
+          if [ "${{ matrix.os }}" = "win" ]; then
+            echo "mfa_os=win" >> $GITHUB_OUTPUT
+          elif [ "${{ matrix.os }}" = "macos" ]; then
+            echo "mfa_os=osx" >> $GITHUB_OUTPUT
+          elif [ "${{ matrix.os }}" = "linux" ]; then
+            echo "mfa_os=linux" >> $GITHUB_OUTPUT
+          else
+            echo "mfa_os=unknown" >> $GITHUB_OUTPUT
+          fi
+          
+          if [ "${{ matrix.arch }}" = "x86_64" ]; then
+            echo "mfa_arch=x64" >> $GITHUB_OUTPUT
+          elif [ "${{ matrix.arch }}" = "aarch64" ]; then
+            echo "mfa_arch=arm64" >> $GITHUB_OUTPUT
+          else
+            echo "mfa_arch=unknown" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Download MFA
+        if: ${{ matrix.os != 'android' }}
+        uses: robinraju/release-downloader@v1
         with:
-          name: ${{ env.app_name }}-win-${{ matrix.arch }}
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*${{ steps.mfa_naming.outputs.mfa_os }}-${{ steps.mfa_naming.outputs.mfa_arch }}*"
+          latest: true
+          out-file-path: "MFAAvalonia"
+          extract: true
+
+      - name: Install MFAAvalonia
+        if: ${{ matrix.os != 'android' }}
+        shell: bash
+        run: |
+          rm -rf MFAAvalonia/resource/base/model
+          cp -r MFAAvalonia/* install
+          jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
+          rm -rf install/MFAAvalonia-*${{ steps.mfa_naming.outputs.mfa_os }}-${{ steps.mfa_naming.outputs.mfa_arch }}*
+          mv -f install/interface.json.tmp install/interface.json
+          
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MMleo-${{ matrix.os }}-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}
           path: "install"
 
-  # ubuntu:
+  # windows:
   #   needs: meta
-  #   runs-on: ubuntu-latest
+  #   runs-on: windows-latest
   #   strategy:
   #     matrix:
   #       arch: [aarch64, x86_64]
@@ -128,60 +159,43 @@ jobs:
   #       uses: robinraju/release-downloader@v1
   #       with:
   #         repository: MaaXYZ/MaaFramework
-  #         fileName: "MAA-linux-${{ matrix.arch }}*"
+  #         fileName: "MAA-win-${{ matrix.arch }}*"
   #         tag: "${{ env.MaaFw_tag }}"
   #         out-file-path: "deps"
   #         extract: true
-      
-  #     - name: Download MFAAvalonia
-  #       uses: robinraju/release-downloader@v1
+
+  #     - name: Download  MFAAvalonia
+  #       uses: robinraju/release-downloader@v1  
   #       with:
   #         repository: SweetSmellFox/MFAAvalonia
-  #         fileName: "MFAAvalonia-*-linux-${{ matrix.arch }}*"
+  #         fileName: "MFAAvalonia-*-win-x64*"
   #         tag: "${{ env.MFA_tag }}"
   #         out-file-path: "MFA"
   #         extract: true
-  #     - name: Install
-  #       shell: bash
+
+  #     - name: Setup Embed Python
+  #       shell: powershell
   #       run: |
-  #         python ./install.py ${{ needs.meta.outputs.tag }}
-
-  #     - uses: actions/upload-artifact@v4
-  #       with:
-  #         name: ${{ env.app_name }}-linux-${{ matrix.arch }}
-  #         path: "install"
-
-  # macos:
-  #   needs: meta
-  #   runs-on: macos-latest
-  #   strategy:
-  #     matrix:
-  #       arch: [aarch64, x86_64]
-  #     fail-fast: false
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         submodules: true
-
-  #     - name: Download MaaFramework
-  #       uses: robinraju/release-downloader@v1
-  #       with:
-  #         repository: MaaXYZ/MaaFramework
-  #         fileName: "MAA-macos-${{ matrix.arch }}*"
-  #         tag: "${{ env.MaaFw_tag }}"
-  #         out-file-path: "deps"
-  #         extract: true
+  #         ./tools/ci/setup_embed_python.ps1
 
   #     - name: Install
   #       shell: bash
+  #       run: python ./install.py ${{ needs.meta.outputs.tag }}
+        
+  #     - name: Copy MFAAvalonia
+  #       shell: bash
   #       run: |
-  #         python ./install.py ${{ needs.meta.outputs.tag }}
+  #         cp MFA/MFAAvalonia.exe MFA/MFAUpdater.exe MFA/MFAUpdater.dll MFA/MFAUpdater.runtimeconfig.json MFA/av_libglesv2.dll MFA/libHarfBuzzSharp.dll MFA/libonigwrap.dll MFA/libSkiaSharp.dll MFA/uiohook.dll install/
+  #         jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
+  #         mv -f install/interface.json.tmp install/interface.json
 
-  #     - uses: actions/upload-artifact@v4
+  #     - name: Upload
+  #       uses: actions/upload-artifact@v4
   #       with:
-  #         name: ${{ env.app_name }}-macos-${{ matrix.arch }}
+  #         name: ${{ env.app_name }}-win-${{ matrix.arch }}
   #         path: "install"
+
+
   changelog:
     name: Generate changelog
     runs-on: ubuntu-latest
@@ -205,7 +219,7 @@ jobs:
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
     # needs: [meta, windows, ubuntu, macos]
-    needs: [meta, windows,changelog]
+    needs: [meta, install,changelog]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
