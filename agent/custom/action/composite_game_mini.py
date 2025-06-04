@@ -38,6 +38,7 @@ class   CompositeGamePlayer_mini(CustomAction):
         x,y=385,640
         x_list=[385,490,595,690]
         while compo_flag:
+            count="0"
             for index,i in enumerate(reco_list):
                 try:count=context.run_recognition(i,image).best_result.text
                 except:count=context.run_recognition(i,image,{i:{"roi":roi_change_list[index]}}).best_result.text
