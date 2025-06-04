@@ -114,7 +114,7 @@ class   CompositeGamePlayer(CustomAction):
          for j in range(len(chain)):#棋盘生成
                 threshold=0.6
                 if j==4:threshold=0.8#规定药水组检测下限
-                elif j==5 or j==2:threshold=0.7#金币、食物组检测下限
+                elif j==5 or j==2:threshold=0.7#金币、食物和组检测下限
                 
                 for i in range(chain[j]):
                     

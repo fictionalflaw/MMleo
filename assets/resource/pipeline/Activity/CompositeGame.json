@@ -20,7 +20,7 @@
             519
         ],
         "recognition": "TemplateMatch",
-        "template": "合成游戏/54.png"
+        "template": "合成游戏/61.png"
     },
     "test2_ocr": {
         "timeout": 60000,
@@ -207,7 +207,15 @@
         "recognition": "TemplateMatch",
         "template": "合成游戏/魔法棒.png",
         "action": "Click",
-        "post_wait_freezes": 500
+        "post_wait_freezes": {
+            "time": 500,
+            "target": [
+                356,
+                199,
+                588,
+                243
+            ]
+        }
     },
     "for_leave_resource_box": {
         "doc": "离开资源箱",
