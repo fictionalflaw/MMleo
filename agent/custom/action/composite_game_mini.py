@@ -21,8 +21,8 @@ class   CompositeGamePlayer_mini(CustomAction):
         logger.info("mini启动！")
         zyx4_flag=json.loads(argv.custom_action_param)["zyx4"]
         submit_order_flag=json.loads(argv.custom_action_param)["submit_order"]
-        if(zyx4_flag):reco_list=["for_reco_魔法装备资源箱","for_reco_种子资源箱","for_reco_剑士装备资源箱"]
-        else:reco_list=["for_reco_魔法装备资源箱","for_reco_种子资源箱","for_reco_剑士装备资源箱","for_reco_药水资源箱"]
+        if(zyx4_flag):reco_list=["for_reco_魔法装备资源箱","for_reco_种子资源箱","for_reco_剑士装备资源箱","for_reco_药水资源箱"]
+        else:reco_list=["for_reco_魔法装备资源箱","for_reco_种子资源箱","for_reco_剑士装备资源箱"]
         roi_change_list=[[409,660,33,33],[512,656,24,36],[619,656,25,36],[718,660,27,32]]
 
         image = context.tasker.controller.post_screencap().wait().get() 
@@ -38,9 +38,9 @@ class   CompositeGamePlayer_mini(CustomAction):
         x,y=385,640
         x_list=[385,490,595,690]
         while compo_flag:
-            count="0"
             compo_flag=False
             for index,i in enumerate(reco_list):
+                count="0"
                 try:count=context.run_recognition(i,image).best_result.text
                 except:count=context.run_recognition(i,image,{i:{"roi":roi_change_list[index]}}).best_result.text
                 if(count!= "0"):
@@ -50,7 +50,8 @@ class   CompositeGamePlayer_mini(CustomAction):
             
             if(submit_order_flag):order=self.submit_order(context) 
             else:order=self.get_order(context)
-               
+            
+            logger.info("资源箱调用")
             context.tasker.controller.post_swipe(x, y, x, y, duration=3000).wait()
             context.run_task("for_click_magic_wand")
 
