@@ -32,9 +32,7 @@
         "recognition": "OCR",
         "expected": "会员",
         "action": "Click",
-        "next": [
-            "DiamondInVip"
-        ]
+        "next": "DiamondInVip"
     },
     "DiamondInVip": {
         "doc": "在会员界面领取小月卡,如果出错就回主界面执行下一步",

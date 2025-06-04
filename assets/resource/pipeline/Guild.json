@@ -83,7 +83,8 @@
         "recognition": "TemplateMatch",
         "template": "协会_隐藏.png",
         "action": "Click",
-        "next": "偶像互动"
+        "next": "偶像互动",
+        "on_error": "Press_ESC"
     },
     "偶像互动": {
         "doc": "偶像互动ing",
@@ -136,6 +137,9 @@
         ],
         "recognition": "OCR",
         "expected": "制作人协会",
-        "next": "协会签到"
+        "next": [
+            "协会签到",
+            "Search_协会房间偶像互动"
+        ]
     }
 }

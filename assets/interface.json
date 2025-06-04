@@ -35,7 +35,7 @@
     "task": [
         {
             "name": "启动",
-            "entry": "StartUp"
+            "entry": "Entry_StartUP"
         },
         {
             "name": "领取月卡钻石",

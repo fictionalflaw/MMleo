@@ -1,4 +1,11 @@
 {
+    "Entry_StartUP": {
+        "doc": "启动",
+        "next": [
+            "StartUp",
+            "Flag_Main"
+        ]
+    },
     "StartUp": {
         "timeout": 3600000,
         "doc": "进入主界面",
@@ -69,7 +76,8 @@
         ],
         "recognition": "OCR",
         "expected": "菜单",
-        "action": "Click"
+        "action": "Click",
+        "post_wait_freezes": 1000
     },
     "BackMainByMenu": {
         "doc": "点击右上角菜单",

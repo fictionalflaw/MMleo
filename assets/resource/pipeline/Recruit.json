@@ -24,6 +24,7 @@
         ],
         "recognition": "OCR",
         "expected": "点击屏幕",
+        "pre_wait_freezes": 2000,
         "action": "Click",
         "next": [
             "跳过，在招募结算",

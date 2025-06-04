@@ -1,4 +1,17 @@
 {
+    "Press_ESC": {
+        "action": "Key",
+        "key": 111,
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
     "没有符合条件的歌曲": {
         "roi": [
             22,
