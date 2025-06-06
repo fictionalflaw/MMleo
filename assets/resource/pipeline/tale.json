@@ -112,6 +112,7 @@
         "recognition": "OCR",
         "expected": "点击屏幕",
         "action": "Click",
+        "post_wait_freezes": 1000,
         "next": [
             "ClickScreenForSkip",
             "ContinueRead",
