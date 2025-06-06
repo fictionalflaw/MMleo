@@ -180,6 +180,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "BA_收尾拍摄.png",
+        "action": "Click",
         "next": "BA_选择拍立得"
     },
     "BA_选择拍立得": {
@@ -199,6 +200,22 @@
             48,
             48
         ],
+        "next": [
+            "BA_拍立得照片确认",
+            "BA_TP"
+        ]
+    },
+    "BA_拍立得照片确认": {
+        "doc": "拍立得照片确认",
+        "roi": [
+            595,
+            482,
+            290,
+            174
+        ],
+        "recognition": "OCR",
+        "expected": "是",
+        "action": "Click",
         "next": "BA_TP"
     },
     "BA_TP": {
@@ -211,7 +228,8 @@
         ],
         "recognition": "OCR",
         "expected": "TAPSCREEN",
-        "action": "Click"
+        "action": "Click",
+        "next": "BA_故事阅读"
     },
     "Click_拍摄": {
         "timeout": 60000,
