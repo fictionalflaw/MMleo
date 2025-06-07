@@ -103,6 +103,12 @@
 
 [![Contributors](https://contrib.rocks/image?repo=fictionalflaw/MMleo)](https://github.com/fictionalflaw/MMleo/graphs/contributors)
 
+## 赞助
+
+<!-- markdownlint-disable MD045 -->
+<a href="https://afdian.com/a/fictionalflaw">
+  <img width="200" src="https://pic1.afdiancdn.com/static/img/welcome/button-sponsorme.png">
+</a>
 
 
 
