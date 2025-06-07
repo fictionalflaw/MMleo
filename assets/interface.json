@@ -70,7 +70,7 @@
             "doc": "不更换界面布局的情况下只需要成功执行一次，更换后重新识别"
         },
         {
-            "name": "星光演唱会",
+            "name": "星光演唱会_旧版",
             "entry": "Entry_StarConcert",
             "doc": "自动导航到星光演唱会，需要已检测过打歌点位",
             "pipeline_override": {
@@ -82,6 +82,26 @@
                 },
                 "彩歌需要数据下载_好的": {
                     "next": "星光演唱会打歌中"
+                }
+            }
+        },
+        {
+            "name": "星光演唱会",
+            "entry": "Entry_StarConcert",
+            "doc": "用于测试",
+            "pipeline_override": {
+                "for_end_after_concert_1": {
+                    "next": "Flag_星光演唱会"
+                },
+                "Flag_星光演唱会": {
+                    "next": "奖励领取_星光ver"
+                },
+                "彩歌需要数据下载_好的": {
+                    "next": "星光演唱会打歌中"
+                },
+                "奖励领取_星光ver": {
+                    "next": "for_search_music_in_star",
+                    "interrupt": []
                 }
             }
         },

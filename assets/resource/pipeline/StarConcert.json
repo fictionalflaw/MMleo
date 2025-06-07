@@ -211,6 +211,10 @@
             "Click_星光ver"
         ]
     },
+    "for_search_music_in_star": {
+        "recognition": "Custom",
+        "custom_recognition": "SearchMusic"
+    },
     "找回昨日次数": {
         "doc": "不接next，只做内层再循环结束标志",
         "roi": [
