@@ -25,33 +25,33 @@ class SearchMusic(CustomRecognition):
             "Click_星光ver"
         ] 
         flag=0
-        
-            
-        img = context.tasker.controller.post_screencap().wait().get()
 
-        reco1 = context.run_recognition(next_order[0], img)
-        reco2 = context.run_recognition(next_order[1], img)
-        while((not reco1) and (not reco2)):#都未识别到时一直循环
+        while True:
             if context.tasker.stopping:
+                    logger.info("正在终止任务…")
+                    return None          
+            img = context.tasker.controller.post_screencap().wait().get()
+
+            reco1 = context.run_recognition(next_order[0], img)
+            reco2 = context.run_recognition(next_order[1], img)
+            if reco1 or reco2:#next未识别到
                 return None
-            logger.info("正在寻找可进行演唱会…")
-            task_flag=-1
-            while(task_flag==-1):
+            else:                
+                logger.info("正在寻找可进行演唱会…")
+
+                task_flag=-1
                 for index,item in enumerate(interrupt_order):
                     act_reco=context.run_recognition(item,img)
                     if act_reco:
                         task_flag=index
                         break
-            print("task_flag=:",task_flag)         
-            if(task_flag==len(interrupt_order)-1):flag+=1#Click计次
-            context.run_task(interrupt_order[task_flag])
-            if flag>10: 
-                logger.info("未检测到可进行演唱会，任务即将终止")
-                return None
-            img = context.tasker.controller.post_screencap().wait().get()
-            
-            reco1 = context.run_recognition(next_order[0], img)
-            reco2 = context.run_recognition(next_order[1], img)
+
+                if(task_flag==len(interrupt_order)-1):flag+=1#对Click计次
+                if(task_flag!=-1):context.run_task(interrupt_order[task_flag])
+    
+                if flag>10: 
+                    logger.info("未检测到可进行演唱会，任务即将终止")
+                    return None
         return None
 
 
