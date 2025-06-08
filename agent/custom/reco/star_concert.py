@@ -8,7 +8,9 @@ from maa.context import Context
 from maa.define import RectType
 @AgentServer.custom_recognition("SearchMusic")
 class SearchMusic(CustomRecognition):
-    
+    '''
+    对Click进行计次，以在运行超过规定次数后终止搜索
+    '''
     def analyze(
         self,
         context: Context,
