@@ -193,8 +193,34 @@
         "expected": ""
     },
     "for_click_magic_wand": {
-        "next": "click_magic_wand",
-        "interrupt": "for_leave_resource_box"
+        "next": [
+            "CG_积分达成时OK",
+            "click_magic_wand"
+        ],
+        "interrupt": [
+            "for_leave_resource_box"
+        ]
+    },
+    "CG_积分达成时OK": {
+        "doc": "积分达标会跳出奖励领取界面",
+        "roi": [
+            482,
+            518,
+            277,
+            114
+        ],
+        "recognition": "OCR",
+        "expected": "OK",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 500,
+            "target": [
+                356,
+                199,
+                588,
+                243
+            ]
+        }
     },
     "click_magic_wand": {
         "doc": "点击魔法棒，整理棋盘",
