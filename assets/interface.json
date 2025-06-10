@@ -41,7 +41,7 @@
     },
     "task": [
         {
-            "name": "启动",
+            "name": "启动游戏",
             "entry": "Entry_StartUP"
         },
         {
