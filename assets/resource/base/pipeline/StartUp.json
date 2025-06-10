@@ -4,7 +4,8 @@
         "next": [
             "StartUp",
             "Flag_Main"
-        ]
+        ],
+        "interrupt": "StartES2"
     },
     "StartUp": {
         "timeout": 3600000,
@@ -31,6 +32,11 @@
         ],
         "recognition": "OCR",
         "expected": "等级"
+    },
+    "StartES2": {
+        "post_delay": 8000,
+        "action": "StartApp",
+        "package": "com.happyelements.es2"
     },
     "Flag_Main_By_ESC": {
         "doc": "按ESC会弹出的那个退出游戏提示",
