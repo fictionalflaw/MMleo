@@ -1,0 +1,354 @@
+{
+    "Entry_Card": {
+        "doc": "找寻卡片仓库入口",
+        "next": [
+            "CardIcon",
+            "Flag_Card_next"
+        ],
+        "interrupt": [
+            "CallOutMenu",
+            "BackMainInMenu"
+        ]
+    },
+    "CardIcon": {
+        "doc": "寻找卡片入口，注意roi范围包括整个侧边四栏，可复用",
+        "roi": [
+            1080,
+            95,
+            187,
+            342
+        ],
+        "recognition": "OCR",
+        "expected": "卡片",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Flag_Card_next"
+    },
+    "Flag_Card_next": {
+        "doc": "已在卡片界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "卡片一览",
+        "next": "Click_左上卡"
+    },
+    "Flag_Card": {
+        "doc": "用于option中更换备用",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "卡片一览",
+        "next": []
+    },
+    "组合选择_not等级": {
+        "doc": "不是等级切成等级",
+        "roi": [
+            422,
+            0,
+            805,
+            156
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "稀有度",
+            "获得顺序",
+            "综合值",
+            "舞蹈能力",
+            "声乐能力",
+            "表演能力",
+            "界限突破次数",
+            "偶像之路解锁率",
+            "粉丝人数",
+            "偶像",
+            "LIVE技能",
+            "CENTER技能",
+            "SUPPORT技能"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "组合选择_to等级"
+    },
+    "组合选择_to等级": {
+        "doc": "切成等级",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "OCR",
+        "expected": "等级",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "组合选择_in等级"
+    },
+    "组合选择_in等级": {
+        "doc": "不是等级切成等级",
+        "roi": [
+            422,
+            0,
+            805,
+            156
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "等级"
+        ],
+        "next":["排序方式_not升序","排序方式_in升序"]
+    },
+    "排序方式_not升序": {
+        "doc": "不是从低到高切成",
+        "roi": [
+            422,
+            0,
+            805,
+            156
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "从高到低",
+            "降序"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next":"排序方式_in升序"
+    },
+    "排序方式_in升序": {
+        "doc": "是从低到高，interface中为了确保唯一性可以把expected改成单从低到高",
+        "roi": [
+            422,
+            0,
+            805,
+            156
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "从低到高",
+            "升序"
+        ],
+        "post_wait_freezes": 2000
+    },
+    "Click_左上卡": {
+        "target": [
+            231,
+            157,
+            119,
+            178
+        ],
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next":"Flag_卡片详情"
+    },
+    "Flag_卡片详情":{
+        "doc": "用等级提升作为flag",
+        "roi": [
+            957,
+            144,
+            307,
+            193
+        ],
+        "recognition": "OCR",
+        "expected": "等级提升",
+        "post_wait_freezes": 2000
+    },
+    "Card_等级提升": {
+        "doc": "已在卡片详情，单击等级提升",
+        "roi": [
+            957,
+            144,
+            307,
+            193
+        ],
+        "recognition": "OCR",
+        "expected": "等级提升",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "Card_等级提升_消耗1张经验券小"
+    },
+    "Card_等级提升_消耗1张经验券小": {
+        "doc": "+1",
+        "roi": [
+            878,
+            241,
+            181,
+            148
+        ],
+        "recognition": "TemplateMatch",
+        "template": "经验券+1.png",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "Card_等级提升_确定"
+    },
+    "Card_等级提升_确定": {
+        "doc": "确定按钮，没做亮起识别",
+        "roi": [
+            826,
+            530,
+            294,
+            187
+        ],
+        "recognition": "OCR",
+        "expected": "确定",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time":2000,
+            "target":[63,36,395,475]},
+        "next": "Card_等级提升_关闭"
+    },
+    "Card_等级提升_关闭": {
+        "doc": "关闭按钮+1",
+        "roi": [
+            603,
+            527,
+            309,
+            193
+        ],
+        "recognition": "OCR",
+        "expected": "关闭",
+        "action": "Click",
+        "post_wait_freezes": 1000
+    },
+    "Card_偶像之路": {
+        "doc": "已在卡片详情，单击偶像之路",
+        "roi": [
+            956,
+            310,
+            291,
+            196
+        ],
+        "recognition": "OCR",
+        "expected": "偶像之路",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "Card_偶像之路_红点匹配"
+    },
+    "Card_偶像之路_选择能力": {//已废弃，该用红点colormatch
+        "doc": "应该选择最近的能力",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "偶像之路_声乐.png",
+            "偶像之路_舞蹈.png",
+            "偶像之路_表演.png"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "Card_偶像之路_学习"
+    },
+    "Card_偶像之路_选择能力_try": {//已废弃，该用红点colormatch
+        "doc": "应该选择最近的能力",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "偶像之路_表演_红点.png"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 2000
+    },
+    "Card_偶像之路_红点匹配": {
+        "doc": "开发环境下count150能识别到红点",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "ColorMatch",
+        "upper": [
+            255,
+            41,
+            106
+        ],
+        "lower": [
+            255,
+            41,
+            106
+        ],
+        "count": 150,
+        "connected": true,
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next":"Card_偶像之路_学习"
+    },
+    "Card_偶像之路_学习": {
+        "doc": "偶像之路，学习按钮",
+        "roi": [
+            890,
+            542,
+            390,
+            178
+        ],
+        "recognition": "OCR",
+        "expected": "学习",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next":"Card_偶像之路_退出"
+    },
+        "Card_偶像之路_退出": {
+        "doc": "偶像之路，已有素材",
+        "roi": [0,555,225,165],
+        "recognition": "OCR",
+        "expected": "已有素材",
+        "action": "Key",
+        "key":111,
+        "post_wait_freezes": 2000
+    },
+    "Card_偶像之路_查看需要的素材": {
+        "doc": "偶像之路，查看需要的素材按钮",
+        "roi": [
+            890,
+            542,
+            390,
+            178
+        ],
+        "recognition": "OCR",
+        "expected": "查看需要的素材",
+        "action": "Click",
+        "post_wait_freezes": 2000
+    },
+    "偶像名字识别测试": {
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "OCR",
+        "expected": "月永雷欧",
+        "action": "Click"
+    }
+}

@@ -67,6 +67,16 @@
             ]
         },
         {
+            "name": "每日练卡",
+            "entry": "Entry_Card",
+            "doc": "用于完成每日练卡任务，不会对卡片检索进行变更",
+            "option": [
+                "按照等级排序",
+                "每日等级提升",
+                "每日偶像之路"
+            ]
+        },
+        {
             "name": "协会日常",
             "entry": "Entry_GuildNormal",
             "doc": "只会进行签到和偶像互动，推荐放在任务列表中前置任务活跃度足够80的位置"
@@ -308,6 +318,74 @@
                             "next": "Scout100InAudition"
                         }
                     }
+                }
+            ]
+        },
+        "按照等级排序": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "Flag_Card_next": {
+                            "next": [
+                                "组合选择_not等级",
+                                "组合选择_in等级"
+                            ]
+                        },
+                        "排序方式_in升序": {
+                            "next": [
+                                "Click_左上卡"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "每日等级提升": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "Click_左上卡": {
+                            "next": [
+                                "Card_等级提升"
+                            ]
+                        },
+                        "Card_等级提升_关闭": {
+                            "next": [
+                                "Flag_卡片详情"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "每日偶像之路": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "Flag_卡片详情": {
+                            "next": [
+                                "Card_偶像之路"
+                            ]
+                        },
+                        "Card_偶像之路_退出": {
+                            "next": []
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 }
             ]
         }
