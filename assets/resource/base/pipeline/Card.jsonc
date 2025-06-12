@@ -19,7 +19,7 @@
             342
         ],
         "recognition": "OCR",
-        "expected": "卡片",
+        "expected": "^\\卡片$",
         "action": "Click",
         "post_wait_freezes": {
             "time": 2000,
