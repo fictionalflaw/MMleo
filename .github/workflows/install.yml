@@ -21,7 +21,7 @@ on:
 
 env:
   #MaaFw_tag: v4.2.3
-  #MFA_tag: v1.2.8
+  MFA_tag: v1.3.5
   app_name: MMleo
 
 permissions:
@@ -117,13 +117,21 @@ jobs:
             echo "mfa_arch=unknown" >> $GITHUB_OUTPUT
           fi
           
-      - name: Download MFA
-        if: ${{ matrix.os != 'android' }}
-        uses: robinraju/release-downloader@v1
+      # - name: Download MFA
+      #   if: ${{ matrix.os != 'android' }}
+      #   uses: robinraju/release-downloader@v1
+      #   with:
+      #     repository: SweetSmellFox/MFAAvalonia
+      #     fileName: "MFAAvalonia-*${{ steps.mfa_naming.outputs.mfa_os }}-${{ steps.mfa_naming.outputs.mfa_arch }}*"
+      #     latest: true
+      #     out-file-path: "MFAAvalonia"
+      #     extract: true
+      - name: Download  MFAAvalonia
+        uses: robinraju/release-downloader@v1  
         with:
           repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*${{ steps.mfa_naming.outputs.mfa_os }}-${{ steps.mfa_naming.outputs.mfa_arch }}*"
-          latest: true
+          fileName: "MFAAvalonia-*-win-x64*"
+          tag: "${{ env.MFA_tag }}"
           out-file-path: "MFAAvalonia"
           extract: true
 
