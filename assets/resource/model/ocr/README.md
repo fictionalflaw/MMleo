@@ -1,23 +1,23 @@
 # PaddleOCR model
 
-2025/05/31
+2023/09/29
 
-from <https://paddlepaddle.github.io/PaddleOCR/latest/version3.x/module_usage/text_detection.html> and <https://paddlepaddle.github.io/PaddleOCR/latest/version3.x/module_usage/text_recognition.html>
+from <https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/models_list.md>
 
 ## det model
 
-PP-OCRv5_mobile_det  
-PP-OCRv5 的移动端文本检测模型，效率更高，适合在端侧设备部署
+ch_PP-OCRv4_det  
+【最新】原始超轻量模型，支持中英文、多语种文本检测
 
-<https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv5_mobile_det_infer.tar>
+<https://paddleocr.bj.bcebos.com/PP-OCRv4/chinese/ch_PP-OCRv4_det_infer.tar>
 
 ## rec model
 
-PP-OCRv5_mobile_rec  
-PP-OCRv5_rec 是新一代文本识别模型。该模型致力于以单一模型高效、精准地支持简体中文、繁体中文、英文、日文四种主要语言，以及手写、竖版、拼音、生僻字等复杂文本场景的识别。在保持识别效果的同时，兼顾推理速度和模型鲁棒性，为各种场景下的文档理解提供高效、精准的技术支撑。
+ch_PP-OCRv4_rec  
+【最新】超轻量模型，支持中英文、数字识别
 
-<https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv5_mobile_rec_infer.tar>
+<https://paddleocr.bj.bcebos.com/PP-OCRv4/chinese/ch_PP-OCRv4_rec_infer.tar>
 
 ## rec label
 
-from `PP-OCRv5_mobile_rec_infer.tar/inference.yml`
+<https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/ppocr/utils/ppocr_keys_v1.txt>
