@@ -1,4 +1,130 @@
 {
+    "Entry_NormalTale": {
+        "doc": "找寻入口",
+        "next": [
+            "TaleIcon",
+            "Flag_Tale_next"
+        ],
+        "interrupt": [
+            "CallOutMenu",
+            "BackMainInMenu"
+        ]
+    },
+    "TaleIcon": {
+        "doc": "寻找故事入口，注意roi范围包括整个侧边四栏，可复用",
+        "roi": [
+            1080,
+            95,
+            187,
+            342
+        ],
+        "recognition": "OCR",
+        "expected": "^\\故事$",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Flag_Tale_next"
+    },
+    "Flag_Tale": {
+        "doc": "已在故事界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "故事"
+    },
+    "Flag_Tale_next": {
+        "doc": "已在故事界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "^\\故事$",
+        "next": "Tale_选择_活动故事"
+    },
+    "Tale_选择_活动故事": {
+        "doc": "选择活动故事",
+        "recognition": "OCR",
+        "expected": "^\\活动故事$",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
+    "Flag_活动故事_next": {
+        "doc": "已在活动故事界面的标志",
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "^\\活动故事$",
+        "next": "Tale_活动故事_选择左上"
+    },
+    "Tale_活动故事_选择左上": {
+        "target": [
+            269,
+            130,
+            183,
+            146
+        ],
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "StartReading"
+    },
+    "Tale_活动故事_红点匹配": {
+        "doc": "开发环境下count200能识别到红点，不行捏，有颜色相近的",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "ColorMatch",
+        "upper": [
+            255,
+            41,
+            106
+        ],
+        "lower": [
+            255,
+            41,
+            106
+        ],
+        "count": 150,
+        "connected": true,
+        "action": "Click",
+        "post_wait_freezes": 2000
+    },
     "StartReading": {
         "doc": "默认已在选择话数界面",
         "roi": [
@@ -131,6 +257,18 @@
         "expected": "阅读",
         "action": "Click",
         "next": "RequiredClickForSkip"
+    },
+    "StopRead": {
+        "doc": "关闭阅读",
+        "roi": [
+            375,
+            468,
+            296,
+            195
+        ],
+        "recognition": "OCR",
+        "expected": "^\\关闭$",
+        "action": "Click"
     },
     "RequiredClickForSkip": {
         "timeout": 60000,

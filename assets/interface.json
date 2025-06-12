@@ -77,6 +77,31 @@
             ]
         },
         {
+            "name": "每日阅读",
+            "entry": "Entry_Card",
+            "doc": "用于完成每日阅读任务",
+            "pipeline_override": {
+                "ClickMenuIntale": {
+                    "next": "SkipInTale",
+                    "interrupt": []
+                },
+                "SureSkip": {
+                    "next": [
+                        "ClickScreenForSkip",
+                        "StopRead",
+                        "Flag_EndReading"
+                    ]
+                },
+                "ClickScreenForSkip": {
+                    "next": [
+                        "ClickScreenForSkip",
+                        "StopRead",
+                        "Flag_EndReading"
+                    ]
+                }
+            }
+        },
+        {
             "name": "协会日常",
             "entry": "Entry_GuildNormal",
             "doc": "只会进行签到和偶像互动，推荐放在任务列表中前置任务活跃度足够80的位置"
