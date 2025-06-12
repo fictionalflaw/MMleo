@@ -130,13 +130,34 @@ jobs:
       - name: Install MFAAvalonia
         if: ${{ matrix.os != 'android' }}
         shell: bash
+        # 固定的安装步骤，jq用于修改mfa的interface配置，rm用于清理安装包,mv修正interface文件名
         run: |
           rm -rf MFAAvalonia/resource/base/model
-          cp -r MFAAvalonia/* install
+          cp -r MFAAvalonia/* install 
           jq --arg version_name "${{ env.app_name }}" --arg url ""https://github.com/fictionalflaw/MMleo"" --arg version ${{ needs.meta.outputs.tag }} '. + {"name": $version_name, "url": $url,"version": $version}' install/interface.json > install/interface.json.tmp
           rm -rf install/MFAAvalonia-*${{ steps.mfa_naming.outputs.mfa_os }}-${{ steps.mfa_naming.outputs.mfa_arch }}*
           mv -f install/interface.json.tmp install/interface.json
           
+      - name: Replace Icon
+        shell: bash
+        run: |
+          cp logo.ico install/logo.ico
+          cp logo.ico install/Assets/logo.ico
+
+      - name: Packing Launcher
+        if: ${{matrix.os == 'win' }}
+        working-directory: launcher
+        shell: bash
+        run: |
+          python -m pip install pyinstaller
+          pyinstaller --onefile --icon=../logo.ico --windowed MMleo.py
+      
+      - name: Install Tools
+        if: ${{matrix.os == 'win' }}
+        shell: bash
+        run: |
+          cp launcher/dist/MMleo.exe install/MMleo.exe
+
       - uses: actions/upload-artifact@v4
         with:
           name: MMleo-${{ matrix.os }}-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}
