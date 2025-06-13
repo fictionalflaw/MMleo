@@ -1,5 +1,214 @@
 {
-  "点击聊天框": {
+  "Entry_WorkingHouce": {
+    "doc": "找寻事务所入口",
+    "next": [
+      "WorkingHouceIcon",
+      "Flag_WorkingHouce_next"
+    ],
+    "interrupt": [
+      "CallOutMenu",
+      "BackMainInMenu"
+    ]
+  },
+  "WorkingHouceIcon": {
+    "doc": "主界面的事务所icon",
+    "recognition": "OCR",
+    "roi": [
+      824,
+      554,
+      188,
+      150
+    ],
+    "action": "Click",
+    "expected": "^\\事务所$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "Flag_WorkingHouce_next"
+  },
+  "Flag_WorkingHouce_next": {
+    "doc": "用拜访事务所作为标志，正好复制一份进拜访",
+    "recognition": "OCR",
+    "roi": [
+      1083,
+      128,
+      197,
+      130
+    ],
+    "expected": "拜访事务所",
+    "next": "WH_偶像工作"
+  },
+  "WH_偶像工作": {
+    "doc": "单击偶像工作图标",
+    "recognition": "OCR",
+    "roi": [
+      1077,
+      537,
+      203,
+      151
+    ],
+    "action": "Click",
+    "expected": "^\\偶像工作$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "Flag_选择偶像工作_next"
+  },
+  "Flag_选择偶像工作_next": {
+    "doc": "选择偶像工作界面的标志",
+    "recognition": "OCR",
+    "roi": [
+      0,
+      0,
+      359,
+      172
+    ],
+    "expected": "选择偶像工作",
+    "next": "选择偶像工作_每日工作"
+  },
+  "选择偶像工作_每日工作": {
+    "doc": "单击每日工作图标，范围是侧边一栏，可复用，默认路线是直接工作准备，不选择工作",
+    "recognition": "OCR",
+    "roi": [
+      0,
+      67,
+      201,
+      478
+    ],
+    "action": "Click",
+    "expected": "^\\每日工作$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "选择偶像工作_前往工作准备"
+  },
+  "选择偶像工作_前往工作准备": {
+    "doc": "不做工作选择，只是有工作准备就进工作准备",
+    "recognition": "OCR",
+    "roi": [
+      803,
+      548,
+      372,
+      172
+    ],
+    "action": "Click",
+    "expected": "^\\前往工作准备$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "Flag_参加工作成员_next"
+  },
+  "Flag_参加工作成员_next": {
+    "doc": "参加工作成员界面的标志",
+    "recognition": "OCR",
+    "roi": [
+      0,
+      0,
+      359,
+      172
+    ],
+    "expected": "参加工作成员",
+    "next": "参加工作成员_连续工作"
+  },
+  "参加工作成员_连续工作": {
+    "doc": "同样没做人员调整",
+    "recognition": "OCR",
+    "roi": [
+      1025,
+      539,
+      255,
+      149
+    ],
+    "action": "Click",
+    "expected": "^\\连续工作$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "参加工作成员_开始连续工作"
+  },
+  "参加工作成员_开始连续工作": {
+    "timeout": 600000,
+    "doc": "没做BP调整和次数调整,postwait尽可能长，5s吧",
+    "recognition": "OCR",
+    "roi": [
+      615,
+      555,
+      250,
+      134
+    ],
+    "action": "Click",
+    "expected": "^\\开始连续工作$",
+    "post_wait_freezes": 5000
+  },
+  "选择偶像工作_每日工作_最后": {
+    "doc": "占位用"
+  },
+  "选择偶像工作_下滑": {
+    "doc": "占位用"
+  },
+  "Flag_WorkingHouce": {
+    "doc": "用拜访事务所作为标志，正好复制一份进拜访",
+    "recognition": "OCR",
+    "roi": [
+      1083,
+      128,
+      197,
+      130
+    ],
+    "expected": "拜访事务所",
+    "next": "Flag_WorkingHouce_next"
+  },
+  "WH_点击聊天框": {
+    "timeout": 30000,
+    "roi": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "recognition": "TemplateMatch",
+    "template": [
+      "聊天框.png"
+    ],
+    "action": "Click",
+    "post_wait_freezes": 2000,
+    "interrupt": [
+      "SKIP",
+      "点击屏幕获取奖励"
+    ],
+    "next": "Flag_WorkingHouce"
+  },
+  "动物园_点击聊天框": {
     "timeout": 30000,
     "roi": [
       355,
@@ -11,7 +220,8 @@
     "template": [
       "聊天框.png"
     ],
-    "action": "Click"
+    "action": "Click",
+    "post_wait_freezes": 2000
   },
   "收音符": {
     "timeout": 30000,
@@ -46,28 +256,5 @@
       "SKIP",
       "点击屏幕获取奖励"
     ]
-  },
-  "偶像工作_期间限定": {
-    "roi": [
-      998,
-      457,
-      282,
-      263
-    ],
-    "recognition": "OCR",
-    "expected": "偶像工作",
-    "action": "Click",
-    "next": "期间限定_切换"
-  },
-  "期间限定_切换": {
-    "roi": [
-      998,
-      457,
-      282,
-      263
-    ],
-    "recognition": "OCR",
-    "expected": "偶像工作",
-    "action": "Click"
   }
 }
