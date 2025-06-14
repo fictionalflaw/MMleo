@@ -249,20 +249,16 @@
         "pre_delay": 500,
         "action": "Click"
     },
-    "testmusicplayer": {
+    "Test": {
         "doc": "测试",
-        "recognition": "OCR",
+        "recognition": "TemplateMatch",
         "roi": [
-            7,
-            7,
-            416,
-            71
+            108,
+            65,
+            649,
+            655
         ],
-        "expected": [
-            "演唱会热度",
-            "通关"
-        ],
-        "action": "Custom",
-        "custom_action": "MusicPlayer"
+        "template": "偶像工作_不打勾.png",
+        "action": "Click"
     }
 }

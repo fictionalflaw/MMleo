@@ -107,6 +107,16 @@
             "doc": "只会进行签到和偶像互动，推荐放在任务列表中前置任务活跃度足够80的位置"
         },
         {
+            "name": "偶像工作",
+            "entry": "Entry_WorkingHouce",
+            "doc": "偶像工作，点击齿轮选择细节。当前版本偶像工作不具备规律性，因此只能选择一定价值区间内的工作",
+            "option": [
+                "选择工作类型",
+                "使用辅助工作",
+                "使用推荐编队"
+            ]
+        },
+        {
             "name": "检测打歌点位",
             "entry": "MusicTargetAreaSearch",
             "doc": "不更换界面布局的情况下只需要成功执行一次，更换后重新识别"
@@ -284,6 +294,67 @@
                         },
                         "Card_偶像之路_退出": {
                             "next": []
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "选择工作类型": {
+            "cases": [
+                {
+                    "name": "期间限定_默认第一个",
+                    "pipeline_override": {
+                        "Flag_选择偶像工作_next": {
+                            "next": [
+                                "选择偶像工作_期间限定"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "每日工作_最后一个",
+                    "pipeline_override": {
+                        "选择偶像工作_每日工作": {
+                            "next": "Swipe_最后_1"
+                        }
+                    }
+                },
+                {
+                    "name": "每日工作_第一个",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "使用辅助工作": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "选择偶像工作_前往工作准备": {
+                            "next": "Click_辅助工作"
+                        },
+                        "Click_辅助工作": {
+                            "next": "Flag_参加工作成员_next"
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "使用推荐编队": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "Flag_参加工作成员_next": {
+                            "next": "Click_推荐编队"
                         }
                     }
                 },

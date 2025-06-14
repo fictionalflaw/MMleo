@@ -42,7 +42,8 @@
       130
     ],
     "expected": "拜访事务所",
-    "next": "WH_偶像工作"
+    "next": "Flag_选择偶像工作_next",
+    "interrupt":"WH_偶像工作"
   },
   "WH_偶像工作": {
     "doc": "单击偶像工作图标",
@@ -63,8 +64,7 @@
         209,
         65
       ]
-    },
-    "next": "Flag_选择偶像工作_next"
+    }
   },
   "Flag_选择偶像工作_next": {
     "doc": "选择偶像工作界面的标志",
@@ -78,6 +78,85 @@
     "expected": "选择偶像工作",
     "next": "选择偶像工作_每日工作"
   },
+  "选择偶像工作_期间限定": {
+    "doc": "单击期间限定图标，范围是侧边一栏，可复用，默认路线是直接工作准备，不选择工作",
+    "recognition": "OCR",
+    "roi": [
+      0,
+      67,
+      201,
+      478
+    ],
+    "action": "Click",
+    "expected": "^\\期间限定$",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next": "期间限定_选择第一个"
+  },
+    "期间限定_选择第一个": {
+    "doc": "选择第一个活动工作，严格roi",
+    "recognition": "OCR",
+    "roi": [216,155,416,56],
+    "action": "Click",
+    "expected": "【活动】",
+    "next": [
+      "Flag_确认工作已选中_活动"
+    ],
+    "post_wait_freezes":1000
+  },
+  // "期间限定_选择第一个": {废弃了，选不打勾体现不出区分
+  //   "doc": "选择第一个活动工作，严格roi",
+  //   "recognition": "TemplateMatch",
+  //   "roi": [
+  //     203,
+  //     138,
+  //     62,
+  //     82
+  //   ],
+  //   "action": "Click",
+  //   "template": "偶像工作_不打勾.png",
+  //   "next": [
+  //     "Flag_确认是活动工作"
+  //   ]
+  // },
+  "Flag_确认工作已选中_活动": {
+    "doc": "确定选中的是活动工作",
+    "recognition": "TemplateMatch",
+    "roi": [
+      203,
+      138,
+      62,
+      82
+    ],
+    "action": "Click",
+    "template": "偶像工作_打勾.png",
+    "next": [
+      "选择偶像工作_前往工作准备"
+    ]
+  },
+  // "Flag_工作已选中_next": {已废弃
+  //   "doc": "确定工作是打勾状态",
+  //   "recognition": "TemplateMatch",
+  //   "roi": [
+  //     203,
+  //     138,
+  //     62,
+  //     82
+  //   ],
+  //   "action": "Click",
+  //   "template": "偶像工作_打勾.png",
+  //   "next": [
+  //     "Flag_确认是活动工作",
+  //     "选择偶像工作_前往工作准备"
+  //   ]
+  // },
   "选择偶像工作_每日工作": {
     "doc": "单击每日工作图标，范围是侧边一栏，可复用，默认路线是直接工作准备，不选择工作",
     "recognition": "OCR",
@@ -101,7 +180,7 @@
     "next": "选择偶像工作_前往工作准备"
   },
   "选择偶像工作_前往工作准备": {
-    "doc": "不做工作选择，只是有工作准备就进工作准备",
+    "doc": "进入工作准备的按钮",
     "recognition": "OCR",
     "roi": [
       803,
@@ -132,8 +211,35 @@
       172
     ],
     "expected": "参加工作成员",
-    "next": "参加工作成员_连续工作"
+    "next": [
+      "参加工作成员_开始连续工作"
+    ],
+    "interrupt":"参加工作成员_连续工作"
   },
+    "Click_辅助工作": {
+    "doc": "识别OFF按钮",
+    "recognition": "TemplateMatch",
+    "roi": [928,79,352,391],
+    "pre_wait_freezes":2000,
+    "action": "Click",
+    "template": "辅助工作_OFF.png",
+    "post_wait_freezes":1000,
+    "next": [
+      "Click_推荐编队"
+    ]
+  },
+      "Click_推荐编队": {
+    "doc": "识别推荐编队",
+    "recognition": "OCR",
+    "roi": [1023,376,257,152],
+    "action": "Click",
+    "expected": "推荐编队",
+    "next": [
+      "参加工作成员_开始连续工作"
+    ],
+    "interrupt":"参加工作成员_连续工作"
+  },
+  
   "参加工作成员_连续工作": {
     "doc": "同样没做人员调整",
     "recognition": "OCR",
@@ -153,8 +259,7 @@
         209,
         65
       ]
-    },
-    "next": "参加工作成员_开始连续工作"
+    }
   },
   "参加工作成员_开始连续工作": {
     "timeout": 600000,
@@ -171,7 +276,37 @@
     "post_wait_freezes": 5000
   },
   "选择偶像工作_每日工作_最后": {
-    "doc": "占位用"
+    "doc": "识别最后格子没打钩的状态然后打钩",
+        "recognition": "TemplateMatch",
+    "roi": [200,535,445,85],
+    "action": "Click",
+    "template": "偶像工作_不打勾.png",
+    "next": [
+      "选择偶像工作_前往工作准备"
+    ]
+
+  },
+    "Swipe_最后_1": {
+      "doc": "下划最长距离1次",
+      "action": "Swipe",
+      "begin": [371,608,64,38],
+      "end": [385,170,34,22],
+      "post_wait_freezes": {
+        "time":1000,
+        "target": [163,115,512,609]
+      },
+      "next":"Swipe_最后_2"
+  },
+      "Swipe_最后_2": {
+      "doc": "下划最长距离1次",
+      "action": "Swipe",
+      "begin": [371,608,64,38],
+      "end": [385,170,34,22],
+      "post_wait_freezes": {
+        "time":1000,
+        "target": [163,115,512,609]
+      },
+      "next":"选择偶像工作_每日工作_最后"
   },
   "选择偶像工作_下滑": {
     "doc": "占位用"
