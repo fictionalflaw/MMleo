@@ -43,7 +43,7 @@
     ],
     "expected": "拜访事务所",
     "next": "Flag_选择偶像工作_next",
-    "interrupt":"WH_偶像工作"
+    "interrupt":["Click_正中下端_关闭","WH_偶像工作"]
   },
   "WH_偶像工作": {
     "doc": "单击偶像工作图标",
