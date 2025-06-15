@@ -273,7 +273,8 @@
     ],
     "action": "Click",
     "expected": "^\\开始连续工作$",
-    "post_wait_freezes": 5000
+    "post_wait_freezes": 5000,
+    "next":"Flag_连续工作结束"
   },
     "Flag_连续工作结束": {
     "timeout": 600000,
