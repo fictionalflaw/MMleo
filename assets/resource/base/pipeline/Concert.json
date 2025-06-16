@@ -208,6 +208,18 @@
         "expected": "好的",
         "action": "Click"
     },
+    "conscert_test": {
+        "timeout": 180000,
+        "recognition": "TemplateMatch",
+        "threshold": 0.9,
+        "template": [
+            "难度上标_极难.png",
+            "难度上标_专家.png",
+            "难度上标_困难.png",
+            "难度上标_普通.png",
+            "难度上标_简单.png"
+        ]
+    },
     "打歌界面识别": {
         "recognition": "OCR",
         "roi": [

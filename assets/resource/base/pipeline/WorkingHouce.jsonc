@@ -219,11 +219,12 @@
     "Click_辅助工作": {
     "doc": "识别OFF按钮",
     "recognition": "TemplateMatch",
-    "roi": [928,79,352,391],
+    "roi": [1065,255,229,211],
     "pre_wait_freezes":2000,
     "action": "Click",
     "template": "辅助工作_OFF.png",
     "post_wait_freezes":1000,
+    "threshold":0.95,
     "next": [
       "Click_推荐编队"
     ]
