@@ -402,5 +402,9 @@
         "recognition": "OCR",
         "expected": "海选招募",
         "action": "Click"
+    },
+    "CountTask_RunNode":{
+        "next":"拜访_红心已点",
+        "interrupt":"拜访_点击红心"
     }
 }

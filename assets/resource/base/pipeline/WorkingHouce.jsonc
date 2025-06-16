@@ -2,8 +2,7 @@
   "Entry_WorkingHouce": {
     "doc": "找寻事务所入口",
     "next": [
-      "WorkingHouceIcon",
-      "Flag_WorkingHouce_next"
+      "WorkingHouceIcon"
     ],
     "interrupt": [
       "CallOutMenu",
@@ -331,6 +330,116 @@
     "expected": "拜访事务所",
     "next": "Flag_WorkingHouce_next"
   },
+  "Start_拜访事务所": {
+    "doc": "找寻拜访事务所入口",
+    "recognition": "OCR",
+    "roi": [
+      1083,
+      128,
+      197,
+      130
+    ],
+    "expected": "拜访事务所",
+    "action": "Click",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next":"拜访事务所_随机拜访",
+    "interrupt":["Click_正中下端_关闭","Start_拜访事务所"]
+  },
+    "拜访事务所_随机拜访": {
+    "doc": "找寻随机拜访入口",
+    "recognition": "OCR",
+    "roi": [16,402,231,202],
+    "expected": "随机拜访",
+    "action": "Click",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next":"拜访_Count5次"
+  },
+  "拜访_Count5次":{
+    "action": "Custom",
+    "custom_action": "CountTask",
+    "custom_action_param": {
+      "count": 0,
+      "target_count": 5,
+      "next_node": ["Press_ESC"]
+    }
+  },
+  "拜访_点击红心":{
+      "doc": "识别未点击的红心",
+    "recognition": "TemplateMatch",
+    "roi": [1076,280,204,207],
+    "template": "拜访_未填充爱心.png",
+    "green_mask": true,
+    "action": "Click",
+    "threshold":0.9,
+    "post_wait_freezes": {
+      "time": 1000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    }
+},
+"拜访_红心已点":{
+      "doc": "识别已点击的红心",
+    "recognition": "TemplateMatch",
+    "roi": [1076,280,204,207],
+    "template": "拜访_已填充爱心.png",
+    "green_mask": true,
+    "threshold":0.9,
+    "post_wait_freezes": {
+      "time": 500,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next":"拜访_随机拜访"
+},
+    "拜访_随机拜访": {
+    "doc": "拜访内的随机拜访",
+    "recognition": "OCR",
+    "roi": [1066,411,214,192],
+    "expected": "随机拜访",
+    "action": "Click",
+    "post_wait_freezes": {
+      "time": 2000,
+      "target": [
+        1071,
+        655,
+        209,
+        65
+      ]
+    },
+    "next":"拜访_Flag_红心未点"
+  },
+  "拜访_Flag_红心未点":{
+      "doc": "识别未点击的红心",
+    "recognition": "TemplateMatch",
+    "roi": [1076,280,204,207],
+    "template": "拜访_未填充爱心.png",
+    "green_mask": true,
+    "threshold":0.9
+},
   "WH_点击聊天框": {
     "timeout": 30000,
     "roi": [
