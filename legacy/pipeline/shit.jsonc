@@ -1,0 +1,80 @@
+{
+    "Flag_已在目标BP-1": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -1"
+        ]
+    },
+    "Flag_已在目标BP-2": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -2"
+        ]
+    },
+    "Flag_已在目标BP-3": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -3"
+        ]
+    },
+    "Flag_已在目标BP-6": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -6"
+        ]
+    },
+    "Flag_已在目标BP-10": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP-10"
+        ]
+    },
+    "Flag_已在目标BP-30": {
+        "doc": "interface中更改",
+        "roi": [
+            619,
+            590,
+            105,
+            52
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP-30"
+        ]
+    },
+}

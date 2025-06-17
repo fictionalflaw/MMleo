@@ -141,7 +141,7 @@
         {
             "name": "星光演唱会",
             "entry": "Entry_StarConcert",
-            "doc": "用于测试",
+            "doc": "当前版本不会处理BP不足的情况，请酌情使用",
             "pipeline_override": {
                 "for_end_after_concert_1": {
                     "next": "Flag_星光演唱会"
@@ -155,8 +155,26 @@
                 "奖励领取_星光ver": {
                     "next": "for_search_music_in_star",
                     "interrupt": []
+                },
+                "确认歌曲_星光ver": {
+                    "next": [
+                        "Feat_难度调整"
+                    ]
+                },
+                "Flag_目标难度": {
+                    "next": [
+                        "Feat_BP调整"
+                    ]
+                },
+                "Flag_已在目标BP": {
+                    "next": [
+                        "StartTheConcert_星光ver"
+                    ]
                 }
-            }
+            },
+            "option": [
+                "调整消耗的BP数"
+            ]
         },
         {
             "name": "领取日常奖励",
@@ -176,8 +194,10 @@
         {
             "name": "合奏演唱会",
             "entry": "协同演唱会期间icon",
+            "doc": "等待重构",
             "pipeline_override": {
                 "确认歌曲": {
+                    "doc": "确认歌曲被BP调整使用了，不应有next",
                     "next": "换上原唱"
                 }
             }
@@ -231,6 +251,59 @@
                     "pipeline_override": {
                         "AuditionInRecruit": {
                             "next": "Scout100InAudition"
+                        }
+                    }
+                }
+            ]
+        },
+        "调整消耗的BP数": {
+            "cases": [
+                {
+                    "name": "0BP",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "1BP",
+                    "pipeline_override": {
+                        "Flag_已在目标BP": {
+                            "expected": [
+                                "BP -1"
+                            ]
+                        },
+                        "BP调整_TO": {
+                            "expected": [
+                                "消耗1BP"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "2BP",
+                    "pipeline_override": {
+                        "Flag_已在目标BP": {
+                            "expected": [
+                                "BP -2"
+                            ]
+                        },
+                        "BP调整_TO": {
+                            "expected": [
+                                "消耗2BP"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "3BP",
+                    "pipeline_override": {
+                        "Flag_已在目标BP": {
+                            "expected": [
+                                "BP -3"
+                            ]
+                        },
+                        "BP调整_TO": {
+                            "expected": [
+                                "消耗3BP"
+                            ]
                         }
                     }
                 }
@@ -376,9 +449,9 @@
                         "拜访_Count5次": {
                             "next": "Flag_WorkingHouce_next"
                         },
-                        "CountTask_RunNode":{
-                            "next":"拜访_红心已点",
-                            "interrupt":"拜访_点击红心"
+                        "CountTask_RunNode": {
+                            "next": "拜访_红心已点",
+                            "interrupt": "拜访_点击红心"
                         }
                     }
                 },
