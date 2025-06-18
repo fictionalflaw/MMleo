@@ -166,6 +166,11 @@
                         "Feat_BP调整"
                     ]
                 },
+                "Flag_开始演唱会_next": {
+                    "next": [
+                        "StartTheConcert_星光ver"
+                    ]
+                },
                 "Flag_已在目标BP": {
                     "next": [
                         "StartTheConcert_星光ver"
