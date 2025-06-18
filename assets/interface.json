@@ -141,7 +141,7 @@
         {
             "name": "星光演唱会",
             "entry": "Entry_StarConcert",
-            "doc": "当前版本不会处理BP不足的情况，请酌情使用",
+            "doc": "当前版本不会处理BP不足和编队有空位的情况，请酌情使用",
             "pipeline_override": {
                 "for_end_after_concert_1": {
                     "next": "Flag_星光演唱会"
@@ -163,6 +163,11 @@
                 },
                 "Flag_目标难度": {
                     "next": [
+                        "Feat_编队调整"
+                    ]
+                },
+                "Flag_目标编队": {
+                    "next": [
                         "Feat_BP调整"
                     ]
                 },
@@ -178,7 +183,8 @@
                 }
             },
             "option": [
-                "调整消耗的BP数"
+                "调整消耗的BP数",
+                "调整使用的编队"
             ]
         },
         {
@@ -308,6 +314,124 @@
                         "BP调整_TO": {
                             "expected": [
                                 "消耗3BP"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "调整使用的编队": {
+            "cases": [
+                {
+                    "name": "演唱会组队01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "演唱会组队02",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "Flag_目标编队": {
+                            "expected": [
+                                "演唱会组队12"
                             ]
                         }
                     }

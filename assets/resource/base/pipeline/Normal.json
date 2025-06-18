@@ -673,6 +673,69 @@
             ]
         }
     },
+    "Feat_编队调整": {
+        "doc": "在interface中替换Flag_目标编队的expected就行,注意必须在组合选择界面使用",
+        "next": "调整_回到编队01"
+    },
+    "调整_寻找目标编队": {
+        "next": "Flag_目标编队",
+        "interrupt": "调整_Click右箭头"
+    },
+    "调整_回到编队01": {
+        "next": "调整_Flag_编队01",
+        "interrupt": "调整_Click左箭头"
+    },
+    "Flag_目标编队": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ]
+    },
+    "调整_Flag_编队01": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ],
+        "next": "调整_寻找目标编队"
+    },
+    "调整_Click左箭头": {
+        "roi": [
+            0,
+            248,
+            158,
+            191
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "编队_左箭头.png"
+        ],
+        "action": "Click"
+    },
+    "调整_Click右箭头": {
+        "roi": [
+            1126,
+            252,
+            154,
+            184
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "编队_右箭头.png"
+        ],
+        "action": "Click"
+    },
     "CountTask_RunNode": {
         "next": "拜访_红心已点",
         "interrupt": "拜访_点击红心"
