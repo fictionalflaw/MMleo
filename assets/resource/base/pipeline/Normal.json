@@ -721,6 +721,7 @@
         "template": [
             "编队_左箭头.png"
         ],
+        "threshold": 0.6,
         "action": "Click"
     },
     "调整_Click右箭头": {
@@ -734,6 +735,7 @@
         "template": [
             "编队_右箭头.png"
         ],
+        "threshold": 0.6,
         "action": "Click"
     },
     "CountTask_RunNode": {
