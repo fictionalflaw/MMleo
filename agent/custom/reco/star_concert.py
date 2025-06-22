@@ -36,7 +36,9 @@ class SearchMusic(CustomRecognition):
 
             reco1 = context.run_recognition(next_order[0], img)
             reco2 = context.run_recognition(next_order[1], img)
-            if reco1 or reco2:#next未识别到
+            if reco1 or reco2:#next识别到
+                if(reco1):context.run_task(next_order[0],pipeline_override={next_order[0]:{"next":[]}})
+                if(reco2):context.run_task(next_order[1],pipeline_override={next_order[1]:{"next":[]}})
                 return None
             else:                
                 logger.info("正在寻找可进行演唱会…")
