@@ -65,10 +65,10 @@
     "Click_Before_Main": {
         "doc": "",
         "target": [
-            676,
-            377,
-            81,
-            68
+            641,
+            8,
+            124,
+            29
         ],
         "action": "Click"
     },
