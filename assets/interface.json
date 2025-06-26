@@ -322,6 +322,21 @@
         },
         "调整使用的编队": {
             "cases": [
+                                {
+                    "name": "不调整编队",
+                    "pipeline_override": {
+                        "Feat_编队调整": {
+                            "next": [
+                                "Flag_目标编队"
+                            ]
+                        },
+                        "Flag_目标编队": {
+                            "expected": [
+                                ""
+                            ]
+                        }
+                    }
+                },
                 {
                     "name": "演唱会组队01",
                     "pipeline_override": {}
