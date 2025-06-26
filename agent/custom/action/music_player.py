@@ -19,7 +19,7 @@ class   TargetAreaSearchAndSave(CustomAction):
         img = context.tasker.controller.post_screencap().wait().get()
         reco = context.run_recognition("MusicalTargetRco", img)#在该识别域中识别结果自动按横轴排序，不用再处理
         if reco is None:
-            logger.info("识别出错，内容为空")
+            logger.info("识别出错，内容为空,请检查判定线样式")
             return CustomAction.RunResult(success=False)
         elif not (len(reco.all_results)==7) :
             logger.info("目标点不为7个，请检查难度或者更换打歌背景重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
