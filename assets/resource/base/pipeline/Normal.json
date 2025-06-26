@@ -1,4 +1,4 @@
- {
+{
     "Entry_Store": {
         "doc": "在不同地方找到商店入口",
         "next": [
@@ -411,6 +411,10 @@
             "难度调整"
         ]
     },
+    "Feat_难度调整_End": {
+        "doc": "在interface中连接后续节点",
+        "next": []
+    },
     "Back难度调整_in选组": {
         "doc": "在组合选择界面",
         "roi": [
@@ -468,7 +472,8 @@
             217
         ],
         "recognition": "TemplateMatch",
-        "template": "难度上标_简单.png"
+        "template": "难度上标_简单.png",
+        "next": "Feat_难度调整_End"
     },
     "Feat_BP调整": {
         "doc": "默认已组合伍选择界面,默认路径为0BP,活动歌曲不存在BP调整,应该加入辨别BP按钮是否存在的选项",
@@ -476,6 +481,10 @@
             "Flag_BP消耗icon_next",
             "Flag_开始演唱会_next"
         ]
+    },
+    "Feat_BP调整_End": {
+        "doc": "BP调整不使用这个，因为已经用flag作为出口了：Flag_已在目标BP",
+        "next": []
     },
     "Feat_BP调整_true": {
         "doc": "存在BPicon才会进入调整，不存在直接开始演唱会",
@@ -674,7 +683,7 @@
         }
     },
     "Feat_编队调整": {
-        "doc": "在interface中替换Flag_目标编队的expected就行,注意必须在组合选择界面使用",
+        "doc": "在interface中替换Flag_目标编队的expected就行,注意必须在组合选择界面使用，出口为Flag",
         "next": "调整_回到编队01"
     },
     "调整_寻找目标编队": {

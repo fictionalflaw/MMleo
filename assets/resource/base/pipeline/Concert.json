@@ -1,4 +1,43 @@
 {
+    "Feat_演唱会结算": {
+        "doc": "为了复用性，之后记得将巡演的唯一性flag加入next和interrupt中涉及的flag",
+        "next": [
+            "Flag_星光演唱会",
+            "Flag_演唱会"
+        ],
+        "interrupt": [
+            "歌曲奖励达成_NC",
+            "更新记录界面_NC",
+            "退出打歌结算界面_NC",
+            "粉丝数up_NC",
+            "活动奖励领取_NC",
+            "FlagandAction_迷你对话_1",
+            "FlagandAction_迷你对话_2",
+            "OK_pt增加时弹出的奖励界面",
+            "活动期间pt达标跳出的卡面领取",
+            "点击屏幕获取奖励"
+        ]
+    },
+    "Feat_Check自动": {
+        "doc": "需在队伍调整界面，使用该feat后自动会是打开的状态",
+        "next": [
+            "EnableAutomatic",
+            "NoNeedToEnableAutomatic"
+        ]
+    },
+    "Feat_Check自动_End": {
+        "doc": "用来在interface中连接其他功能",
+        "roi": [
+            832,
+            571,
+            105,
+            118
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "亮的自动.png"
+        ]
+    },
     "ConfirmConcert": {
         "doc": "这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
         "roi": [
@@ -57,8 +96,7 @@
         "expected": "关闭",
         "action": "Click",
         "next": [
-            "EnableAutomatic",
-            "NoNeedToEnableAutomatic"
+            "Feat_Check自动"
         ]
     },
     "EnableAutomatic": {
@@ -74,9 +112,7 @@
             "暗的自动.png"
         ],
         "action": "Click",
-        "next": [
-            "StartTheConcert"
-        ]
+        "next": "Feat_Check自动_End"
     },
     "NoNeedToEnableAutomatic": {
         "doc": "无需开启自动",
@@ -90,9 +126,7 @@
         "template": [
             "亮的自动.png"
         ],
-        "next": [
-            "StartTheConcert"
-        ]
+        "next": "Feat_Check自动_End"
     },
     "StartTheConcert": {
         "roi": [
