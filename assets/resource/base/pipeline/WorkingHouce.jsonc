@@ -99,32 +99,32 @@
     },
     "next": "期间限定_选择第一个"
   },
-    "期间限定_选择第一个": {
-    "doc": "选择第一个活动工作，严格roi",
-    "recognition": "OCR",
-    "roi": [216,155,416,56],
+  //   "期间限定_选择第一个": {
+  //   "doc": "选择第一个活动工作，严格roi",
+  //   // "recognition": "OCR",
+  //   "roi": [216,155,416,56],
+  //   "action": "Click",
+  //   // "expected": "【活动】",有特殊活动
+  //   "next": [
+  //     "Flag_确认工作已选中_活动"
+  //   ],
+  //   "post_wait_freezes":1000
+  // },
+  "期间限定_选择第一个": {
+    "doc": "选择第一个活动工作,严格roi",
+    "recognition": "TemplateMatch",
+    "roi": [
+      203,
+      138,
+      62,
+      82
+    ],
     "action": "Click",
-    "expected": "【活动】",
+    "template": "偶像工作_不打勾.png",
     "next": [
       "Flag_确认工作已选中_活动"
-    ],
-    "post_wait_freezes":1000
+    ]
   },
-  // "期间限定_选择第一个": {废弃了，选不打勾体现不出区分
-  //   "doc": "选择第一个活动工作，严格roi",
-  //   "recognition": "TemplateMatch",
-  //   "roi": [
-  //     203,
-  //     138,
-  //     62,
-  //     82
-  //   ],
-  //   "action": "Click",
-  //   "template": "偶像工作_不打勾.png",
-  //   "next": [
-  //     "Flag_确认是活动工作"
-  //   ]
-  // },
   "Flag_确认工作已选中_活动": {
     "doc": "确定选中的是活动工作",
     "recognition": "TemplateMatch",
@@ -376,8 +376,23 @@
     "custom_action_param": {
       "count": 0,
       "target_count": 5,
-      "next_node": ["Press_ESC"]
+      "next_node": ["Back_事务所_By_ESC"]
     }
+  },
+  "Back_事务所_By_ESC":{
+    "next":"Flag_WorkingHouce_nonext",
+    "interrupt":["Press_ESC"]
+  },
+    "Flag_WorkingHouce_nonext": {
+    "doc": "用拜访事务所作为标志，正好复制一份进拜访",
+    "recognition": "OCR",
+    "roi": [
+      1083,
+      128,
+      197,
+      130
+    ],
+    "expected": "拜访事务所"
   },
   "拜访_点击红心":{
       "doc": "识别未点击的红心",
