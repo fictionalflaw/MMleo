@@ -81,14 +81,18 @@
     "Flag_钻石回复_next": {
         "doc": "识别钻石回复的付费标志，必须启用，不想回复就不连接使用节点",
         "roi": [
-            482,
-            302,
-            180,
-            141
+            239,
+            61,
+            846,
+            562
         ],
         "recognition": "TemplateMatch",
         "threshold": 0.9,
-        "template": "BP回复_有钻石.png"
+        "green_mask": true,
+        "template": [
+            "BP回复_有钻石.png",
+            "BP回复_只有钻石.png"
+        ]
     },
     "钻石回复_使用": {
         "doc": "接在flag后面，interface中连接",
