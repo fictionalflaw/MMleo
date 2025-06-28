@@ -1,23 +1,4 @@
 {
-    "Feat_演唱会结算": {
-        "doc": "为了复用性，之后记得将巡演的唯一性flag加入next和interrupt中涉及的flag",
-        "next": [
-            "Flag_星光演唱会",
-            "Flag_演唱会"
-        ],
-        "interrupt": [
-            "歌曲奖励达成_NC",
-            "更新记录界面_NC",
-            "退出打歌结算界面_NC",
-            "粉丝数up_NC",
-            "活动奖励领取_NC",
-            "FlagandAction_迷你对话_1",
-            "FlagandAction_迷你对话_2",
-            "OK_pt增加时弹出的奖励界面",
-            "活动期间pt达标跳出的卡面领取",
-            "点击屏幕获取奖励"
-        ]
-    },
     "Feat_Check自动": {
         "doc": "需在队伍调整界面，使用该feat后自动会是打开的状态",
         "next": [
@@ -38,7 +19,6 @@
             "亮的自动.png"
         ]
     },
-
     "EnableAutomatic": {
         "doc": "开启自动",
         "roi": [
@@ -68,7 +48,66 @@
         ],
         "next": "Feat_Check自动_End"
     },
-        "Feat_难度调整": {
+    "Feat_BP回复": {
+        "doc": "interface中选择使用，并接入点击开始演唱会后的识别中，使用回复并开始按钮，别接action",
+        "recognition": "OCR",
+        "roi": [
+            500,
+            476,
+            285,
+            175
+        ],
+        "expected": "回复并开始",
+        "next": "Flag_钻石回复_next",
+        "on_error": [
+            "Flag_道具回复_next"
+        ]
+    },
+    "Flag_道具回复_next": {
+        "doc": "未识别到付费标志就是道具回复，象征性的识别下回复标志",
+        "recognition": "OCR",
+        "roi": [
+            500,
+            476,
+            285,
+            175
+        ],
+        "expected": "回复并开始",
+        "next": "Flag_钻石回复_next",
+        "on_error": [
+            "Flag_道具回复_next"
+        ]
+    },
+    "Flag_钻石回复_next": {
+        "doc": "识别钻石回复的付费标志，必须启用，不想回复就不连接使用节点",
+        "roi": [
+            482,
+            302,
+            180,
+            141
+        ],
+        "recognition": "TemplateMatch",
+        "threshold": 0.9,
+        "template": "BP回复_有钻石.png"
+    },
+    "钻石回复_使用": {
+        "doc": "接在flag后面，interface中连接",
+        "roi": [
+            500,
+            476,
+            285,
+            175
+        ],
+        "expected": "回复并开始",
+        "recognition": "OCR",
+        "action": "Click",
+        "next": "Feat_BP回复_End"
+    },
+    "Feat_BP回复_End": {
+        "doc": "在interface中连接后续节点",
+        "next": []
+    },
+    "Feat_难度调整": {
         "doc": "需要哪个难度就在interface中修改Flag的template和'难度调整'node的expected",
         "next": "Flag_目标难度",
         "interrupt": [
@@ -104,7 +143,7 @@
         "next": "难度调整"
     },
     "难度调整": {
-        "doc": "在选曲界面",
+        "doc": "在选曲界面，巡演可用",
         "roi": [
             603,
             369,
@@ -500,7 +539,10 @@
             229
         ],
         "recognition": "OCR",
-        "expected": "确认",
+        "expected": [
+            "确认",
+            "确定"
+        ],
         "action": "Click"
     },
     "彩歌需要数据下载": {
@@ -526,7 +568,6 @@
         "expected": "好的",
         "action": "Click"
     },
-
     "打歌界面识别": {
         "recognition": "OCR",
         "roi": [

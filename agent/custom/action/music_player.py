@@ -72,7 +72,7 @@ class   MusicPlayer(CustomAction):
                         context.tasker.controller.post_click(key[0],key[1]).wait()
                         flag+=1
                 if(flag>=2):
-                    if((context.run_recognition("for_end_after_concert_1",img))or(context.run_recognition("for_end_after_concert_2",img))):
+                    if((context.run_recognition("for_end_after_concert_1",img))or(context.run_recognition("for_end_after_concert_2",img))or(context.tasker.stopping)):
                         end_flag=True   
                         break
                     elif(context.run_recognition("for_pause_in_concert",img)):#还要加中途终止和回到打歌界面的识别

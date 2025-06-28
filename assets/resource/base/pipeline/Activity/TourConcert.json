@@ -1,0 +1,126 @@
+{
+    "Entry_TourMap": {
+        "doc": "interface中连接在Entry演唱会后面，默认已在打歌界面",
+        "next": [
+            "Flag_特别演唱会_next",
+            "Flag_TourMap_next"
+        ]
+    },
+    "Flag_巡演曲目列表界面": {
+        "doc": "使用该界面左下角的放弃作为识别特征",
+        "roi": [
+            39,
+            587,
+            118,
+            49
+        ],
+        "recognition": "TemplateMatch",
+        "template": "巡演_放弃.png"
+    },
+    "Flag_特别演唱会_next": {
+        "doc": "寻找特别演唱会入口",
+        "roi": [
+            63,
+            0,
+            543,
+            133
+        ],
+        "recognition": "OCR",
+        "expected": "^\\特别演唱会$",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": "Click_巡演地图"
+    },
+    "Flag_TourMap_next": {
+        "doc": "已在巡演地图，使用右下角公演一览作为标识",
+        "roi": [
+            1066,
+            560,
+            187,
+            116
+        ],
+        "recognition": "OCR",
+        "expected": "^\\公演一览$",
+        "next": "Feat_search巡演关卡"
+    },
+    "Flag_TourMap": {
+        "doc": "现已加入Feat_打歌结算豪华午餐：原因是打完巡演第四首会直接回主界面",
+        "roi": [
+            1066,
+            560,
+            187,
+            116
+        ],
+        "recognition": "OCR",
+        "expected": "^\\公演一览$"
+    },
+    "Click_巡演地图": {
+        "doc": "点击弹窗中的巡演地图",
+        "roi": [
+            243,
+            96,
+            785,
+            535
+        ],
+        "recognition": "OCR",
+        "expected": "^\\巡演地图$",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": "Feat_search巡演关卡"
+    },
+    "Feat_search巡演关卡": {
+        "doc": "搜寻目标关卡，接受interface指定，或者自动找最后一个没打的关卡",
+        "next": "Flag_目标关卡_next"
+    },
+    "Flag_目标关卡_next": {
+        "doc": "目标关卡，interface中更改",
+        "roi": [
+            96,
+            196,
+            1184,
+            331
+        ],
+        "recognition": "TemplateMatch",
+        "template": "TourConcert/巡演1.png",
+        "threshold": 0.9,
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Click_正中下端_开始演唱会"
+    },
+    "Flag_最近巡演关卡_next": {
+        "doc": "不同巡演覆盖不同icon进去,未在其他位置进行测试",
+        "recognition": "TemplateMatch",
+        "roi": [
+            96,
+            196,
+            1184,
+            331
+        ],
+        "template": "巡演最新关卡icon.png",
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Click_正中下端_开始演唱会"
+    },
+    "Click_正中下端_开始演唱会": {
+        "doc": "目标关卡，interface中更改",
+        "roi": [
+            331,
+            413,
+            575,
+            307
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "threshold": 0.9,
+        "action": "Click",
+        "post_wait_freezes": 1000
+    }
+}

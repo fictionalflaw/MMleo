@@ -1,4 +1,25 @@
 {
+    "Feat_演唱会结算": {
+        "doc": "巡演也能识别",
+        "next": [
+            "Flag_星光演唱会",
+            "Flag_演唱会",
+            "Flag_巡演曲目列表界面",
+            "Flag_TourMap"
+        ],
+        "interrupt": [
+            "歌曲奖励达成_NC",
+            "更新记录界面_NC",
+            "退出打歌结算界面_NC",
+            "粉丝数up_NC",
+            "活动奖励领取_NC",
+            "FlagandAction_迷你对话_1",
+            "FlagandAction_迷你对话_2",
+            "OK_pt增加时弹出的奖励界面",
+            "活动期间pt达标跳出的卡面领取",
+            "点击屏幕获取奖励"
+        ]
+    },
     "等待演唱会结束": {
         "timeout": 180000,
         "doc": "代打有自己的结束演算，现在的目的是解决自动的等待结束,1和2这两个节点会直接回到不论星光或是普通演唱会的选歌界面",
@@ -20,7 +41,9 @@
         "action": "Click",
         "next": [
             "Flag_星光演唱会",
-            "Flag_演唱会"
+            "Flag_演唱会",
+            "Flag_巡演曲目列表界面",
+            "Flag_TourMap"
         ],
         "interrupt": [
             "Click_迷你对话ing",
@@ -41,7 +64,9 @@
         "action": "Click",
         "next": [
             "Flag_星光演唱会",
-            "Flag_演唱会"
+            "Flag_演唱会",
+            "Flag_巡演曲目列表界面",
+            "Flag_TourMap"
         ],
         "interrupt": [
             "Click_迷你对话ing",

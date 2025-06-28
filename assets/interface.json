@@ -322,7 +322,7 @@
         },
         "调整使用的编队": {
             "cases": [
-                                {
+                {
                     "name": "不调整编队",
                     "pipeline_override": {
                         "Feat_编队调整": {
