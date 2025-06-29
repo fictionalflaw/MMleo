@@ -3,7 +3,8 @@
         "doc": "interface中连接在Entry演唱会后面，默认已在打歌界面",
         "next": [
             "Flag_特别演唱会_next",
-            "Flag_TourMap_next"
+            "Flag_TourMap_next",
+            "巡演_custom启动"
         ],
         "interrupt": [
             "ComeToConcert_ByMenu",
@@ -126,7 +127,10 @@
         "recognition": "TemplateMatch",
         "template": "巡演_放弃.png",
         "action": "Custom",
-        "custom_action": "TourConcert"
+        "custom_action": "TourConcert",
+        "custom_action_param": {
+            "tour_count": 1
+        }
     },
     "Click_正中下端_开始演唱会": {
         "doc": "目标关卡，interface中更改",
@@ -388,16 +392,110 @@
     "Entry_巡演后领取星光奖励": {
         "doc": "点击奖励直到出现前往巡回地图",
         "next": [
-            "Flag_StarConcertIcon_on",
-            "Flag_StarConcertIcon_off"
+            "巡演星光奖励领取_星光icon_on",
+            "巡演星光奖励领取_星光icon_off"
         ],
         "interrupt": [
             "ComeToConcert_ByMenu",
             "ComeToConcert"
         ]
     },
+    "巡演星光奖励领取_星光icon_on": {
+        "doc": "抄的Flag_StarConcertIcon_on",
+        "roi": [
+            291,
+            0,
+            212,
+            122
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StartConcertIcon.png"
+        ],
+        "next": "Feat_巡演后领取星光奖励"
+    },
+    "巡演星光奖励领取_星光icon_off": {
+        "doc": "抄的Flag_StarConcertIcon_off",
+        "roi": [
+            291,
+            0,
+            212,
+            122
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "StarConcertIcon_off.png"
+        ],
+        "action": "Click",
+        "next": "巡演星光奖励领取_星光icon_on"
+    },
     "Feat_巡演后领取星光奖励": {
         "doc": "在interface中将Flag_StarConcertIcon_on的next接上这个",
+        "roi": [
+            496,
+            205,
+            173,
+            155
+        ],
+        "recognition": "TemplateMatch",
+        "threshold": 0.6,
+        "template": [
+            "钻石礼盒.png",
+            "通行证礼盒.png",
+            "宝石礼盒.png"
+        ],
+        "template_doc": "有时候这里会是通信证标志，找到icon放进template列表",
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        },
+        "next": [
+            "巡演星光奖励领取_flag四演出结束",
+            "巡演星光奖励领取_前往巡回演唱会地图"
+        ],
+        "interrupt": [
+            "找回昨日次数",
+            "点击屏幕获取奖励",
+            "OK_pt增加时弹出的奖励界面",
+            "活动期间pt达标跳出的卡面领取",
+            "Click_星光ver"
+        ]
+    },
+    "巡演星光奖励领取_flag四演出结束": {
+        "doc": "作为一个出口",
+        "roi": [
+            0,
+            70,
+            691,
+            584
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "四演出结束.png"
+        ],
+        "green_mask": true
+    },
+    "巡演星光奖励领取_前往巡回演唱会地图": {
+        "doc": "前往巡回演唱会地图",
+        "roi": [
+            790,
+            424,
+            372,
+            270
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "前往巡回演唱"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Flag_TourMap"
     },
     "for_reco_last_in_tc": {
         "doc": "只是作为验证最后一首歌的辅助手段,相等就设置10，不等不管，优先级依旧是顺位为最高",

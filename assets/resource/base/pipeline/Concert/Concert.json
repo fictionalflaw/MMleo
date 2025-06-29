@@ -61,7 +61,8 @@
         "next": [
             "Flag_道具回复_next",
             "Flag_钻石回复_next"
-        ]
+        ],
+        "enabled": false
     },
     "Flag_道具回复_next": {
         "doc": "当前只识别哨子情况",

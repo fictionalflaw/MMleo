@@ -1127,6 +1127,40 @@
                 }
             ]
         },
+        "代打关卡数": {
+            "cases": [
+                {
+                    "name": "1",
+                    "pipeline_override": {
+                        "巡演_custom启动": {
+                            "custom_action_param": {
+                                "tour_count": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "2",
+                    "pipeline_override": {
+                        "巡演_custom启动": {
+                            "custom_action_param": {
+                                "tour_count": 2
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "3",
+                    "pipeline_override": {
+                        "巡演_custom启动": {
+                            "custom_action_param": {
+                                "tour_count": 3
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "巡演BP规划": {
             "cases": [
                 {
@@ -1151,7 +1185,12 @@
                 },
                 {
                     "name": "No",
-                    "pipeline_override": {}
+                    "pipeline_override": {
+                        "Entry_巡演后领取星光奖励": {
+                            "next": [],
+                            "interrupt": []
+                        }
+                    }
                 }
             ]
         },
