@@ -188,6 +188,20 @@
             ]
         },
         {
+            "name": "巡演代打_联动ver",
+            "entry": "Entry_TourMap",
+            "doc": "自动打完1Day的内容，使用前确保体力充足。支持导航。无法中途进入，请先打完未打完的关卡/Day。有其他自定义需求可以手动启用临时打歌",
+            "option": [
+                "选择巡演关卡",
+                "巡演BP规划",
+                "第一首使用编队",
+                "第二首使用编队",
+                "第三首使用编队",
+                "第四首使用编队",
+                "打完后自动领取星光奖励"
+            ]
+        },
+        {
             "name": "领取日常奖励",
             "entry": "Entry_NormalAward",
             "doc": "用于日常奖励领取，不会识别日常进度"
@@ -314,6 +328,134 @@
                         "BP调整_TO": {
                             "expected": [
                                 "消耗3BP"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "选择巡演关卡": {
+            "cases": [
+                {
+                    "name": "最远未打",
+                    "pipeline_override": {
+                        "Feat_search巡演关卡": {
+                            "next": [
+                                "Flag_最近巡演关卡_next"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "02",
+                    "pipeline_override": {
+                        "Flag_目标关卡_next": {
+                            "template": [
+                                "TourConcert/巡演02.png"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队12"
                             ]
                         }
                     }
@@ -450,6 +592,566 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "第一首使用编队": {
+            "cases": [
+                {
+                    "name": "不调整编队",
+                    "pipeline_override": {
+                        "Feat_编队调整": {
+                            "next": [
+                                "for_编队调整_巡演1"
+                            ]
+                        },
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "演唱会组队02",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "for_编队调整_巡演1": {
+                            "expected": [
+                                "演唱会组队12"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "第二首使用编队": {
+            "cases": [
+                {
+                    "name": "不调整编队",
+                    "pipeline_override": {
+                        "Feat_编队调整": {
+                            "next": [
+                                "for_编队调整_巡演2"
+                            ]
+                        },
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "演唱会组队02",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "for_编队调整_巡演2": {
+                            "expected": [
+                                "演唱会组队12"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "第三首使用编队": {
+            "cases": [
+                {
+                    "name": "不调整编队",
+                    "pipeline_override": {
+                        "Feat_编队调整": {
+                            "next": [
+                                "for_编队调整_巡演3"
+                            ]
+                        },
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "演唱会组队02",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "for_编队调整_巡演3": {
+                            "expected": [
+                                "演唱会组队12"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "第四首使用编队": {
+            "cases": [
+                {
+                    "name": "不调整编队",
+                    "pipeline_override": {
+                        "Feat_编队调整": {
+                            "next": [
+                                "for_编队调整_巡演4"
+                            ]
+                        },
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                ""
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队01",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "演唱会组队02",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队02"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队03",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队03"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队04",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队04"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队05",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队05"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队06",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队06"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队07",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队07"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队08",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队08"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队09",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队09"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队10",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队10"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队11",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队11"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "演唱会组队12",
+                    "pipeline_override": {
+                        "for_编队调整_巡演4": {
+                            "expected": [
+                                "演唱会组队12"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "巡演BP规划": {
+            "cases": [
+                {
+                    "name": "33310",
+                    "pipeline_override": {
+                        "Feat_巡演BP调整_切10": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "3333",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "打完后自动领取星光奖励": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 }
             ]
         },

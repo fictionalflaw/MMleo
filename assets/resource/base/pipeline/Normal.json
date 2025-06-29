@@ -107,7 +107,20 @@
             188
         ],
         "recognition": "OCR",
-        "expected": "关闭",
+        "expected": "^\\关闭$",
+        "action": "Click",
+        "post_wait_freezes": 2000
+    },
+    "Click_正中下端_确认": {
+        "doc": "出现在屏幕正中的弹窗，下端中央有关闭按钮",
+        "roi": [
+            490,
+            474,
+            294,
+            188
+        ],
+        "recognition": "OCR",
+        "expected": "^\\确认$",
         "action": "Click",
         "post_wait_freezes": 2000
     },
@@ -403,7 +416,6 @@
         "expected": "海选招募",
         "action": "Click"
     },
-
     "CountTask_RunNode": {
         "next": "拜访_红心已点",
         "interrupt": "拜访_点击红心"

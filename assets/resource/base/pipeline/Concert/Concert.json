@@ -49,7 +49,7 @@
         "next": "Feat_Check自动_End"
     },
     "Feat_BP回复": {
-        "doc": "interface中选择使用，并接入点击开始演唱会后的识别中，使用回复并开始按钮，别接action",
+        "doc": "有好几种情况,回头复现下找下图。interface中选择使用，并接入点击开始演唱会后的识别中，使用回复并开始按钮，别接action",
         "recognition": "OCR",
         "roi": [
             500,
@@ -58,25 +58,23 @@
             175
         ],
         "expected": "回复并开始",
-        "next": "Flag_钻石回复_next",
-        "on_error": [
-            "Flag_道具回复_next"
+        "next": [
+            "Flag_道具回复_next",
+            "Flag_钻石回复_next"
         ]
     },
     "Flag_道具回复_next": {
-        "doc": "未识别到付费标志就是道具回复，象征性的识别下回复标志",
-        "recognition": "OCR",
+        "doc": "当前只识别哨子情况",
+        "recognition": "TemplateMatch",
         "roi": [
-            500,
-            476,
-            285,
-            175
+            239,
+            61,
+            846,
+            562
         ],
-        "expected": "回复并开始",
-        "next": "Flag_钻石回复_next",
-        "on_error": [
-            "Flag_道具回复_next"
-        ]
+        "template": "BP回复_只有哨子.png",
+        "action": "Click",
+        "target": "Feat_BP回复"
     },
     "Flag_钻石回复_next": {
         "doc": "识别钻石回复的付费标志，必须启用，不想回复就不连接使用节点",
@@ -87,6 +85,7 @@
             562
         ],
         "recognition": "TemplateMatch",
+        "enabled": false,
         "threshold": 0.9,
         "green_mask": true,
         "template": [
@@ -206,10 +205,10 @@
     "Flag_已在目标BP": {
         "doc": "在interface中拿后续模版覆盖",
         "roi": [
-            676,
-            584,
-            118,
-            62
+            532,
+            570,
+            305,
+            78
         ],
         "recognition": "OCR",
         "expected": [
@@ -304,6 +303,7 @@
             0
         ],
         "action": "Click",
+        "post_wait_freezes": 1000,
         "next": "Click_正中下端_关闭"
     },
     "BP调整_下划": {
@@ -547,7 +547,81 @@
             "确认",
             "确定"
         ],
-        "action": "Click"
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                1071,
+                655,
+                209,
+                65
+            ]
+        }
+    },
+    "Feat_开始演唱会": {
+        "doc": "从点击演唱会到多种意外的处理，终点是回到选曲界面，带上了BP回复选项",
+        "roi": [
+            934,
+            580,
+            238,
+            109
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "action": "Click",
+        "next": [
+            "Feat_打歌"
+        ],
+        "interrupt": [
+            "开始演唱会_通行证的数量",
+            "彩歌需要数据下载",
+            "Feat_BP回复"
+        ]
+    },
+    "Feat_打歌": {
+        "doc": "中途退出和中途暂停都丢入内层了",
+        "recognition": "OCR",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "expected": [
+            "演唱会热度",
+            "通关"
+        ],
+        "action": "Custom",
+        "custom_action": "MusicPlayer",
+        "next": [
+            "Feat_演唱会结算"
+        ]
+    },
+    "开始演唱会_通行证的数量": {
+        "doc": "只做识别用，不推荐加动作（不会真有人喜欢5倍通行证打A吧）",
+        "roi": [
+            238,
+            75,
+            810,
+            549
+        ],
+        "recognition": "OCR",
+        "expected": "选择消耗通行证的数量",
+        "next": [
+            "通行证确认_开始演唱会"
+        ]
+    },
+    "开始演唱会_通行证确认": {
+        "roi": [
+            638,
+            506,
+            230,
+            108
+        ],
+        "recognition": "OCR",
+        "expected": "开始演唱会",
+        "action": "Click",
+        "next": "Feat_打歌"
     },
     "彩歌需要数据下载": {
         "roi": [

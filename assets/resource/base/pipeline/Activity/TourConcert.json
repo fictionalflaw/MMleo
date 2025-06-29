@@ -4,15 +4,19 @@
         "next": [
             "Flag_特别演唱会_next",
             "Flag_TourMap_next"
+        ],
+        "interrupt": [
+            "ComeToConcert_ByMenu",
+            "ComeToConcert"
         ]
     },
     "Flag_巡演曲目列表界面": {
         "doc": "使用该界面左下角的放弃作为识别特征",
         "roi": [
-            39,
-            587,
-            118,
-            49
+            0,
+            529,
+            217,
+            163
         ],
         "recognition": "TemplateMatch",
         "template": "巡演_放弃.png"
@@ -89,11 +93,12 @@
             331
         ],
         "recognition": "TemplateMatch",
-        "template": "TourConcert/巡演1.png",
+        "template": "TourConcert/巡演01.png",
         "threshold": 0.9,
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Click_正中下端_开始演唱会"
+        "next": "巡演_custom启动",
+        "interrupt": "Click_正中下端_开始演唱会"
     },
     "Flag_最近巡演关卡_next": {
         "doc": "不同巡演覆盖不同icon进去,未在其他位置进行测试",
@@ -104,10 +109,24 @@
             1184,
             331
         ],
-        "template": "巡演最新关卡icon.png",
+        "template": "TourConcert/巡演最新关卡icon.png",
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Click_正中下端_开始演唱会"
+        "next": "巡演_custom启动",
+        "interrupt": "Click_正中下端_开始演唱会"
+    },
+    "巡演_custom启动": {
+        "doc": "使用该界面左下角的放弃作为识别特征",
+        "roi": [
+            0,
+            529,
+            217,
+            163
+        ],
+        "recognition": "TemplateMatch",
+        "template": "巡演_放弃.png",
+        "action": "Custom",
+        "custom_action": "TourConcert"
     },
     "Click_正中下端_开始演唱会": {
         "doc": "目标关卡，interface中更改",
@@ -122,5 +141,275 @@
         "threshold": 0.9,
         "action": "Click",
         "post_wait_freezes": 1000
+    },
+    "for_编队调整_巡演1": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ]
+    },
+    "for_编队调整_巡演2": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ]
+    },
+    "for_编队调整_巡演3": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ]
+    },
+    "for_编队调整_巡演4": {
+        "roi": [
+            89,
+            158,
+            269,
+            150
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会组队01"
+        ]
+    },
+    "Feat_巡演BP调整": {
+        "doc": "用于最后一首歌的BP调整,interface中选10就去切10修改enable",
+        "next": [
+            "Feat_巡演BP调整_切10",
+            "Feat_巡演BP调整_切3"
+        ]
+    },
+    "Feat_巡演BP调整_切10": {
+        "next": "巡演BP调整_组队界面10BP",
+        "interrupt": "切10_BPicon",
+        "enabled": false
+    },
+    "Feat_巡演BP调整_切3": {
+        "next": "巡演BP调整_组队界面3BP",
+        "interrupt": "切3_BPicon"
+    },
+    "巡演BP调整_组队界面3BP": {
+        "roi": [
+            532,
+            570,
+            305,
+            78
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -3$",
+            "BP-3$"
+        ]
+    },
+    "巡演BP调整_组队界面10BP": {
+        "roi": [
+            532,
+            570,
+            305,
+            78
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -10",
+            "BP-10"
+        ]
+    },
+    "切3_BPicon": {
+        "roi": [
+            563,
+            528,
+            220,
+            192
+        ],
+        "recognition": "OCR",
+        "expected": "BP消耗",
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "切3_search3",
+        "interrupt": "BP消耗下划_NC"
+    },
+    "切10_BPicon": {
+        "roi": [
+            563,
+            528,
+            220,
+            192
+        ],
+        "recognition": "OCR",
+        "expected": "BP消耗",
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "切10_search10",
+        "interrupt": "BP调整_上划"
+    },
+    "切3_search3": {
+        "doc": "找3",
+        "roi": [
+            276,
+            156,
+            181,
+            400
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "消耗3BP",
+            "3BP"
+        ],
+        "target_offset": [
+            520,
+            0,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Click_正中下端_关闭"
+    },
+    "切10_search10": {
+        "doc": "找10",
+        "roi": [
+            276,
+            156,
+            181,
+            400
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "消耗10BP",
+            "10BP"
+        ],
+        "target_offset": [
+            520,
+            0,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Click_正中下端_关闭"
+    },
+    "BP消耗下划_NC": {
+        "roi": [
+            464,
+            0,
+            349,
+            145
+        ],
+        "recognition": "OCR",
+        "expected": "BP消耗设置",
+        "action": "Swipe",
+        "begin": [
+            585,
+            209,
+            45,
+            38
+        ],
+        "end": [
+            585,
+            473,
+            45,
+            38
+        ],
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                238,
+                106,
+                826,
+                498
+            ]
+        }
+    },
+    "巡演BP调整_3BP": {
+        "doc": "识别编队界面3BP的icon",
+        "next": [
+            "Flag_已在目标BP_巡演last"
+        ],
+        "interrupt": [
+            "BP调整_BP消耗icon"
+        ]
+    },
+    "Flag_已在目标BP_巡演last": {
+        "doc": "在interface中拿后续模版覆盖",
+        "roi": [
+            532,
+            570,
+            305,
+            78
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "BP -10",
+            "BP-10"
+        ]
+    },
+    "BP调整_TO_巡演last": {
+        "doc": "不需要,识别范围为BP消耗弹窗内，找其他BP通过上下划设置出口",
+        "roi": [
+            276,
+            156,
+            181,
+            400
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "消耗1OBP",
+            "消耗10BP",
+            "1OBP"
+        ],
+        "target_offset": [
+            520,
+            0,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": "Click_正中下端_关闭"
+    },
+    "Entry_巡演后领取星光奖励": {
+        "doc": "点击奖励直到出现前往巡回地图",
+        "next": [
+            "Flag_StarConcertIcon_on",
+            "Flag_StarConcertIcon_off"
+        ],
+        "interrupt": [
+            "ComeToConcert_ByMenu",
+            "ComeToConcert"
+        ]
+    },
+    "Feat_巡演后领取星光奖励": {
+        "doc": "在interface中将Flag_StarConcertIcon_on的next接上这个",
+    },
+    "for_reco_last_in_tc": {
+        "doc": "只是作为验证最后一首歌的辅助手段,相等就设置10，不等不管，优先级依旧是顺位为最高",
+        "roi": [
+            905,
+            116,
+            328,
+            74
+        ],
+        "recognition": "OCR",
+        "expected": [
+            ""
+        ]
     }
 }
