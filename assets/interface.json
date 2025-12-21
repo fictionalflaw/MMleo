@@ -179,7 +179,7 @@
             "entry": "StartReading"
         },
         {
-            "name": "生日纪念活动（未适配）",
+            "name": "生日纪念活动",
             "entry": "Entry_BirthdayActivity",
             "doc": "自动导航到纪念活动界面并上交礼物，不提供礼物购买功能",
             "pipeline_override": {
@@ -433,8 +433,9 @@
                             "template": "BPicon-BP1.png"
                         },
                         "BP调整_TO": {
-                            "expected": [
-                                "消耗1BP"
+                            "template": [
+                                "消耗1BP.png",
+                                "消耗1BP1.png"
                             ]
                         }
                     }
@@ -446,8 +447,9 @@
                             "template": "BPicon-BP2.png"
                         },
                         "BP调整_TO": {
-                            "expected": [
-                                "消耗2BP"
+                            "template": [
+                                "消耗2BP.png",
+                                "消耗2BP1.png"
                             ]
                         }
                     }
@@ -459,8 +461,9 @@
                             "template": "BPicon-BP3.png"
                         },
                         "BP调整_TO": {
-                            "expected": [
-                                "消耗3BP"
+                            "template": [
+                                "消耗3BP.png",
+                                "消耗3BP1.png"
                             ]
                         }
                     }

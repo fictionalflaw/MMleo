@@ -256,7 +256,8 @@
         ],
         "recognition": "OCR",
         "expected": [
-            "找回昨日次"
+            "找回昨日次",
+            "找回昨日"
         ],
         "action": "Click",
         "post_wait_freezes": {

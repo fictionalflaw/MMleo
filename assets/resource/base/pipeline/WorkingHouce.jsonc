@@ -29,7 +29,44 @@
         65
       ]
     },
-    "next": "Flag_WorkingHouce_next"
+    "next": "Flag_WorkingHouce_next",
+    "interrupt":"EH_EntryWorkingHouce"
+  },
+    "EH_EntryWorkingHouce": {
+    "doc": "有时候会跳出活动提示框,EH等异常处理仅作为interrup使用，不连接后续节点也不在interface中进行更改",
+    "recognition": "OCR",
+    "roi": [199,526,877,194],
+    "action": "Click",
+    "expected": "^\\关闭$",
+    "next": "EH_EntryWorkingHouce_End",
+    "interrupt":"EH_EntryWorkingHouce_1"
+  },
+    "EH_EntryWorkingHouce_1": {
+    "doc": "有时候会跳出活动提示框",
+    "recognition": "OCR",
+    "roi": [199,526,877,194],
+    "action": "Click",
+    "expected": "^\\下一页$",
+    "next": "EH_EntryWorkingHouce_2"
+  },
+    "EH_EntryWorkingHouce_2": {
+    "doc": "有时候会跳出活动提示框",
+    "recognition": "OCR",
+    "roi": [199,526,877,194],
+    "action": "Click",
+    "expected": "^\\关闭$"
+  },
+    "EH_EntryWorkingHouce_End": {
+    "doc": "",
+    "recognition": "OCR",
+    "roi": [
+      1083,
+      128,
+      197,
+      130
+    ],
+    "expected": "拜访事务所",
+    "next":"Flag_WorkingHouce_next"
   },
   "Flag_WorkingHouce_next": {
     "doc": "用拜访事务所作为标志，正好复制一份进拜访",
@@ -378,7 +415,7 @@
       ]
     },
     "next":"拜访事务所_随机拜访",
-    "interrupt":["Click_正中下端_关闭","Start_拜访事务所_NC"]
+    "interrupt":["Click_正中下端_关闭","Start_拜访事务所_NC","EH_EntryWorkingHouce"]
   },
     "Start_拜访事务所_NC": {
     "doc": "找寻拜访事务所入口,纯interrupt会造成嵌套，回溯时会回到循环内,所以后面不接next就行",

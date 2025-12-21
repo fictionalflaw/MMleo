@@ -74,13 +74,17 @@
     "BA_故事阅读": {
         "doc": "呼出菜单，启动跳过，但是要先点击",
         "roi": [
-            969,
-            640,
-            44,
-            44
+            909,
+            578,
+            156,
+            142
         ],
         "recognition": "TemplateMatch",
-        "template": "talestar1.png",
+        "template": [
+            "talestar1.png",
+            "talestar2.png",
+            "talestar3.png"
+        ],
         "threshold": 0.6,
         "action": "Click",
         "next": "BA_ClickMenuIntale"
@@ -94,7 +98,7 @@
             61
         ],
         "recognition": "TemplateMatch",
-        "template": "菜单icon.png",
+        "template": "菜单icon_tale.png",
         "action": "Click",
         "next": "BA_SkipInTale"
     },
@@ -140,7 +144,12 @@
         ]
     },
     "BA_点击屏幕": {
-        "roi": "点击屏幕获取奖励",
+        "roi": [
+            504,
+            555,
+            280,
+            137
+        ],
         "recognition": "OCR",
         "expected": "点击屏幕",
         "action": "Click",

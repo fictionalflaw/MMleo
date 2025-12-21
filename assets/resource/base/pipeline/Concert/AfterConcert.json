@@ -114,7 +114,7 @@
             788,
             429
         ],
-        "threshold": 0.8,
+        "threshold": 0.7,
         "recognition": "TemplateMatch",
         "template": [
             "迷你对话.png"
