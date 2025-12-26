@@ -438,22 +438,6 @@
         "threshold":0.9,
         "next": "BP调整_Click_正中下端_关闭"
     },
-        "BP调整_测试": {
-        "doc": "",
-        "roi": [711,176,121,383],
-        "recognition": "TemplateMatch",
-        "template": "消耗0BP1.png",
-        // "count": 20,
-        "target_offset": [
-            100,
-            0,
-            0,
-            0
-        ],
-        "action": "Click",
-        "post_wait_freezes": 1000,
-        "threshold":0.95
-    },
         "BP调整_Click_正中下端_关闭": {
         "doc": "出现在屏幕正中的弹窗，下端中央有关闭按钮",
         "roi": [
