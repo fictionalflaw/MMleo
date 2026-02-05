@@ -96,6 +96,7 @@
 ## Join us
 
 - 交流反馈 QQ 群：961390173
+- 协作开发： [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 提供完整开发手册，随时欢迎参与协作━(*｀∀´*)ノ亻!
 
 ## Star History
 
