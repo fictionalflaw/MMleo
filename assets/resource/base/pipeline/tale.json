@@ -240,6 +240,7 @@
         "recognition": "OCR",
         "expected": "好的",
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "ClickScreenForSkip",
             "ContinueRead",
