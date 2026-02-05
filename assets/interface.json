@@ -184,8 +184,10 @@
             "doc": "自动导航到纪念活动界面并上交礼物，不提供礼物购买功能",
             "pipeline_override": {
                 "Flag_Main": {
-                    "next": "BA_fromBanner",
-                    "interrupt": "Swipe_forBA"
+                    "next": [
+                        "BA_ClickAnn",
+                        "BA_fromBanner"
+                    ]
                 }
             }
         },

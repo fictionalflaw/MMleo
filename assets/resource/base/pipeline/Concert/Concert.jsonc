@@ -736,14 +736,14 @@
         "timeout": 600000,
         "recognition": "OCR",
         "roi": [
-            7,
-            7,
+            0,
+            0,
             416,
             71
         ],
         "expected": [
             "演唱会热度",
-            "通关"
+            "CLEAR"
         ],
         "action": "Custom",
         "custom_action": "MusicPlayer",

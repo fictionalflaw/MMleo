@@ -55,6 +55,70 @@
         "action": "Click",
         "next": "BA_ComeToPho"
     },
+    "BA_ClickAnn": {
+        "roi": [
+            76,
+            87,
+            192,
+            182
+        ],
+        "recognition": "OCR",
+        "expected": "公告",
+        "action": "Click",
+        "next": "BA_flagAnn"
+    },
+    "BA_flagAnn": {
+        "roi": [
+            0,
+            0,
+            240,
+            148
+        ],
+        "recognition": "OCR",
+        "expected": "公告",
+        "action": "Click",
+        "next": "BA_fromAnn",
+        "interrupt": "SwipeInAnn"
+    },
+    "BA_fromAnn": {
+        "roi": [
+            64,
+            105,
+            312,
+            616
+        ],
+        "recognition": "OCR",
+        "expected": "生日纪念限定活动",
+        "action": "Click",
+        "next": "BA_ComeToPho"
+    },
+    "SwipeInAnn": {
+        "doc": "公告下滑一栏",
+        "roi": [
+            0,
+            0,
+            240,
+            148
+        ],
+        "recognition": "OCR",
+        "expected": "公告",
+        "action": "Swipe",
+        "begin": [
+            175,
+            200,
+            1,
+            1
+        ],
+        "end": [
+            175,
+            142,
+            1,
+            1
+        ],
+        "post_wait_freezes": {
+            "time": 500
+        }
+    },
     "BA_ComeToPho": {
         "timeout": 60000,
         "roi": [

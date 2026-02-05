@@ -46,7 +46,7 @@
     "recognition": "OCR",
     "roi": [199,526,877,194],
     "action": "Click",
-    "expected": "^\\下一页$",
+    "expected": "^\\下一页",
     "next": "EH_EntryWorkingHouce_2"
   },
     "EH_EntryWorkingHouce_2": {
