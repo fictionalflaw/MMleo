@@ -1,6 +1,7 @@
 {
     "name": "MMleo",
     "url": "https://github.com/fictionalflaw/MMleo",
+    "icon": "logo.ico",
     "mirrorchyan_rid": "MMleo",
     "mirrorchyan_multiplatform": true,
     "mfa_min_version": "v2.6.7",
