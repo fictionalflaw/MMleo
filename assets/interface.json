@@ -3,8 +3,9 @@
     "url": "https://github.com/fictionalflaw/MMleo",
     "mirrorchyan_rid": "MMleo",
     "mirrorchyan_multiplatform": true,
-    "mfa_min_version": "v1.6.9",
-    "mfa_max_version": "v1.6.9",
+    "mfa_min_version": "v2.6.7",
+    "mfa_max_version": "v2.6.7",
+    "interface_version": 2,
     "controller": [
         {
             "name": "安卓端",
@@ -70,6 +71,14 @@
             ]
         },
         {
+            "name": "合成游戏",
+            "entry": "Entry_CompositeGame",
+            "doc": "每年只活一个月",
+            "option": [
+                "订单与资源箱管理"
+            ]
+        },
+        {
             "name": "检测打歌点位",
             "entry": "MusicTargetAreaSearch",
             "doc": "必须在打歌界面运行，属功能性任务，请勿和其他任务一同使用。不更换界面布局的情况下只需要成功执行一次，更换后重新识别"
@@ -89,8 +98,7 @@
                     "next": "星光演唱会打歌中"
                 },
                 "奖励领取_星光ver": {
-                    "next": "for_search_music_in_star",
-                    "interrupt": []
+                    "next": "for_search_music_in_star"
                 },
                 "确认歌曲_星光ver": {
                     "next": [
@@ -197,8 +205,7 @@
             "doc": "比如夏活",
             "pipeline_override": {
                 "Flag_Main": {
-                    "next": "ScoutFreeInMain",
-                    "interrupt": []
+                    "next": "ScoutFreeInMain"
                 }
             }
         },
@@ -213,6 +220,54 @@
         }
     ],
     "option": {
+        "订单与资源箱管理": {
+            "cases": [
+                {
+                    "name": "自动提交订单and使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 1,
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "自动提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 1,
+                                "zyx4": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "不提交订单and使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 0,
+                                "zyx4": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "不提交订单and不使用药水资源箱",
+                    "pipeline_override": {
+                        "Entry_CompositeGame": {
+                            "custom_action_param": {
+                                "submit_order": 0,
+                                "zyx4": 0
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "领取月卡": {
             "cases": [
                 {
@@ -376,8 +431,7 @@
                             "enabled": true
                         },
                         "ClickMenuIntale": {
-                            "next": "SkipInTale",
-                            "interrupt": []
+                            "next": "SkipInTale"
                         },
                         "SureSkip": {
                             "next": [
@@ -1235,8 +1289,7 @@
                             "action": "DoNothing"
                         },
                         "Feat_难度调整": {
-                            "next": "Feat_难度调整_巡演ver",
-                            "interrupt": []
+                            "next": "Feat_难度调整_巡演ver"
                         },
                         "Feat_难度调整_End_巡演ver": {
                             "next": "Feat_Check自动"
@@ -1246,8 +1299,7 @@
                             "next": "Feat_难度调整_End"
                         },
                         "Entry_巡演后领取星光奖励": {
-                            "next": [],
-                            "interrupt": []
+                            "next": []
                         }
                     }
                 }
@@ -1412,8 +1464,7 @@
                     "name": "No",
                     "pipeline_override": {
                         "Entry_巡演后领取星光奖励": {
-                            "next": [],
-                            "interrupt": []
+                            "next": []
                         }
                     }
                 }
@@ -1510,8 +1561,10 @@
                             "next": "Flag_WorkingHouce_next"
                         },
                         "CountTask_RunNode": {
-                            "next": "拜访_红心已点",
-                            "interrupt": "拜访_点击红心"
+                            "next": [
+                                "拜访_红心已点",
+                                "[JumpBack]拜访_点击红心"
+                            ]
                         }
                     }
                 },
