@@ -20,8 +20,8 @@ on:
   workflow_dispatch:
 
 env:
-  MaaFw_tag: v4.5.3
-  MFA_tag: v1.6.9
+  MaaFw_tag: v5.6.0
+  MFA_tag: v2.6.7
   app_name: MMleo
 
 permissions:
@@ -37,33 +37,35 @@ jobs:
           fetch-depth: 0
       - id: set_tag
         run: |
-          # 检查标签格式
-          if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*)?$ ]]; then
+          # 区分三种情况：稳定正式版 / 预发布版 / CI 构建（不发布）
+          if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            # 纯 vX.Y.Z：稳定正式版，走 GitHub Release + MirrorChyan 用户渠道
             is_release=true
+            is_prerelease=false
             tag=${GITHUB_REF#refs/tags/}
-            echo "Release tag format is valid: $tag"
+            echo "Stable release tag: $tag"
+          elif [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+-.+$ ]]; then
+            # vX.Y.Z-*：预发布版（alpha/beta/rc 等），仅创建 GitHub pre-release，不进用户渠道
+            is_release=true
+            is_prerelease=true
+            tag=${GITHUB_REF#refs/tags/}
+            echo "Pre-release tag: $tag"
           else
+            # 分支 / PR：仅构建 CI 产物供测试，不发布
             is_release=false
-            # 获取最新的发布标签
+            is_prerelease=true
+            # 获取最新的发布标签作为基准版本
             tag=$(curl -sX GET "https://api.github.com/repos/${{ github.repository }}/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | awk '/tag_name/{print $4}' FS='["]')
             if [[ ! $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
               echo "No valid release tag found, using v0.0.0"
               tag="v0.0.0"
             fi
+            # 追加日期 + 短提交，并加 -ci 后缀标识为测试构建
             tag=$(date "+$tag-%y%m%d-$(git rev-parse --short HEAD)")
-          fi
-
-          if ! $($is_release) ; then
             prefix=${tag%-*-*}
             suffix=${tag#$prefix-}
             tag="$prefix-ci.$suffix"
-          fi
-
-          # 检查是否为预发布版本
-          is_prerelease=false
-          if [[ $tag =~ .*alpha.* || $tag =~ .*beta.* || $tag =~ .*rc.* || $tag =~ .*dev.* || $tag =~ .*-ci.* ]]; then
-            is_prerelease=true
-            echo "This is a pre-release version"
+            echo "CI build tag: $tag"
           fi
 
           echo tag=$tag | tee -a $GITHUB_OUTPUT
@@ -509,6 +511,8 @@ jobs:
           prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
 
       - name: Trigger MirrorChyanUploading
+        # 只有稳定正式版才进 MirrorChyan 用户渠道；预发布版只保留 GitHub pre-release
+        if: ${{ needs.meta.outputs.is_prerelease == 'false' }}
         run: |
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release_note
