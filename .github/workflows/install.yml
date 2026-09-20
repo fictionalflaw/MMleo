@@ -207,7 +207,11 @@ jobs:
         shell: bash
         run: |
           cp logo.ico install/logo.ico
-          cp logo.ico install/Assets/logo.ico
+          # MFAAvalonia v2.6.7 起 Assets 改为编译期嵌入（AvaloniaResource），发布包不再有物理 Assets/ 目录，
+          # 仅在目录存在时覆盖图标，避免目录缺失导致本步骤失败
+          if [ -d install/Assets ]; then
+            cp logo.ico install/Assets/logo.ico
+          fi
 
       - name: Packing Launcher
         working-directory: launcher
