@@ -39,7 +39,7 @@
     "recognition": "OCR",
     "expected": "接受邀请",
     "action": "Click",
-    "next": "搜索对象"
+    "next": ["搜索对象"]
   },
   "搜索对象": {
     "timeout": 60000,
@@ -85,7 +85,7 @@
     "recognition": "OCR",
     "expected": "完成组队",
     "action": "Click",
-    "next": "前往演唱会任务"
+    "next": ["前往演唱会任务"]
   },
   "前往演唱会任务": {
     "roi": [
@@ -100,9 +100,9 @@
     "next": [
       "确认歌曲",
       "下载歌曲",
-      "确认演唱会任务"
-    ],
-    "interrupt": "没有符合条件的歌曲"
+      "确认演唱会任务",
+      "[JumpBack]没有符合条件的歌曲"
+    ]
   },
   "确认演唱会任务": {
     "doc": "已使用enabled做不进行处理，如需要改线性再说:这里next是接原唱，但是普通流程是直接开打，考虑在interface中调整next，或是再写一个标准化流程",
@@ -115,7 +115,7 @@
     "recognition": "OCR",
     "expected": "确认",
     "action": "Click",
-    "next": "换上原唱",
+    "next": ["换上原唱"],
     "enabled": false
   },
   "换上原唱": {
@@ -284,10 +284,8 @@
     "expected": "邀请好友",
     "action": "Click",
     "next": [
-      "邀请指定对象"
-    ],
-    "interrupt": [
-      "搜索待邀请对象"
+      "邀请指定对象",
+      "[JumpBack]搜索待邀请对象"
     ]
   },
   "邀请指定对象": {
@@ -308,10 +306,8 @@
     ],
     "action": "Click",
     "next": [
-      "邀请指定对象"
-    ],
-    "interrupt": [
-      "搜索待邀请对象"
+      "邀请指定对象",
+      "[JumpBack]搜索待邀请对象"
     ]
   },
   "搜索待邀请对象": {

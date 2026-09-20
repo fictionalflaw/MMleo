@@ -1,18 +1,18 @@
 {
     "BackMain": {
-        "next": "Flag_Main",
-        "interrupt": [
-            "BackMainInMenu",
-            "BackMainByMenu"
+        "next": [
+            "Flag_Main",
+            "[JumpBack]BackMainInMenu",
+            "[JumpBack]BackMainByMenu"
         ]
     },
     "Entry_StartUP": {
         "doc": "启动",
         "next": [
             "StartUp",
-            "Flag_Main"
-        ],
-        "interrupt": "StartES2"
+            "Flag_Main",
+            "[JumpBack]StartES2"
+        ]
     },
     "StartUp": {
         "timeout": 3600000,
@@ -26,8 +26,10 @@
         "recognition": "OCR",
         "expected": "点击画面开始",
         "action": "Click",
-        "next": "Flag_Main",
-        "interrupt": "Click_Before_Main"
+        "next": [
+            "Flag_Main",
+            "[JumpBack]Click_Before_Main"
+        ]
     },
     "Flag_Main": {
         "doc": "主界面标识，必须具备唯一性",
@@ -55,7 +57,7 @@
         ],
         "recognition": "OCR",
         "expected": "确认退出游戏?",
-        "next": "取消退出游戏"
+        "next": ["取消退出游戏"]
     },
     "取消退出游戏": {
         "doc": "按ESC会弹出的那个退出游戏提示",

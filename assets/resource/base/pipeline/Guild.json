@@ -3,11 +3,9 @@
         "doc": "找寻协会入口",
         "next": [
             "GuildIcon",
-            "Flag_Guild_next"
-        ],
-        "interrupt": [
-            "CallOutMenu",
-            "BackMainInMenu"
+            "Flag_Guild_next",
+            "[JumpBack]CallOutMenu",
+            "[JumpBack]BackMainInMenu"
         ],
         "enabled": false
     },
@@ -101,8 +99,8 @@
         "recognition": "TemplateMatch",
         "template": "协会_隐藏.png",
         "action": "Click",
-        "next": "偶像互动",
-        "on_error": "Press_ESC"
+        "next": ["偶像互动"],
+        "on_error": ["Press_ESC"]
     },
     "偶像互动": {
         "doc": "偶像互动ing",
@@ -125,12 +123,12 @@
                 65
             ]
         },
-        "interrupt": [
-            "SKIP",
-            "点击屏幕获取奖励",
-            "OK_协会任务奖励"
-        ],
-        "next": "Flag_Guild"
+        "next": [
+            "Flag_Guild",
+            "[JumpBack]SKIP",
+            "[JumpBack]点击屏幕获取奖励",
+            "[JumpBack]OK_协会任务奖励"
+        ]
     },
     "OK_协会任务奖励": {
         "roi": [

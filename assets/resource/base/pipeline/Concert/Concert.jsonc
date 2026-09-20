@@ -32,7 +32,7 @@
             "暗的自动.png"
         ],
         "action": "Click",
-        "next": "Feat_Check自动_End"
+        "next": ["Feat_Check自动_End"]
     },
     "NoNeedToEnableAutomatic": {
         "doc": "无需开启自动",
@@ -46,7 +46,7 @@
         "template": [
             "亮的自动.png"
         ],
-        "next": "Feat_Check自动_End"
+        "next": ["Feat_Check自动_End"]
     },
     "Feat_自动组队": {
         "doc": "需要已在组合选择界面",
@@ -62,7 +62,7 @@
         "next": [
             "自动组队_高级自动组队"
         ],
-        "on_error": "Feat_自动组队_End"
+        "on_error": ["Feat_自动组队_End"]
     },
     "自动组队_高级自动组队": {
         "doc": "高级自动组队",
@@ -75,9 +75,9 @@
         ],
         "expected": "^\\高级自动组队$",
         "next": [
-            "Feat_自动组队_End"
-        ],
-        "interrupt": "高级自动组队_确认组队"
+            "Feat_自动组队_End",
+            "[JumpBack]高级自动组队_确认组队"
+        ]
     },
     "高级自动组队_确认组队": {
         "doc": "click确认组队",
@@ -133,7 +133,7 @@
         "green_mask": true,
         "threshold": 0.9,
         "target": "Feat_BP回复",
-        "next": "Feat_BP回复_End"
+        "next": ["Feat_BP回复_End"]
     },
     "Flag_不限时哨子回复_next": {
         "doc": "测了，单哨子不会识别成这个，该法可行。还差单限时哨和不限时哨的对比,还没连入主任务链",
@@ -149,7 +149,7 @@
         "green_mask": true,
         "threshold": 0.9,
         "target": "Feat_BP回复",
-        "next": "Feat_BP回复_End"
+        "next": ["Feat_BP回复_End"]
     },
     "test_限时不限时哨子和钻石": {
         "doc": "测了,还没连入主任务链",
@@ -165,7 +165,7 @@
         "green_mask": true,
         "threshold": 0.9,
         "target": "Feat_BP回复",
-        "next": "Feat_BP回复_End"
+        "next": ["Feat_BP回复_End"]
     },
     "Flag_钻石回复_next": {
         "doc": "识别钻石回复的付费标志，必须启用，不想回复就不连接使用节点",
@@ -183,7 +183,7 @@
             "BP回复_有钻石.png",
             "BP回复_只有钻石.png"
         ],
-        "next": "钻石回复_使用"
+        "next": ["钻石回复_使用"]
     },
     "钻石回复_使用": {
         "doc": "Flag_钻石回复_next的使用节点",
@@ -196,24 +196,22 @@
         "expected": "回复并开始",
         "recognition": "OCR",
         "action": "Click",
-        "next": "Feat_BP回复_End"
+        "next": ["Feat_BP回复_End"]
     },
     "Feat_BP回复_End": {
         "doc": "连接打歌",
         "next": [
-            "Feat_打歌"
-        ],
-        "interrupt": [
-            "开始演唱会_通行证的数量",
-            "彩歌需要数据下载"
+            "Feat_打歌",
+            "[JumpBack]开始演唱会_通行证的数量",
+            "[JumpBack]彩歌需要数据下载"
         ]
     },
     "Feat_难度调整": {
         "doc": "需要哪个难度就在interface中修改Flag的template和'难度调整'node的expected",
-        "next": "Flag_目标难度",
-        "interrupt": [
-            "Back难度调整_in选组",
-            "难度调整"
+        "next": [
+            "Flag_目标难度",
+            "[JumpBack]Back难度调整_in选组",
+            "[JumpBack]难度调整"
         ]
     },
     "Feat_难度调整_End": {
@@ -241,7 +239,7 @@
                 65
             ]
         },
-        "next": "难度调整"
+        "next": ["难度调整"]
     },
     "难度调整": {
         "doc": "在选曲界面，巡演可用",
@@ -278,7 +276,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "难度上标_简单.png",
-        "next": "Feat_难度调整_End"
+        "next": ["Feat_难度调整_End"]
     },
     "Feat_BP调整": {
         "doc": "默认已组合伍选择界面,默认路径为0BP,活动歌曲不存在BP调整,应该加入辨别BP按钮是否存在的选项",
@@ -367,7 +365,7 @@
         ],
         "recognition": "OCR",
         "expected": "BP消耗",
-        "next": "Feat_BP调整_true"
+        "next": ["Feat_BP调整_true"]
     },
     "Flag_开始演唱会_next": {
         "doc": "interface中连接到星光演唱会的循环中",
@@ -392,7 +390,7 @@
         "expected": "BP消耗",
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Flag_BP消耗设置_next"
+        "next": ["Flag_BP消耗设置_next"]
     },
     "Flag_BP消耗设置_next": {
         "doc": "BP消耗设置,下划已是循环，不能放进interrupt",
@@ -436,7 +434,7 @@
         "action": "Click",
         "post_wait_freezes": 1000,
         "threshold":0.9,
-        "next": "BP调整_Click_正中下端_关闭"
+        "next": ["BP调整_Click_正中下端_关闭"]
     },
         "BP调整_Click_正中下端_关闭": {
         "doc": "出现在屏幕正中的弹窗，下端中央有关闭按钮",
@@ -546,15 +544,19 @@
     },
     "Feat_编队调整": {
         "doc": "在interface中替换Flag_目标编队的expected就行,注意必须在组合选择界面使用，出口为Flag",
-        "next": "调整_回到编队01"
+        "next": ["调整_回到编队01"]
     },
     "调整_寻找目标编队": {
-        "next": "Flag_目标编队",
-        "interrupt": "调整_Click右箭头"
+        "next": [
+            "Flag_目标编队",
+            "[JumpBack]调整_Click右箭头"
+        ]
     },
     "调整_回到编队01": {
-        "next": "调整_Flag_编队01",
-        "interrupt": "调整_Click左箭头"
+        "next": [
+            "调整_Flag_编队01",
+            "[JumpBack]调整_Click左箭头"
+        ]
     },
     "Feat_编队调整_End": {
         "doc": "作为出口，便于在interface中连接",
@@ -571,7 +573,7 @@
         "expected": [
             "演唱会组队01"
         ],
-        "next": "Feat_编队调整_End"
+        "next": ["Feat_编队调整_End"]
     },
     "调整_Flag_编队01": {
         "roi": [
@@ -584,7 +586,7 @@
         "expected": [
             "演唱会组队01"
         ],
-        "next": "调整_寻找目标编队"
+        "next": ["调整_寻找目标编队"]
     },
     "调整_Click左箭头": {
         "doc":"改成在编队界面点击目标位置了",
@@ -665,7 +667,7 @@
         "recognition": "OCR",
         "expected": "下载歌曲",
         "action": "Click",
-        "next": "确认下载"
+        "next": ["确认下载"]
     },
     "确认下载": {
         "roi": [
@@ -686,7 +688,7 @@
                 65
             ]
         },
-        "next": "确认歌曲"
+        "next": ["确认歌曲"]
     },
     "确认歌曲": {
         "roi": [
@@ -724,11 +726,9 @@
         "action": "Click",
         "next": [
             "Feat_打歌",
-            "Feat_BP回复"
-        ],
-        "interrupt": [
-            "开始演唱会_通行证的数量",
-            "彩歌需要数据下载"
+            "Feat_BP回复",
+            "[JumpBack]开始演唱会_通行证的数量",
+            "[JumpBack]彩歌需要数据下载"
         ]
     },
     "Feat_打歌": {
@@ -775,7 +775,7 @@
         "recognition": "OCR",
         "expected": "开始演唱会",
         "action": "Click",
-        "next": "Feat_打歌"
+        "next": ["Feat_打歌"]
     },
     "彩歌需要数据下载": {
         "roi": [
@@ -786,7 +786,7 @@
         ],
         "recognition": "OCR",
         "expected": "估计下载时间",
-        "next": "彩歌需要数据下载_好的"
+        "next": ["彩歌需要数据下载_好的"]
     },
     "彩歌需要数据下载_好的": {
         "timeout": 180000,

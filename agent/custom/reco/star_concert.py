@@ -37,9 +37,11 @@ class SearchMusic(CustomRecognition):
 
             reco1 = context.run_recognition(next_order[0], img)
             reco2 = context.run_recognition(next_order[1], img)
-            if reco1 or reco2:#next识别到
-                if(reco1):context.run_task(next_order[0],pipeline_override={next_order[0]:{"next":[]}})
-                if(reco2):context.run_task(next_order[1],pipeline_override={next_order[1]:{"next":[]}})
+            hit1 = reco1 is not None and reco1.hit
+            hit2 = reco2 is not None and reco2.hit
+            if hit1 or hit2:#next识别到
+                if hit1:context.run_task(next_order[0],pipeline_override={next_order[0]:{"next":[]}})
+                if hit2:context.run_task(next_order[1],pipeline_override={next_order[1]:{"next":[]}})
                 return None
             else:                
                 logger.info("正在寻找可进行演唱会…")
@@ -47,7 +49,7 @@ class SearchMusic(CustomRecognition):
                 task_flag=-1
                 for index,item in enumerate(interrupt_order):
                     act_reco=context.run_recognition(item,img)
-                    if act_reco:
+                    if act_reco is not None and act_reco.hit:
                         task_flag=index
                         break
 

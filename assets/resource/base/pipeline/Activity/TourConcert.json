@@ -5,11 +5,9 @@
             "Flag_特别演唱会_next",
             "Flag_TourMap_next",
             "巡演_custom启动_输入",
-            "巡演_custom启动"
-        ],
-        "interrupt": [
-            "ComeToConcert_ByMenu",
-            "ComeToConcert"
+            "巡演_custom启动",
+            "[JumpBack]ComeToConcert_ByMenu",
+            "[JumpBack]ComeToConcert"
         ]
     },
     "Flag_巡演曲目列表界面": {
@@ -35,7 +33,7 @@
         "expected": "^\\特别演唱会$",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "Click_巡演地图"
+        "next": ["Click_巡演地图"]
     },
     "Flag_TourMap_next": {
         "doc": "已在巡演地图，使用右下角公演一览作为标识",
@@ -47,7 +45,7 @@
         ],
         "recognition": "OCR",
         "expected": "^\\公演一览$",
-        "next": "Feat_search巡演关卡"
+        "next": ["Feat_search巡演关卡"]
     },
     "Flag_TourMap": {
         "doc": "现已加入Feat_打歌结算豪华午餐：原因是打完巡演第四首会直接回主界面",
@@ -80,15 +78,15 @@
                 65
             ]
         },
-        "next": "Feat_search巡演关卡"
+        "next": ["Feat_search巡演关卡"]
     },
     "Feat_search巡演关卡": {
         "doc": "搜寻目标关卡，接受interface指定，或者自动找最后一个没打的关卡",
         "next": [
             "Flag_目标关卡_next",
-            "Flag_最近巡演关卡_next"
-        ],
-        "interrupt": "search巡演关卡_向左01"
+            "Flag_最近巡演关卡_next",
+            "[JumpBack]search巡演关卡_向左01"
+        ]
     },
     "search巡演关卡_向左01": {
         "doc": "其实是右划，直到来到巡演地图最左端",
@@ -131,9 +129,9 @@
         "template": "TourConcert/巡演01.png",
         "next": [
             "Flag_目标关卡_next",
-            "Flag_最近巡演关卡_next"
-        ],
-        "interrupt": "search巡演关卡_向右搜"
+            "Flag_最近巡演关卡_next",
+            "[JumpBack]search巡演关卡_向右搜"
+        ]
     },
     "search巡演关卡_向右搜": {
         "doc": "左划，向右搜",
@@ -159,7 +157,7 @@
             76
         ],
         "duration": 1000,
-        "next": "search巡演关卡_纯点击"
+        "next": ["search巡演关卡_纯点击"]
     },
     "search巡演关卡_纯点击": {
         "action": "Swipe",
@@ -193,9 +191,9 @@
         "post_wait_freezes": 1000,
         "next": [
             "巡演_custom启动_输入",
-            "巡演_custom启动"
-        ],
-        "interrupt": "Click_正中下端_开始演唱会"
+            "巡演_custom启动",
+            "[JumpBack]Click_正中下端_开始演唱会"
+        ]
     },
     "Flag_最近巡演关卡_next": {
         "doc": "不同巡演覆盖不同icon进去,未在其他位置进行测试",
@@ -211,9 +209,9 @@
         "post_wait_freezes": 1000,
         "next": [
             "巡演_custom启动_输入",
-            "巡演_custom启动"
-        ],
-        "interrupt": "Click_正中下端_开始演唱会"
+            "巡演_custom启动",
+            "[JumpBack]Click_正中下端_开始演唱会"
+        ]
     },
     "巡演_custom启动": {
         "doc": "使用该界面左下角的放弃作为识别特征",
@@ -323,13 +321,17 @@
         ]
     },
     "Feat_巡演BP调整_切10": {
-        "next": "巡演BP调整_组队界面10BP",
-        "interrupt": "切10_BPicon",
+        "next": [
+            "巡演BP调整_组队界面10BP",
+            "[JumpBack]切10_BPicon"
+        ],
         "enabled": false
     },
     "Feat_巡演BP调整_切3": {
-        "next": "巡演BP调整_组队界面3BP",
-        "interrupt": "切3_BPicon"
+        "next": [
+            "巡演BP调整_组队界面3BP",
+            "[JumpBack]切3_BPicon"
+        ]
     },
     "巡演BP调整_组队界面3BP": {
         "roi": [
@@ -368,8 +370,10 @@
         "expected": "BP消耗",
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "切3_search3",
-        "interrupt": "BP消耗下划_NC"
+        "next": [
+            "切3_search3",
+            "[JumpBack]BP消耗下划_NC"
+        ]
     },
     "切10_BPicon": {
         "roi": [
@@ -382,8 +386,10 @@
         "expected": "BP消耗",
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "切10_search10",
-        "interrupt": "BP调整_上划"
+        "next": [
+            "切10_search10",
+            "[JumpBack]BP调整_上划"
+        ]
     },
     "切3_search3": {
         "doc": "找3",
@@ -406,7 +412,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Click_正中下端_关闭"
+        "next": ["Click_正中下端_关闭"]
     },
     "切10_search10": {
         "doc": "找10",
@@ -429,7 +435,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Click_正中下端_关闭"
+        "next": ["Click_正中下端_关闭"]
     },
     "BP消耗下划_NC": {
         "roi": [
@@ -466,10 +472,8 @@
     "巡演BP调整_3BP": {
         "doc": "识别编队界面3BP的icon",
         "next": [
-            "Flag_已在目标BP_巡演last"
-        ],
-        "interrupt": [
-            "BP调整_BP消耗icon"
+            "Flag_已在目标BP_巡演last",
+            "[JumpBack]BP调整_BP消耗icon"
         ]
     },
     "Flag_已在目标BP_巡演last": {
@@ -508,17 +512,15 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Click_正中下端_关闭"
+        "next": ["Click_正中下端_关闭"]
     },
     "Entry_巡演后领取星光奖励": {
         "doc": "点击奖励直到出现前往巡回地图",
         "next": [
             "巡演星光奖励领取_星光icon_on",
-            "巡演星光奖励领取_星光icon_off"
-        ],
-        "interrupt": [
-            "ComeToConcert_ByMenu",
-            "ComeToConcert"
+            "巡演星光奖励领取_星光icon_off",
+            "[JumpBack]ComeToConcert_ByMenu",
+            "[JumpBack]ComeToConcert"
         ]
     },
     "巡演星光奖励领取_星光icon_on": {
@@ -533,7 +535,7 @@
         "template": [
             "StartConcertIcon.png"
         ],
-        "next": "Feat_巡演后领取星光奖励"
+        "next": ["Feat_巡演后领取星光奖励"]
     },
     "巡演星光奖励领取_星光icon_off": {
         "doc": "抄的Flag_StarConcertIcon_off",
@@ -548,7 +550,7 @@
             "StarConcertIcon_off.png"
         ],
         "action": "Click",
-        "next": "巡演星光奖励领取_星光icon_on"
+        "next": ["巡演星光奖励领取_星光icon_on"]
     },
     "Feat_巡演后领取星光奖励": {
         "doc": "在interface中将Flag_StarConcertIcon_on的next接上这个",
@@ -580,15 +582,13 @@
             "巡演星光奖励领取_flag四演出结束",
             "巡演星光奖励领取_前往纪念音乐节地图",
             "巡演星光奖励领取_前往巡回演唱会地图",
-            "Feat_巡演后领取星光奖励"
-        ],
-        "interrupt": [
-            "找回昨日次数",
-            "点击屏幕获取奖励",
-            "OK_pt增加时弹出的奖励界面",
-            "活动期间pt达标跳出的卡面领取",
-            "Click_正中下端_确认",
-            "Click_星光ver"
+            "Feat_巡演后领取星光奖励",
+            "[JumpBack]找回昨日次数",
+            "[JumpBack]点击屏幕获取奖励",
+            "[JumpBack]OK_pt增加时弹出的奖励界面",
+            "[JumpBack]活动期间pt达标跳出的卡面领取",
+            "[JumpBack]Click_正中下端_确认",
+            "[JumpBack]Click_星光ver"
         ]
     },
     "巡演星光奖励领取_flag四演出结束": {
@@ -619,7 +619,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Flag_TourMap"
+        "next": ["Flag_TourMap"]
     },
     "巡演星光奖励领取_前往纪念音乐节地图": {
         "doc": "前往纪念音乐节地图",
@@ -635,14 +635,14 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "Flag_TourMap"
+        "next": ["Flag_TourMap"]
     },
     "Feat_难度调整_巡演ver": {
         "doc": "需要哪个难度就在interface中修改Flag的template和'难度调整'node的expected",
-        "next": "Flag_目标难度_巡演ver",
-        "interrupt": [
-            "Back难度调整_in选组_巡演ver",
-            "难度调整_巡演ver"
+        "next": [
+            "Flag_目标难度_巡演ver",
+            "[JumpBack]Back难度调整_in选组_巡演ver",
+            "[JumpBack]难度调整_巡演ver"
         ]
     },
     "Feat_难度调整_End_巡演ver": {
@@ -670,7 +670,7 @@
                 65
             ]
         },
-        "next": "难度调整_巡演ver"
+        "next": ["难度调整_巡演ver"]
     },
     "难度调整_巡演ver": {
         "doc": "在选曲界面，巡演可用",
@@ -707,7 +707,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "难度上标_简单.png",
-        "next": "Feat_难度调整_End"
+        "next": ["Feat_难度调整_End"]
     },
     "for_reco_原唱_in_tc": {
         "doc": "原唱组合识别",

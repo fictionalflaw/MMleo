@@ -18,14 +18,6 @@
             }
         },
         {
-            "name": "合成游戏",
-            "entry": "Entry_CompositeGame",
-            "doc": "每年只活一个月",
-            "option": [
-                "订单与资源箱管理"
-            ]
-        },
-        {
             "name": "合成游戏_AC",
             "entry": "Entry_CompositeGame",
             "doc": "舍弃了部分稳定性的重构版，来体验加速的世界叭",
@@ -44,8 +36,7 @@
             "doc": "用于完成每日阅读任务",
             "pipeline_override": {
                 "ClickMenuIntale": {
-                    "next": "SkipInTale",
-                    "interrupt": []
+                    "next": "SkipInTale"
                 },
                 "SureSkip": {
                     "next": [
@@ -70,54 +61,6 @@
         }
     ],
     "option": {
-        "订单与资源箱管理": {
-            "cases": [
-                {
-                    "name": "自动提交订单and使用药水资源箱",
-                    "pipeline_override": {
-                        "Entry_CompositeGame": {
-                            "custom_action_param": {
-                                "submit_order": 1,
-                                "zyx4": 1
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "自动提交订单and不使用药水资源箱",
-                    "pipeline_override": {
-                        "Entry_CompositeGame": {
-                            "custom_action_param": {
-                                "submit_order": 1,
-                                "zyx4": 0
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "不提交订单and使用药水资源箱",
-                    "pipeline_override": {
-                        "Entry_CompositeGame": {
-                            "custom_action_param": {
-                                "submit_order": 0,
-                                "zyx4": 1
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "不提交订单and不使用药水资源箱",
-                    "pipeline_override": {
-                        "Entry_CompositeGame": {
-                            "custom_action_param": {
-                                "submit_order": 0,
-                                "zyx4": 0
-                            }
-                        }
-                    }
-                }
-            ]
-        },
         "订单与资源箱管理_AC": {
             "cases": [
                 {

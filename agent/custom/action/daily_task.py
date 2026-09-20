@@ -41,7 +41,8 @@ class DailyTask(CustomAction):
 
             logger.info(f"执行任务: {keyout}")
             image = context.tasker.controller.post_screencap().wait().get()
-            if context.run_recognition(key, image):
+            reco = context.run_recognition(key, image)
+            if reco is not None and reco.hit:
                 context.run_task(key)
                 logger.info(f"完成任务: {keyout}")
             else:

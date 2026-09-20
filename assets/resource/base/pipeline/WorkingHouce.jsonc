@@ -2,11 +2,9 @@
   "Entry_WorkingHouce": {
     "doc": "找寻事务所入口",
     "next": [
-      "WorkingHouceIcon"
-    ],
-    "interrupt": [
-      "CallOutMenu",
-      "BackMainInMenu"
+      "WorkingHouceIcon",
+      "[JumpBack]CallOutMenu",
+      "[JumpBack]BackMainInMenu"
     ]
   },
   "WorkingHouceIcon": {
@@ -29,8 +27,10 @@
         65
       ]
     },
-    "next": "Flag_WorkingHouce_next",
-    "interrupt":"EH_EntryWorkingHouce"
+    "next": [
+      "Flag_WorkingHouce_next",
+      "[JumpBack]EH_EntryWorkingHouce"
+    ]
   },
     "EH_EntryWorkingHouce": {
     "doc": "有时候会跳出活动提示框,EH等异常处理仅作为interrup使用，不连接后续节点也不在interface中进行更改",
@@ -38,8 +38,10 @@
     "roi": [199,526,877,194],
     "action": "Click",
     "expected": "^\\关闭$",
-    "next": "EH_EntryWorkingHouce_End",
-    "interrupt":"EH_EntryWorkingHouce_1"
+    "next": [
+      "EH_EntryWorkingHouce_End",
+      "[JumpBack]EH_EntryWorkingHouce_1"
+    ]
   },
     "EH_EntryWorkingHouce_1": {
     "doc": "有时候会跳出活动提示框",
@@ -47,7 +49,7 @@
     "roi": [199,526,877,194],
     "action": "Click",
     "expected": "^\\下一页",
-    "next": "EH_EntryWorkingHouce_2"
+    "next": ["EH_EntryWorkingHouce_2"]
   },
     "EH_EntryWorkingHouce_2": {
     "doc": "有时候会跳出活动提示框",
@@ -66,7 +68,7 @@
       130
     ],
     "expected": "拜访事务所",
-    "next":"Flag_WorkingHouce_next"
+    "next": ["Flag_WorkingHouce_next"]
   },
   "Flag_WorkingHouce_next": {
     "doc": "用拜访事务所作为标志，正好复制一份进拜访",
@@ -78,8 +80,11 @@
       130
     ],
     "expected": "拜访事务所",
-    "next": "Flag_选择偶像工作_next",
-    "interrupt":["Click_正中下端_关闭","WH_偶像工作"]
+    "next": [
+      "Flag_选择偶像工作_next",
+      "[JumpBack]Click_正中下端_关闭",
+      "[JumpBack]WH_偶像工作"
+    ]
   },
   "WH_偶像工作": {
     "doc": "单击偶像工作图标",
@@ -115,7 +120,7 @@
       172
     ],
     "expected": "选择偶像工作",
-    "next": "选择偶像工作_每日工作"
+    "next": ["选择偶像工作_每日工作"]
   },
   "选择偶像工作_期间限定": {
     "doc": "单击期间限定图标，范围是侧边一栏，可复用，默认路线是直接工作准备，不选择工作",
@@ -137,7 +142,7 @@
         65
       ]
     },
-    "next": "期间限定_选择第一个"
+    "next": ["期间限定_选择第一个"]
   },
   //   "期间限定_选择第一个": {
   //   "doc": "选择第一个活动工作，严格roi",
@@ -226,7 +231,7 @@
         65
       ]
     },
-    "next": "选择偶像工作_前往工作准备"
+    "next": ["选择偶像工作_前往工作准备"]
   },
   "选择偶像工作_前往工作准备": {
     "doc": "进入工作准备的按钮",
@@ -248,7 +253,7 @@
         65
       ]
     },
-    "next": "Flag_参加工作成员_next"
+    "next": ["Flag_参加工作成员_next"]
   },
 
   "Flag_参加工作成员_next": {
@@ -262,9 +267,9 @@
     ],
     "expected": "参加工作成员",
     "next": [
-      "参加工作成员_开始连续工作"
-    ],
-    "interrupt":"参加工作成员_连续工作"
+      "参加工作成员_开始连续工作",
+      "[JumpBack]参加工作成员_连续工作"
+    ]
   },
   "Click_辅助工作": {
     "doc": "识别OFF按钮",
@@ -298,9 +303,9 @@
     "action": "Click",
     "expected": "推荐编队",
     "next": [
-      "参加工作成员_消耗检测"
-    ],
-    "interrupt":"参加工作成员_连续工作"
+      "参加工作成员_消耗检测",
+      "[JumpBack]参加工作成员_连续工作"
+    ]
   },
   
   "参加工作成员_连续工作": {
@@ -330,7 +335,7 @@
     "recognition": "OCR",
     "roi": [47,399,1174,160],
     "expected": "完成\\d*次连续工作预计消耗\\d*工作券、0BP",
-    "next":"参加工作成员_开始连续工作"
+    "next": ["参加工作成员_开始连续工作"]
   },
   "参加工作成员_开始连续工作": {
     "timeout": 900000,
@@ -340,14 +345,14 @@
     "action": "Click",
     "expected": "^\\开始连续工作$",
     "post_wait_freezes": 5000,
-    "next":"Flag_连续工作结束"
+    "next": ["Flag_连续工作结束"]
   },
     "Flag_连续工作结束": {
     "doc": "识别连续工作结束弹窗",
     "recognition": "OCR",
     "roi": [244,80,776,541],
     "expected": "^\\连续工作结束$",
-    "next":"Click_正中下端_关闭"
+    "next": ["Click_正中下端_关闭"]
   },
   "选择偶像工作_每日工作_最后": {
     "doc": "识别最后格子没打钩的状态然后打钩",
@@ -369,7 +374,7 @@
         "time":1000,
         "target": [163,115,512,609]
       },
-      "next":"Swipe_最后_2"
+      "next": ["Swipe_最后_2"]
   },
       "Swipe_最后_2": {
       "doc": "下划最长距离1次",
@@ -380,7 +385,7 @@
         "time":1000,
         "target": [163,115,512,609]
       },
-      "next":"选择偶像工作_每日工作_最后"
+      "next": ["选择偶像工作_每日工作_最后"]
   },
   "Flag_WorkingHouce": {
     "doc": "用拜访事务所作为标志，正好复制一份进拜访",
@@ -392,7 +397,7 @@
       130
     ],
     "expected": "拜访事务所",
-    "next": "Flag_WorkingHouce_next"
+    "next": ["Flag_WorkingHouce_next"]
   },
   "Start_拜访事务所": {
     "doc": "找寻拜访事务所入口",
@@ -414,8 +419,12 @@
         65
       ]
     },
-    "next":"拜访事务所_随机拜访",
-    "interrupt":["Click_正中下端_关闭","Start_拜访事务所_NC","EH_EntryWorkingHouce"]
+    "next": [
+      "拜访事务所_随机拜访",
+      "[JumpBack]Click_正中下端_关闭",
+      "[JumpBack]Start_拜访事务所_NC",
+      "[JumpBack]EH_EntryWorkingHouce"
+    ]
   },
     "Start_拜访事务所_NC": {
     "doc": "找寻拜访事务所入口,纯interrupt会造成嵌套，回溯时会回到循环内,所以后面不接next就行",
@@ -453,7 +462,7 @@
         65
       ]
     },
-    "next":"拜访_Count5次"
+    "next": ["拜访_Count5次"]
   },
   "拜访_Count5次":{
     "action": "Custom",
@@ -465,8 +474,10 @@
     }
   },
   "Back_事务所_By_ESC":{
-    "next":"Flag_WorkingHouce_nonext",
-    "interrupt":["Press_ESC"]
+    "next": [
+      "Flag_WorkingHouce_nonext",
+      "[JumpBack]Press_ESC"
+    ]
   },
     "Flag_WorkingHouce_nonext": {
     "doc": "用拜访事务所作为标志，正好复制一份进拜访",
@@ -513,7 +524,7 @@
         65
       ]
     },
-    "next":"拜访_随机拜访"
+    "next": ["拜访_随机拜访"]
 },
     "拜访_随机拜访": {
     "doc": "拜访内的随机拜访",
@@ -530,7 +541,7 @@
         65
       ]
     },
-    "next":"拜访_Flag_红心未点"
+    "next": ["拜访_Flag_红心未点"]
   },
   "拜访_Flag_红心未点":{
       "doc": "识别未点击的红心",
@@ -554,11 +565,11 @@
     ],
     "action": "Click",
     "post_wait_freezes": 2000,
-    "interrupt": [
-      "SKIP",
-      "点击屏幕获取奖励"
-    ],
-    "next": "Flag_WorkingHouce"
+    "next": [
+      "Flag_WorkingHouce",
+      "[JumpBack]SKIP",
+      "[JumpBack]点击屏幕获取奖励"
+    ]
   },
   "动物园_点击聊天框": {
     "timeout": 30000,
@@ -591,6 +602,10 @@
     "action": "Click"
   },
   "点击聊天框_无限制版": {
+    "next": [
+      "[JumpBack]SKIP",
+      "[JumpBack]点击屏幕获取奖励"
+    ],
     "timeout": 60000,
     "roi": [
       0,
@@ -603,10 +618,6 @@
       "聊天框.png"
     ],
     "green_mask": true,
-    "action": "Click",
-    "interrupt": [
-      "SKIP",
-      "点击屏幕获取奖励"
-    ]
+    "action": "Click"
   }
 }

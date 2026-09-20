@@ -20,7 +20,7 @@
         "recognition": "OCR",
         "expected": "新卡片移入休息室提示",
         "focus": "卡片仓库已满，新卡片将移入休息室...",
-        "next": "Click_正中下端_确认"
+        "next": ["Click_正中下端_确认"]
     },
     "OKInRecruit": {
         "doc": "点击招募决策的ok键，只推荐用于海选",
@@ -52,12 +52,10 @@
         "action": "Click",
         "next": [
             "新卡片移入休息室提示",
-            "Flag_Recruit"
-        ],
-        "interrupt": [
-            "跳过，在招募结算",
-            "OK,在招募结算",
-            "Click_正中下端_关闭"
+            "Flag_Recruit",
+            "[JumpBack]跳过，在招募结算",
+            "[JumpBack]OK,在招募结算",
+            "[JumpBack]Click_正中下端_关闭"
         ]
     },
     "跳过，在招募结算": {
@@ -72,9 +70,9 @@
         "expected": "SKIP",
         "action": "Click",
         "next": [
-            "OK,在招募结算"
-        ],
-        "interrupt": "Click_正中下端_关闭"
+            "OK,在招募结算",
+            "[JumpBack]Click_正中下端_关闭"
+        ]
     },
     "OK,在招募结算": {
         "doc": "OK",

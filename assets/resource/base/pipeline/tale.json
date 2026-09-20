@@ -3,11 +3,9 @@
         "doc": "找寻入口",
         "next": [
             "TaleIcon",
-            "Flag_Tale_next"
-        ],
-        "interrupt": [
-            "CallOutMenu",
-            "BackMainInMenu"
+            "Flag_Tale_next",
+            "[JumpBack]CallOutMenu",
+            "[JumpBack]BackMainInMenu"
         ],
         "enabled": false
     },
@@ -31,7 +29,7 @@
                 65
             ]
         },
-        "next": "Flag_Tale_next"
+        "next": ["Flag_Tale_next"]
     },
     "Flag_Tale": {
         "doc": "已在故事界面的标志",
@@ -54,7 +52,7 @@
         ],
         "recognition": "OCR",
         "expected": "^\\故事$",
-        "next": "Tale_选择_活动故事"
+        "next": ["Tale_选择_活动故事"]
     },
     "Tale_选择_活动故事": {
         "doc": "选择活动故事",
@@ -70,7 +68,7 @@
                 65
             ]
         },
-        "next": "Flag_活动故事_next"
+        "next": ["Flag_活动故事_next"]
     },
     "Flag_活动故事_next": {
         "doc": "已在活动故事界面的标志",
@@ -82,7 +80,7 @@
         ],
         "recognition": "OCR",
         "expected": "^\\活动故事$",
-        "next": "Tale_活动故事_选择左上"
+        "next": ["Tale_活动故事_选择左上"]
     },
     "Tale_活动故事_选择左上": {
         "target": [
@@ -101,7 +99,7 @@
                 65
             ]
         },
-        "next": "StartReading"
+        "next": ["StartReading"]
     },
     "Tale_活动故事_红点匹配": {
         "doc": "开发环境下count200能识别到红点，不行捏，有颜色相近的",
@@ -145,8 +143,10 @@
             0,
             0
         ],
-        "next": "RequiredClickForMenu",
-        "interrupt": "语音下载_无语音"
+        "next": [
+            "RequiredClickForMenu",
+            "[JumpBack]语音下载_无语音"
+        ]
     },
     "语音下载_无语音": {
         "doc": "语音下载提示，选择无语音模式",
@@ -177,7 +177,7 @@
         ],
         "threshold": 0.6,
         "action": "Click",
-        "next": "ClickMenuIntale"
+        "next": ["ClickMenuIntale"]
     },
     "ClickMenuIntale": {
         "doc": "点击菜单图标，好执行后续跳过",
@@ -190,8 +190,10 @@
         "recognition": "TemplateMatch",
         "template": "菜单icon_tale.png",
         "action": "Click",
-        "next": "Flag_EndReading",
-        "interrupt": "SkipInTale"
+        "next": [
+            "Flag_EndReading",
+            "[JumpBack]SkipInTale"
+        ]
     },
     "Flag_EndReading": {
         "doc": "终止阅读的标志",
@@ -215,7 +217,7 @@
         "recognition": "OCR",
         "expected": "跳过",
         "action": "Click",
-        "next": "Flag_SureSkip"
+        "next": ["Flag_SureSkip"]
     },
     "Flag_SureSkip": {
         "doc": "先识别后点确定，避免bug",
@@ -227,7 +229,7 @@
         ],
         "recognition": "OCR",
         "expected": "即将跳过故事。",
-        "next": "SureSkip"
+        "next": ["SureSkip"]
     },
     "SureSkip": {
         "doc": "确定跳过",
@@ -276,7 +278,7 @@
         "recognition": "OCR",
         "expected": "阅读",
         "action": "Click",
-        "next": "RequiredClickForSkip"
+        "next": ["RequiredClickForSkip"]
     },
     "StopRead": {
         "doc": "关闭阅读",

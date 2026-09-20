@@ -7,11 +7,9 @@
     "Entry_Store": {
         "doc": "在不同地方找到商店入口",
         "next": [
-            "StoreIcon"
-        ],
-        "interrupt": [
-            "CallOutMenu",
-            "BackMainInMenu"
+            "StoreIcon",
+            "[JumpBack]CallOutMenu",
+            "[JumpBack]BackMainInMenu"
         ],
         "enabled": false
     },
@@ -42,7 +40,7 @@
         "expected": "会员",
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": "DiamondInVip",
+        "next": ["DiamondInVip"],
         "on_error": [
             "Error_无法领取月卡"
         ]
@@ -62,7 +60,7 @@
         "recognition": "OCR",
         "expected": "领取",
         "action": "Click",
-        "next": "点击屏幕获取奖励_小月卡",
+        "next": ["点击屏幕获取奖励_小月卡"],
         "on_error": [
             "BackMainInMenu"
         ],
@@ -88,7 +86,7 @@
                 65
             ]
         },
-        "next": "BigCardInVip"
+        "next": ["BigCardInVip"]
     },
     "BigCardInVip": {
         "doc": "在会员界面领取大月卡,如果出错就回主界面执行下一步",
@@ -101,7 +99,7 @@
         "recognition": "OCR",
         "expected": "领取",
         "action": "Click",
-        "next": "点击屏幕获取奖励",
+        "next": ["点击屏幕获取奖励"],
         "on_error": [
             "BackMainInMenu"
         ],
@@ -189,22 +187,18 @@
     "Entry_Recruit": {
         "doc": "在不同地方找到招募入口",
         "next": [
-            "RecruitIcon"
-        ],
-        "interrupt": [
-            "CallOutMenu",
-            "BackMainInMenu"
+            "RecruitIcon",
+            "[JumpBack]CallOutMenu",
+            "[JumpBack]BackMainInMenu"
         ],
         "enabled": false
     },
     "Entry_NormalAward": {
         "doc": "日常奖励入口",
         "next": [
-            "NormalAwardIcon"
-        ],
-        "interrupt": [
-            "BackMainInMenu",
-            "CallOutMenu"
+            "NormalAwardIcon",
+            "[JumpBack]BackMainInMenu",
+            "[JumpBack]CallOutMenu"
         ]
     },
     "NormalAwardIcon": {
@@ -233,7 +227,7 @@
                 65
             ]
         },
-        "next": "Click_计划奖励"
+        "next": ["Click_计划奖励"]
     },
     "Click_计划奖励": {
         "doc": "计划奖励",
@@ -255,7 +249,7 @@
                 65
             ]
         },
-        "next": "一键领取_计划"
+        "next": ["一键领取_计划"]
     },
     "一键领取_计划": {
         "doc": "计划奖励中的一键领取按钮",
@@ -277,8 +271,10 @@
                 65
             ]
         },
-        "next": "Flag_日常事务_next",
-        "interrupt": "Click_日常事务"
+        "next": [
+            "Flag_日常事务_next",
+            "[JumpBack]Click_日常事务"
+        ]
     },
     "Flag_日常事务_next": {
         "doc": "日常事务Flag,左上角能量棒",
@@ -299,7 +295,7 @@
                 65
             ]
         },
-        "next": "一键领取_日常"
+        "next": ["一键领取_日常"]
     },
     "Click_日常事务": {
         "doc": "日常事务",
@@ -342,8 +338,10 @@
                 65
             ]
         },
-        "next": "Flag_专项事务_next",
-        "interrupt": "Click_专项事务"
+        "next": [
+            "Flag_专项事务_next",
+            "[JumpBack]Click_专项事务"
+        ]
     },
     "Click_专项事务": {
         "doc": "专项事务",
@@ -385,7 +383,7 @@
                 65
             ]
         },
-        "next": "一键领取_专项"
+        "next": ["一键领取_专项"]
     },
     "一键领取_专项": {
         "doc": "专项事务中的一键领取按钮",
@@ -407,8 +405,10 @@
                 65
             ]
         },
-        "next": "Flag_Main",
-        "interrupt": "Click_工作计划退出"
+        "next": [
+            "Flag_Main",
+            "[JumpBack]Click_工作计划退出"
+        ]
     },
     "Click_工作计划退出": {
         "doc": "点击退出按钮",
@@ -443,10 +443,8 @@
         "expected": "招募",
         "action": "Click",
         "next": [
-            "AuditionInRecruit"
-        ],
-        "interrupt": [
-            "SwipeMaxInReCruit"
+            "AuditionInRecruit",
+            "[JumpBack]SwipeMaxInReCruit"
         ]
     },
     "AuditionInRecruit": {
@@ -462,7 +460,9 @@
         "action": "Click"
     },
     "CountTask_RunNode": {
-        "next": "拜访_红心已点",
-        "interrupt": "拜访_点击红心"
+        "next": [
+            "拜访_红心已点",
+            "[JumpBack]拜访_点击红心"
+        ]
     }
 }

@@ -3,11 +3,9 @@
         "doc": "在不同位置进入星光演唱会",
         "next": [
             "Flag_StarConcertIcon_on",
-            "Flag_StarConcertIcon_off"
-        ],
-        "interrupt": [
-            "ComeToConcert_ByMenu",
-            "ComeToConcert"
+            "Flag_StarConcertIcon_off",
+            "[JumpBack]ComeToConcert_ByMenu",
+            "[JumpBack]ComeToConcert"
         ]
     },
     "Flag_StarConcertIcon_on": {
@@ -22,7 +20,7 @@
         "template": [
             "StartConcertIcon.png"
         ],
-        "next": "星光打歌循环"
+        "next": ["星光打歌循环"]
     },
     "Flag_StarConcertIcon_off": {
         "doc": "不在星光演唱会界面，但存在进入入口",
@@ -37,14 +35,14 @@
             "StarConcertIcon_off.png"
         ],
         "action": "Click",
-        "next": "Flag_StarConcertIcon_on"
+        "next": ["Flag_StarConcertIcon_on"]
     },
     "星光打歌循环": {
         "doc": "现在是无歌可打，不过还是得上全灰，因为无歌可打唯一性不足",
         "next": [
-            "Flag_无歌可打"
-        ],
-        "interrupt": "寻找打歌入口"
+            "Flag_无歌可打",
+            "[JumpBack]寻找打歌入口"
+        ]
     },
     "Flag_无歌可打": {
         "doc": "复制的确认歌曲模版，直到识别不到打歌入口（因为只有两种字符显示就这么写，如果有第三种还是更换识别方式吧）为止，本层不放action",
@@ -88,7 +86,7 @@
         "recognition": "OCR",
         "expected": "下载歌曲",
         "action": "Click",
-        "next": "确认下载_星光ver"
+        "next": ["确认下载_星光ver"]
     },
     "确认下载_星光ver": {
         "roi": [
@@ -109,7 +107,7 @@
                 65
             ]
         },
-        "next": "确认歌曲_星光ver"
+        "next": ["确认歌曲_星光ver"]
     },
     "确认歌曲_星光ver": {
         "roi": [
@@ -130,7 +128,7 @@
                 65
             ]
         },
-        "next": "StartTheConcert_星光ver"
+        "next": ["StartTheConcert_星光ver"]
     },
     "StartTheConcert_星光ver": {
         "roi": [
@@ -172,7 +170,7 @@
         "recognition": "OCR",
         "expected": "开始演唱会",
         "action": "Click",
-        "next": "星光演唱会打歌中"
+        "next": ["星光演唱会打歌中"]
     },
     "奖励领取_星光ver": {
         "doc": "已回到星光界面，领取奖励，然后循环查找未打歌标志",
@@ -202,14 +200,12 @@
         },
         "next": [
             "找回昨日次数",
-            "寻找打歌入口_星光循环内ver"
-        ],
-        "interrupt": [
-            "点击屏幕获取奖励",
-            "OK_pt增加时弹出的奖励界面",
-            "活动期间pt达标跳出的卡面领取",
-            "Click_星光ver",
-            "礼包提示_REC_星光"
+            "寻找打歌入口_星光循环内ver",
+            "[JumpBack]点击屏幕获取奖励",
+            "[JumpBack]OK_pt增加时弹出的奖励界面",
+            "[JumpBack]活动期间pt达标跳出的卡面领取",
+            "[JumpBack]Click_星光ver",
+            "[JumpBack]礼包提示_REC_星光"
         ]
     },
     "礼包提示_REC_星光": {
@@ -226,7 +222,7 @@
             "开启后可以获得随机数量",
             "开启后可以获得随机颜色"
         ],
-        "next": "礼包提示_退出_星光"
+        "next": ["礼包提示_退出_星光"]
     },
     "礼包提示_退出_星光": {
         "doc": "识别该界面的确认按钮",

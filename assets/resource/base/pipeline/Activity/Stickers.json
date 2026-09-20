@@ -3,11 +3,9 @@
         "doc": "当前状态:占位，在不同位置进入贴纸限时活动",
         "next": [
             "Flag_StarConcertIcon_on",
-            "Flag_StarConcertIcon_off"
-        ],
-        "interrupt": [
-            "BackMainInMenu",
-            "BackMainByMenu"
+            "Flag_StarConcertIcon_off",
+            "[JumpBack]BackMainInMenu",
+            "[JumpBack]BackMainByMenu"
         ]
     }
 }

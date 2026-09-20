@@ -6,19 +6,17 @@
             "Flag_星光演唱会",
             "Flag_演唱会",
             "Flag_巡演曲目列表界面",
-            "Flag_TourMap"
-        ],
-        "interrupt": [
-            "歌曲奖励达成_NC",
-            "更新记录界面_NC",
-            "退出打歌结算界面_NC",
-            "粉丝数up_NC",
-            "活动奖励领取_NC",
-            "FlagandAction_迷你对话_1",
-            "FlagandAction_迷你对话_2",
-            "OK_pt增加时弹出的奖励界面",
-            "活动期间pt达标跳出的卡面领取",
-            "点击屏幕获取奖励"
+            "Flag_TourMap",
+            "[JumpBack]歌曲奖励达成_NC",
+            "[JumpBack]更新记录界面_NC",
+            "[JumpBack]退出打歌结算界面_NC",
+            "[JumpBack]粉丝数up_NC",
+            "[JumpBack]活动奖励领取_NC",
+            "[JumpBack]FlagandAction_迷你对话_1",
+            "[JumpBack]FlagandAction_迷你对话_2",
+            "[JumpBack]OK_pt增加时弹出的奖励界面",
+            "[JumpBack]活动期间pt达标跳出的卡面领取",
+            "[JumpBack]点击屏幕获取奖励"
         ]
     },
     "等待演唱会结束": {
@@ -44,11 +42,9 @@
             "Flag_星光演唱会",
             "Flag_演唱会",
             "Flag_巡演曲目列表界面",
-            "Flag_TourMap"
-        ],
-        "interrupt": [
-            "对话框_迷你对话ing",
-            "Click_迷你对话ing"
+            "Flag_TourMap",
+            "[JumpBack]对话框_迷你对话ing",
+            "[JumpBack]Click_迷你对话ing"
         ]
     },
     "FlagandAction_迷你对话_2": {
@@ -71,11 +67,9 @@
             "Flag_星光演唱会",
             "Flag_演唱会",
             "Flag_巡演曲目列表界面",
-            "Flag_TourMap"
-        ],
-        "interrupt": [
-            "对话框_迷你对话ing",
-            "Click_迷你对话ing"
+            "Flag_TourMap",
+            "[JumpBack]对话框_迷你对话ing",
+            "[JumpBack]Click_迷你对话ing"
         ]
     },
     "OK_pt增加时弹出的奖励界面": {
@@ -104,7 +98,7 @@
         "recognition": "TemplateMatch",
         "template": "卡面星星.png",
         "action": "Click",
-        "next": "点击屏幕获取奖励"
+        "next": ["点击屏幕获取奖励"]
     },
     "对话框_迷你对话ing": {
         "doc": "固定选识别到的第一个，建议前面接一个故事黄星识别",

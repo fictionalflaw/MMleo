@@ -3,11 +3,9 @@
         "doc": "找寻卡片仓库入口",
         "next": [
             "CardIcon",
-            "Flag_Card_next"
-        ],
-        "interrupt": [
-            "CallOutMenu",
-            "BackMainInMenu"
+            "Flag_Card_next",
+            "[JumpBack]CallOutMenu",
+            "[JumpBack]BackMainInMenu"
         ],
         "enabled": false
     },
@@ -31,7 +29,7 @@
                 65
             ]
         },
-        "next": "Flag_Card_next"
+        "next": ["Flag_Card_next"]
     },
     "Flag_Card_next": {
         "doc": "已在卡片界面的标志",
@@ -43,7 +41,7 @@
         ],
         "recognition": "OCR",
         "expected": "卡片一览",
-        "next": "Click_左上卡"
+        "next": ["Click_左上卡"]
     },
     "Flag_Card": {
         "doc": "用于option中更换备用",
@@ -83,7 +81,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "组合选择_to等级"
+        "next": ["组合选择_to等级"]
     },
     "组合选择_to等级": {
         "doc": "切成等级",
@@ -97,7 +95,7 @@
         "expected": "等级",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "组合选择_in等级"
+        "next": ["组合选择_in等级"]
     },
     "组合选择_in等级": {
         "doc": "不是等级切成等级",
@@ -128,7 +126,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next":"排序方式_in升序"
+        "next": ["排序方式_in升序"]
     },
     "排序方式_in升序": {
         "doc": "是从低到高，interface中为了确保唯一性可以把expected改成单从低到高",
@@ -162,7 +160,7 @@
                 65
             ]
         },
-        "next":"Flag_卡片详情"
+        "next": ["Flag_卡片详情"]
     },
     "Flag_卡片详情":{
         "doc": "用等级提升作为flag",
@@ -188,7 +186,7 @@
         "expected": "等级提升",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "Card_等级提升_消耗1张经验券小"
+        "next": ["Card_等级提升_消耗1张经验券小"]
     },
     "Card_等级提升_消耗1张经验券小": {
         "doc": "+1",
@@ -202,7 +200,7 @@
         "template": "经验券+1.png",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "Card_等级提升_确定"
+        "next": ["Card_等级提升_确定"]
     },
     "Card_等级提升_确定": {
         "doc": "确定按钮，没做亮起识别，新ui变成OK了",
@@ -218,7 +216,7 @@
         "post_wait_freezes": {
             "time":2000,
             "target":[63,36,395,475]},
-        "next": "Card_等级提升_关闭"
+        "next": ["Card_等级提升_关闭"]
     },
     "Card_等级提升_关闭": {
         "doc": "关闭按钮+1",
@@ -245,7 +243,7 @@
         "expected": "偶像之路",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "Card_偶像之路_红点匹配"
+        "next": ["Card_偶像之路_红点匹配"]
     },
     "Card_偶像之路_选择能力": {//已废弃，该用红点colormatch
         "doc": "应该选择最近的能力",
@@ -263,7 +261,7 @@
         ],
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": "Card_偶像之路_学习"
+        "next": ["Card_偶像之路_学习"]
     },
     "Card_偶像之路_选择能力_try": {//已废弃，该用红点colormatch
         "doc": "应该选择最近的能力",
@@ -303,7 +301,7 @@
         "connected": true,
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next":"Card_偶像之路_学习"
+        "next": ["Card_偶像之路_学习"]
     },
     "Card_偶像之路_学习": {
         "doc": "偶像之路，学习按钮,新ui变成解锁了",
@@ -317,7 +315,7 @@
         "expected": ["解锁"],
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next":"Card_偶像之路_退出"
+        "next": ["Card_偶像之路_退出"]
     },
         "Card_偶像之路_退出": {
         "doc": "偶像之路，已有素材",

@@ -23,10 +23,8 @@
             ]
         },
         "next": [
-            "ScoutFreeInRecruit"
-        ],
-        "interrupt": [
-            "Swipe1InReCruit"
+            "ScoutFreeInRecruit",
+            "[JumpBack]Swipe1InReCruit"
         ]
     },
     "ScoutFreeInRecruit": {

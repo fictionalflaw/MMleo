@@ -8,6 +8,14 @@ from utils import logger
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
+
+
+def _reco_hit(context: Context, entry: str, image) -> bool:
+    """maafw v5: run_recognition 未命中也会返回对象，需用 .hit 判断是否命中。"""
+    reco = context.run_recognition(entry, image)
+    return reco is not None and reco.hit
+
+
 @AgentServer.custom_action("TargetAreaSearchAndSave")
 class   TargetAreaSearchAndSave(CustomAction):
     def run(
@@ -18,13 +26,13 @@ class   TargetAreaSearchAndSave(CustomAction):
         #image getting
         img = context.tasker.controller.post_screencap().wait().get()
         reco = context.run_recognition("MusicalTargetRco", img)#在该识别域中识别结果自动按横轴排序，不用再处理
-        if reco is None:
+        if reco is None or not reco.hit:
             logger.info("识别出错，内容为空,请检查判定线样式")
             return CustomAction.RunResult(success=False)
-        elif not (len(reco.filterd_results)==7) :
+        elif not (len(reco.filtered_results)==7) :
             logger.info("目标点不为7个，请检查难度或者更换打歌背景重新识别。如多次失败请更换其他方式。推荐音符速度设置2~4")
             return CustomAction.RunResult(success=False)
-        target=reco.filterd_results[0:7]#只针对简单模式，其他模式再看
+        target=reco.filtered_results[0:7]#只针对简单模式，其他模式再看
         clickpoints={}
         flag=0
         for i in target:
@@ -72,18 +80,18 @@ class   MusicPlayer(CustomAction):
                         context.tasker.controller.post_click(key[0],key[1]).wait()
                         flag+=1
                 if(flag>=3):
-                    if context.run_recognition("for_end_concert_success",img) or context.run_recognition("for_end_concert_live",img):
+                    if _reco_hit(context, "for_end_concert_success", img) or _reco_hit(context, "for_end_concert_live", img):
                         end_flag=True   
                         break
-                    elif((context.run_recognition("for_end_after_concert_1",img))or(context.run_recognition("for_end_after_concert_2",img))or(context.tasker.stopping)):
+                    elif _reco_hit(context, "for_end_after_concert_1", img) or _reco_hit(context, "for_end_after_concert_2", img) or context.tasker.stopping:
                         end_flag=True   
                         break
-                    elif(context.run_recognition("for_pause_in_concert",img)):#还要加中途终止和回到打歌界面的识别
+                    elif _reco_hit(context, "for_pause_in_concert", img):#还要加中途终止和回到打歌界面的识别
                         pause_flag=True
                         break
-            if(not(context.run_recognition("for_pause_in_concert",img))):pause_flag=False
-            if(context.run_recognition("for_stop_in_concert",img)):break#因为识别速度过快，所以中途停止界面一定会被识别到（除非通过脚本发送快过截图时间的操作）
-            elif(context.run_recognition("ConfirmConcert",img)):break#外层堆再多延迟也是应该的，这就是中途暂停的代价
+            if not _reco_hit(context, "for_pause_in_concert", img):pause_flag=False
+            if _reco_hit(context, "for_stop_in_concert", img):break#因为识别速度过快，所以中途停止界面一定会被识别到（除非通过脚本发送快过截图时间的操作）
+            elif _reco_hit(context, "ConfirmConcert", img):break#外层堆再多延迟也是应该的，这就是中途暂停的代价
             elif(context.tasker.stopping):break
             if end_flag:break            
            #超过合理时间必须强制结束，及时释放资源，同时得再加入错误识别，即为什么会停止这么久，如果只是暂停就一直暂停（这是不合理行为，不做判定），如果是在打歌画面却不动，直接引入画面判断——>成功就强制结束/重启es2

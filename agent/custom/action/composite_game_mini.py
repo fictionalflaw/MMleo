@@ -76,13 +76,13 @@ class   CompositeGamePlayer_mini(CustomAction):
                     {"for_reco_in_composite_game": {"recognition": "TemplateMatch","template":template_path,"threshold": threshold}},
                     )
                     if temp==24 and reco_detail:#稻米四连击
-                        for item in reco_detail.filterd_results:
+                        for item in reco_detail.filtered_results:
                             x,y,w,h=item.box
                             for i in range(5):
                                 context.tasker.controller.post_click(x+w//2,y+h//2).wait()
                                 time.sleep(0.5)
                     elif reco_detail:
-                        self.post_composite(context,reco_detail.filterd_results,matrix_dd)
+                        self.post_composite(context,reco_detail.filtered_results,matrix_dd)
                     if context.tasker.stopping:
                         logger.info("检测到停止任务, 开始退出agent")
                         return CustomAction.RunResult(success=False)
@@ -128,8 +128,8 @@ class   CompositeGamePlayer_mini(CustomAction):
         self.order_count=self.load_data()#有提交优先提交
         image=context.tasker.controller.post_screencap().wait().get() 
         order_reco=context.run_recognition("for_reco_in_composite_game_3",image)
-        if order_reco:
-            for item in order_reco.filterd_results:
+        if order_reco is not None and order_reco.hit:
+            for item in order_reco.filtered_results:
                 context.tasker.controller.post_click(item.box[0],item.box[1]).wait()
                 time.sleep(0.5)
                 print("提交1次")
@@ -222,7 +222,7 @@ class   CompositeGamePlayer_mini(CustomAction):
         ROW_Y = [40 + i * cell_height + cell_height // 2 for i in range(5)]
         COL_X = [330 + j * cell_width + cell_width // 2 for j in range(7)]
 
-        for item in recognition_data.filterd_results:
+        for item in recognition_data.filtered_results:
             x, y, w, h = item.box
 
             # 行列索引查找逻辑

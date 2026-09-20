@@ -28,7 +28,8 @@ class   TourConcert(CustomAction):
             image = context.tasker.controller.post_screencap().wait().get()
             key ="巡演_custom启动"
             #巡演界面识别
-            if context.run_recognition(key,image):
+            reco = context.run_recognition(key, image)
+            if reco is not None and reco.hit:
                 logger.info(f"即将开始第{j+1}轮巡演打歌...")
             else:
                 logger.warning(f"识别失败, 不在巡演选歌界面，即将终止巡演打歌进程...")
@@ -70,7 +71,8 @@ class   TourConcert(CustomAction):
                 image = context.tasker.controller.post_screencap().wait().get()
                 key ="Feat_开始演唱会"
 
-                if context.run_recognition(key,image):
+                reco = context.run_recognition(key, image)
+                if reco is not None and reco.hit:
                     logger.info(f"即将开始第{j+1}轮，第{i+1}次打歌...")
                     tour_check=context.run_task(key).nodes
                 else:
