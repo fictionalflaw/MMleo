@@ -1,0 +1,178 @@
+{
+    "Entry_SoloLive": {
+        "doc": "自动打一场SoloLive。前置：已停在主界面。入口做状态判断：打歌中→等结算，今日挑战已完成→直接结束，SoloLive主页→点开始挑战，否则从主界面经菜单导航",
+        "next": [
+            "SoloLive_Flag_打歌中",
+            "SoloLive_Flag_已完成",
+            "SoloLive_Flag_SoloLive页",
+            "[JumpBack]SoloLive_点菜单icon"
+        ]
+    },
+    "SoloLive_Flag_打歌中": {
+        "doc": "已在打歌界面（演唱会热度/CLEAR），直接等待结算",
+        "roi": [
+            7,
+            7,
+            416,
+            71
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "演唱会热度",
+            "CLEAR"
+        ],
+        "next": [
+            "SoloLive_打歌等待"
+        ]
+    },
+    "SoloLive_Flag_已完成": {
+        "doc": "今日挑战已完成（SoloLive页「开始挑战」位置显示「今日已完成挑战」），无next直接结束任务链",
+        "roi": [
+            180,
+            535,
+            320,
+            80
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "今日已完成挑战",
+            "已完成挑战"
+        ]
+    },
+    "SoloLive_Flag_SoloLive页": {
+        "doc": "已在SoloLive主页（识别「个人演唱会」标题），直接点开始挑战",
+        "roi": [
+            180,
+            280,
+            300,
+            100
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "个人演唱会",
+            "人演唱会"
+        ],
+        "next": [
+            "SoloLive_点开始挑战"
+        ]
+    },
+    "SoloLive_点菜单icon": {
+        "doc": "点右上角菜单icon（复用 StartUp.CallOutMenu 的识别）",
+        "roi": [
+            1145,
+            0,
+            135,
+            126
+        ],
+        "recognition": "TemplateMatch",
+        "template": "菜单icon.png",
+        "action": "Click",
+        "post_wait_freezes": 1000,
+        "next": [
+            "SoloLive_点SoloLive入口"
+        ]
+    },
+    "SoloLive_点SoloLive入口": {
+        "doc": "在弹出菜单点SoloLive。叶子节点：点完经 [JumpBack] 回到Entry重新判断是否「今日已完成挑战」",
+        "roi": [
+            760,
+            275,
+            200,
+            70
+        ],
+        "recognition": "OCR",
+        "expected": "SoloLive",
+        "action": "Click",
+        "post_wait_freezes": 1500
+    },
+    "SoloLive_点开始挑战": {
+        "doc": "SoloLive主页点开始挑战",
+        "roi": [
+            220,
+            535,
+            210,
+            75
+        ],
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        "action": "Click",
+        "post_wait_freezes": 1500,
+        "next": [
+            "SoloLive_点确定"
+        ]
+    },
+    "SoloLive_点确定": {
+        "doc": "选曲页点确定",
+        "roi": [
+            1040,
+            555,
+            115,
+            65
+        ],
+        "recognition": "OCR",
+        "expected": "确定",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": [
+            "SoloLive_点开始个人演唱会"
+        ]
+    },
+    "SoloLive_点开始个人演唱会": {
+        "doc": "个人挑战编队页点开始个人演唱会，进入打歌（自动模式）",
+        "roi": [
+            920,
+            610,
+            260,
+            60
+        ],
+        "recognition": "OCR",
+        "expected": "开始个人演唱会",
+        "action": "Click",
+        "post_wait_freezes": 2000,
+        "next": [
+            "SoloLive_打歌等待"
+        ]
+    },
+    "SoloLive_打歌等待": {
+        "doc": "打歌中（自动模式2-3min），识别到结算「歌曲奖励」才继续",
+        "timeout": 300000,
+        "roi": [
+            788,
+            600,
+            176,
+            65
+        ],
+        "recognition": "OCR",
+        "expected": "歌曲奖励",
+        "next": [
+            "SoloLive_回主界面",
+            "[JumpBack]歌曲奖励达成_NC",
+            "[JumpBack]更新记录界面_NC",
+            "[JumpBack]退出打歌结算界面_NC",
+            "[JumpBack]粉丝数up_NC",
+            "[JumpBack]活动奖励领取_NC",
+            "[JumpBack]OK_pt增加时弹出的奖励界面",
+            "[JumpBack]FlagandAction_迷你对话_1",
+            "[JumpBack]FlagandAction_迷你对话_2",
+            "[JumpBack]活动期间pt达标跳出的卡面领取",
+            "[JumpBack]点击屏幕获取奖励"
+        ]
+    },
+    "SoloLive_回主界面": {
+        "doc": "结算后回到SoloLive主页，走菜单→主页返回主界面",
+        "roi": [
+            180,
+            280,
+            300,
+            100
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "个人演唱会",
+            "人演唱会"
+        ],
+        "next": [
+            "BackMain"
+        ]
+    }
+}

@@ -218,6 +218,11 @@
                     "template": "temp_activity/九周年系列/九周年火组活动主界面icon.png"
                 }
             }
+        },
+        {
+            "name": "SoloLive",
+            "entry": "Entry_SoloLive",
+            "doc": "自动打一场个人演唱会（SoloLive），支持从主界面导航、打歌与结算后回到主界面"
         }
     ],
     "option": {
