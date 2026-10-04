@@ -33,7 +33,9 @@
         "expected": "^\\特别演唱会$",
         "action": "Click",
         "post_wait_freezes": 2000,
-        "next": ["Click_巡演地图"]
+        "next": [
+            "Click_巡演地图"
+        ]
     },
     "Flag_TourMap_next": {
         "doc": "已在巡演地图，使用右下角公演一览作为标识",
@@ -45,7 +47,9 @@
         ],
         "recognition": "OCR",
         "expected": "^\\公演一览$",
-        "next": ["Feat_search巡演关卡"]
+        "next": [
+            "Feat_search巡演关卡"
+        ]
     },
     "Flag_TourMap": {
         "doc": "现已加入Feat_打歌结算豪华午餐：原因是打完巡演第四首会直接回主界面",
@@ -78,10 +82,12 @@
                 65
             ]
         },
-        "next": ["Feat_search巡演关卡"]
+        "next": [
+            "Feat_search巡演关卡"
+        ]
     },
     "Feat_search巡演关卡": {
-        "doc": "搜寻目标关卡，接受interface指定，或者自动找最后一个没打的关卡",
+        "doc": "搜寻目标关卡，接受interface指定(手动指定DAY)，或者自动找下一个可打的DAY。自动模式靠OCR气泡定位,气泡只在其节点进入视野时可见;且自动模式的interface override会把本节点next整个换成只认气泡,不走滑动兜底。滑动兜底仅服务手动模式,实测其滑动坐标在联动地图上有效",
         "next": [
             "Flag_目标关卡_next",
             "Flag_最近巡演关卡_next",
@@ -89,7 +95,7 @@
         ]
     },
     "search巡演关卡_向左01": {
-        "doc": "其实是右划，直到来到巡演地图最左端",
+        "doc": "其实是右划，直到来到巡演地图最左端。实测:该坐标在联动地图上有效,一次约滚 6 个 DAY(原节点未写 duration,默认值可能过快触发惯性滑动,故补上 duration:1000)",
         "roi": [
             1066,
             560,
@@ -111,6 +117,7 @@
             70,
             76
         ],
+        "duration": 1000,
         "post_wait_freezes": 1000,
         "next": [
             "search巡演关卡_向左01_01",
@@ -118,7 +125,7 @@
         ]
     },
     "search巡演关卡_向左01_01": {
-        "doc": "找到01",
+        "doc": "找到01(联动地图上即 DAY.01 徽章)。注意:本节点未设 threshold,默认阈值下相邻数字徽章也可能命中(实测 巡演NN 互相区分度仅 ~0.75),只作粗定位",
         "roi": [
             96,
             196,
@@ -134,7 +141,7 @@
         ]
     },
     "search巡演关卡_向右搜": {
-        "doc": "左划，向右搜",
+        "doc": "左划，向右搜。实测:该坐标在联动地图上有效,一次约滚 6 个 DAY",
         "roi": [
             1066,
             560,
@@ -157,7 +164,9 @@
             76
         ],
         "duration": 1000,
-        "next": ["search巡演关卡_纯点击"]
+        "next": [
+            "search巡演关卡_纯点击"
+        ]
     },
     "search巡演关卡_纯点击": {
         "action": "Swipe",
@@ -177,7 +186,7 @@
         "post_wait_freezes": 1000
     },
     "Flag_目标关卡_next": {
-        "doc": "目标关卡，interface中更改",
+        "doc": "手动指定DAY模式:template 由 advanced「手动输入巡演关卡」注入为 巡演NN.png(DAY.N 数字徽章裁剪)。联动地图上命中正确位实测 score≈0.886,故阈值由 0.9 降到 0.8;数字徽章区分度薄(相似 DAY 亦 >0.75),手动模式属 best-effort,建议优先用自动模式",
         "roi": [
             96,
             196,
@@ -186,7 +195,7 @@
         ],
         "recognition": "TemplateMatch",
         "template": "TourConcert/巡演01.png",
-        "threshold": 0.9,
+        "threshold": 0.8,
         "action": "Click",
         "post_wait_freezes": 1000,
         "next": [
@@ -196,15 +205,18 @@
         ]
     },
     "Flag_最近巡演关卡_next": {
-        "doc": "不同巡演覆盖不同icon进去,未在其他位置进行测试",
-        "recognition": "TemplateMatch",
+        "doc": "自动模式:联动地图上游戏常驻一个「点击!公演开始」气泡,悬停在当前可打DAY节点上方(打完一天后自动移到下一天),用它定位最省事。气泡y随节点所在行上下浮动(实测250~470),故roi覆盖整块地图playfield,避开左侧边栏与右下角面板。注意:气泡本身能否点中尚未实测,若点不动需加target_offset下移到节点平台",
         "roi": [
-            96,
-            196,
-            1184,
-            331
+            100,
+            150,
+            1180,
+            380
         ],
-        "template": "TourConcert/巡演最新关卡icon.png",
+        "recognition": "OCR",
+        "expected": [
+            "^公演开始$",
+            "公演开始"
+        ],
         "action": "Click",
         "post_wait_freezes": 1000,
         "next": [
@@ -402,6 +414,7 @@
         "recognition": "OCR",
         "expected": [
             "消耗3BP",
+            "^3$",
             "3BP"
         ],
         "target_offset": [
@@ -412,7 +425,9 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": ["Click_正中下端_关闭"]
+        "next": [
+            "Click_正中下端_关闭"
+        ]
     },
     "切10_search10": {
         "doc": "找10",
@@ -435,7 +450,9 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": ["Click_正中下端_关闭"]
+        "next": [
+            "Click_正中下端_关闭"
+        ]
     },
     "BP消耗下划_NC": {
         "roi": [
@@ -512,7 +529,9 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": ["Click_正中下端_关闭"]
+        "next": [
+            "Click_正中下端_关闭"
+        ]
     },
     "Entry_巡演后领取星光奖励": {
         "doc": "点击奖励直到出现前往巡回地图",
@@ -535,7 +554,9 @@
         "template": [
             "StartConcertIcon.png"
         ],
-        "next": ["Feat_巡演后领取星光奖励"]
+        "next": [
+            "Feat_巡演后领取星光奖励"
+        ]
     },
     "巡演星光奖励领取_星光icon_off": {
         "doc": "抄的Flag_StarConcertIcon_off",
@@ -550,7 +571,9 @@
             "StarConcertIcon_off.png"
         ],
         "action": "Click",
-        "next": ["巡演星光奖励领取_星光icon_on"]
+        "next": [
+            "巡演星光奖励领取_星光icon_on"
+        ]
     },
     "Feat_巡演后领取星光奖励": {
         "doc": "在interface中将Flag_StarConcertIcon_on的next接上这个",
@@ -619,7 +642,9 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": ["Flag_TourMap"]
+        "next": [
+            "Flag_TourMap"
+        ]
     },
     "巡演星光奖励领取_前往纪念音乐节地图": {
         "doc": "前往纪念音乐节地图",
@@ -635,7 +660,9 @@
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
-        "next": ["Flag_TourMap"]
+        "next": [
+            "Flag_TourMap"
+        ]
     },
     "Feat_难度调整_巡演ver": {
         "doc": "需要哪个难度就在interface中修改Flag的template和'难度调整'node的expected",
@@ -670,7 +697,9 @@
                 65
             ]
         },
-        "next": ["难度调整_巡演ver"]
+        "next": [
+            "难度调整_巡演ver"
+        ]
     },
     "难度调整_巡演ver": {
         "doc": "在选曲界面，巡演可用",
@@ -707,7 +736,9 @@
         ],
         "recognition": "TemplateMatch",
         "template": "难度上标_简单.png",
-        "next": ["Feat_难度调整_End"]
+        "next": [
+            "Feat_难度调整_End"
+        ]
     },
     "for_reco_原唱_in_tc": {
         "doc": "原唱组合识别",

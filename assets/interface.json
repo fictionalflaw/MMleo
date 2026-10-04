@@ -90,7 +90,19 @@
             "doc": "当前版本不会处理BP不足和编队有空位的情况，请酌情使用",
             "pipeline_override": {
                 "for_end_after_concert_1": {
-                    "next": "Flag_星光演唱会"
+                    "next": [
+                        "Flag_星光演唱会",
+                        "[JumpBack]歌曲奖励达成_NC",
+                        "[JumpBack]更新记录界面_NC",
+                        "[JumpBack]退出打歌结算界面_NC",
+                        "[JumpBack]粉丝数up_NC",
+                        "[JumpBack]活动奖励领取_NC",
+                        "[JumpBack]FlagandAction_迷你对话_1",
+                        "[JumpBack]FlagandAction_迷你对话_2",
+                        "[JumpBack]OK_pt增加时弹出的奖励界面",
+                        "[JumpBack]活动期间pt达标跳出的卡面领取",
+                        "[JumpBack]点击屏幕获取奖励"
+                    ]
                 },
                 "Flag_星光演唱会": {
                     "next": "奖励领取_星光ver"

@@ -1,14 +1,14 @@
-import os
 import json
-import time
 
 from utils import logger
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
+
+
 @AgentServer.custom_action("TourConcert")
-class   TourConcert(CustomAction):
+class TourConcert(CustomAction):
     def run(
         self,
         context: Context,
@@ -21,9 +21,24 @@ class   TourConcert(CustomAction):
         默认会打完一天的四首歌，不满四首时识别是否回到主页作为中断条件
         起点：打歌界面第一首，不是也无所谓，反正打完一天或是不满一天都会中断
         '''
-        argv: dict = json.loads(argv.custom_action_param)
-        degree="Feat_难度调整"
-        tour_count=argv.get("tour_count")
+        try:
+            params: dict = json.loads(argv.custom_action_param)
+        except (TypeError, ValueError):
+            logger.warning("custom_action_param 解析失败, 按默认参数处理")
+            params = {}
+        if not isinstance(params, dict):
+            params = {}
+
+        degree = "Feat_难度调整"
+        raw_count = params.get("tour_count")
+        try:
+            tour_count = int(raw_count) if raw_count not in (None, "") else 1
+        except (TypeError, ValueError):
+            logger.warning(f"tour_count 非法({raw_count!r}), 回退为 1 轮")
+            tour_count = 1
+        if tour_count < 1:
+            logger.warning(f"tour_count={tour_count} 无效, 回退为 1 轮")
+            tour_count = 1
         for j in range(tour_count):
             image = context.tasker.controller.post_screencap().wait().get()
             key ="巡演_custom启动"
