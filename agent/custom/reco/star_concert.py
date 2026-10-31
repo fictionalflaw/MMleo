@@ -1,4 +1,5 @@
 import json
+import time
 from typing import Union, Optional
 
 from utils import logger
@@ -6,6 +7,14 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 from maa.define import RectType
+
+# 硬上限：本识别是内嵌的死循环（见 analyze 内 while），必须自己带刹车。
+# 原实现只在"选中 Click_星光ver"时才 flag+1，选不中任何 interrupt（task_flag == -1）
+# 或一直被 点击屏幕获取奖励 等前面的 interrupt 顶住时，flag 永远不增 -> 无限空转。
+SEARCH_TIMEOUT_SEC = 120  # 单次搜索的墙钟上限
+SEARCH_MAX_ROUNDS = 300  # 单次搜索的轮次上限（兜住识别极快的场景）
+
+
 @AgentServer.custom_recognition("SearchMusic")
 class SearchMusic(CustomRecognition):
     '''
@@ -28,11 +37,17 @@ class SearchMusic(CustomRecognition):
             "Click_星光ver"
         ] 
         flag=0
+        o_s=time.time()
+        rounds=0
 
         while True:
             if context.tasker.stopping:
                     logger.info("正在终止任务…")
-                    return None          
+                    return None
+            if time.time()-o_s>SEARCH_TIMEOUT_SEC or rounds>SEARCH_MAX_ROUNDS:
+                logger.info("搜索超过上限仍未就绪，按未找到返回")
+                return None
+            rounds+=1
             img = context.tasker.controller.post_screencap().wait().get()
 
             reco1 = context.run_recognition(next_order[0], img)

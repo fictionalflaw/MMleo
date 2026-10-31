@@ -355,7 +355,9 @@
         "recognition": "OCR",
         "expected": [
             "BP -3$",
-            "BP-3$"
+            "BP-3$",
+            "-3$",
+            "3$"
         ]
     },
     "巡演BP调整_组队界面10BP": {
@@ -367,8 +369,10 @@
         ],
         "recognition": "OCR",
         "expected": [
-            "BP -10",
-            "BP-10"
+            "BP -10$",
+            "BP-10$",
+            "-10$",
+            "10$"
         ]
     },
     "切3_BPicon": {
@@ -413,9 +417,9 @@
         ],
         "recognition": "OCR",
         "expected": [
-            "消耗3BP",
+            "BP3消耗",
             "^3$",
-            "3BP"
+            "3消耗"
         ],
         "target_offset": [
             520,
@@ -439,8 +443,9 @@
         ],
         "recognition": "OCR",
         "expected": [
-            "消耗10BP",
-            "10BP"
+            "BP10消耗",
+            "10消耗",
+            "^10$"
         ],
         "target_offset": [
             520,
@@ -504,7 +509,9 @@
         "recognition": "OCR",
         "expected": [
             "BP -10",
-            "BP-10"
+            "BP-10",
+            "-10",
+            "-1"
         ]
     },
     "BP调整_TO_巡演last": {

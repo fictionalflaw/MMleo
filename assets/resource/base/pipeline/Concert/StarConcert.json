@@ -18,9 +18,15 @@
         ],
         "recognition": "TemplateMatch",
         "template": [
-            "StartConcertIcon.png"
+            "StartConcertIcon.png",
+            "StarConcertIcon1.png",
+            "StarConcertIcon2.png",
+            "StarConcertIcon3.png",
+            "StarConcertIcon4.png"
         ],
-        "next": ["星光打歌循环"]
+        "next": [
+            "星光打歌循环"
+        ]
     },
     "Flag_StarConcertIcon_off": {
         "doc": "不在星光演唱会界面，但存在进入入口",
@@ -35,12 +41,13 @@
             "StarConcertIcon_off.png"
         ],
         "action": "Click",
-        "next": ["Flag_StarConcertIcon_on"]
+        "next": [
+            "Flag_StarConcertIcon_on"
+        ]
     },
     "星光打歌循环": {
-        "doc": "现在是无歌可打，不过还是得上全灰，因为无歌可打唯一性不足",
+        "doc": "现在是无歌可打，不过还是得上全灰，因为无歌可打唯一性不足，临时删掉了Flag_无歌可打做测试",
         "next": [
-            "Flag_无歌可打",
             "[JumpBack]寻找打歌入口"
         ]
     },
@@ -86,7 +93,9 @@
         "recognition": "OCR",
         "expected": "下载歌曲",
         "action": "Click",
-        "next": ["确认下载_星光ver"]
+        "next": [
+            "确认下载_星光ver"
+        ]
     },
     "确认下载_星光ver": {
         "roi": [
@@ -107,7 +116,9 @@
                 65
             ]
         },
-        "next": ["确认歌曲_星光ver"]
+        "next": [
+            "确认歌曲_星光ver"
+        ]
     },
     "确认歌曲_星光ver": {
         "roi": [
@@ -128,7 +139,9 @@
                 65
             ]
         },
-        "next": ["StartTheConcert_星光ver"]
+        "next": [
+            "StartTheConcert_星光ver"
+        ]
     },
     "StartTheConcert_星光ver": {
         "roi": [
@@ -170,7 +183,9 @@
         "recognition": "OCR",
         "expected": "开始演唱会",
         "action": "Click",
-        "next": ["星光演唱会打歌中"]
+        "next": [
+            "星光演唱会打歌中"
+        ]
     },
     "奖励领取_星光ver": {
         "doc": "已回到星光界面，领取奖励，然后循环查找未打歌标志",
@@ -222,7 +237,9 @@
             "开启后可以获得随机数量",
             "开启后可以获得随机颜色"
         ],
-        "next": ["礼包提示_退出_星光"]
+        "next": [
+            "礼包提示_退出_星光"
+        ]
     },
     "礼包提示_退出_星光": {
         "doc": "识别该界面的确认按钮",
@@ -281,7 +298,7 @@
         ]
     },
     "Click_星光ver": {
-        "doc": "不在星光界面也点(",
+        "doc": "不在星光界面也点(已否定",
         "roi": [
             291,
             0,
@@ -290,7 +307,11 @@
         ],
         "recognition": "TemplateMatch",
         "template": [
-            "StartConcertIcon.png"
+            "StartConcertIcon.png",
+            "StarConcertIcon1.png",
+            "StarConcertIcon2.png",
+            "StarConcertIcon3.png",
+            "StarConcertIcon4.png"
         ],
         "action": "Click",
         "target": [
@@ -308,6 +329,38 @@
                 65
             ]
         }
+    },
+    "BP识别_进阶_前": {
+        "doc": "识别BP界面，进阶版",
+        "roi": [
+            276,
+            156,
+            181,
+            400
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "消耗OBP",
+            "消耗0BP",
+            "^\\0BP$",
+            "^\\OBP$",
+        ]
+    },
+    "BP识别_进阶_后": {
+        "doc": "识别BP界面，进阶版",
+        "roi": [
+            276,
+            156,
+            181,
+            400
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "消耗OBP",
+            "消耗0BP",
+            "^\\0BP$",
+            "^\\OBP$"
+        ]
     },
     "星光演唱会打歌中": {
         "doc": "中途退出和中途暂停都丢入内层了",

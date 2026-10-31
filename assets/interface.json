@@ -2,6 +2,7 @@
     "name": "MMleo",
     "url": "https://github.com/fictionalflaw/MMleo",
     "icon": "logo.ico",
+    "license": "MIT",
     "mirrorchyan_rid": "MMleo",
     "mirrorchyan_multiplatform": true,
     "mfa_min_version": "v2.6.7",
@@ -101,6 +102,7 @@
                         "[JumpBack]FlagandAction_迷你对话_2",
                         "[JumpBack]OK_pt增加时弹出的奖励界面",
                         "[JumpBack]活动期间pt达标跳出的卡面领取",
+                        "[JumpBack]Temp_Hallowen_rps_NC",
                         "[JumpBack]点击屏幕获取奖励"
                     ]
                 },
@@ -111,7 +113,12 @@
                     "next": "星光演唱会打歌中"
                 },
                 "奖励领取_星光ver": {
-                    "next": "for_search_music_in_star"
+                    "next": [
+                        "for_search_music_in_star"
+                    ],
+                    "on_error": [
+                        "星光打歌循环"
+                    ]
                 },
                 "确认歌曲_星光ver": {
                     "next": [
@@ -137,6 +144,18 @@
                     "next": [
                         "StartTheConcert_星光ver"
                     ]
+                },
+                "寻找打歌入口": {
+                    "doc": "熔断：max_hit 是任务内累计命中数，此处等价于「单次任务最多打 30 首」。防「找歌→确认→打歌→结算→回到找歌」多节点空转（每个节点重入都会重置自己的 timeout，只有 max_hit 是只增不减的）",
+                    "max_hit": 30
+                },
+                "Click_星光ver": {
+                    "doc": "熔断：它本身是「找歌」用的点击（找到一首歌前最多重复 4 次），同时是历史死循环点（fe7cd0f，只要星光 icon 可见就会命中，空转约 1 次/秒）。上限按 4 次/首 × 30 首 = 120，取 200 留余量：正常打满 30 首不会耗尽，真空转时约 3 分钟自停",
+                    "max_hit": 200
+                },
+                "礼包提示_REC_星光": {
+                    "doc": "熔断：打几首就会命中几次（每打完一首都会弹礼包提示），按 30 首取 2 倍余量；只有弹窗关不掉、一首歌内反复重命中时才会触发",
+                    "max_hit": 60
                 }
             },
             "option": [
@@ -452,6 +471,7 @@
                             "next": "SkipInTale"
                         },
                         "SureSkip": {
+                            "post_wait_freezes": 3000,
                             "next": [
                                 "ClickScreenForSkip",
                                 "StopRead",

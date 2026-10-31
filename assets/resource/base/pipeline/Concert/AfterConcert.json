@@ -98,7 +98,9 @@
         "recognition": "TemplateMatch",
         "template": "卡面星星.png",
         "action": "Click",
-        "next": ["点击屏幕获取奖励"]
+        "next": [
+            "点击屏幕获取奖励"
+        ]
     },
     "对话框_迷你对话ing": {
         "doc": "固定选识别到的第一个，建议前面接一个故事黄星识别",
@@ -142,7 +144,11 @@
         ],
         "recognition": "TemplateMatch",
         "template": [
-            "StartConcertIcon.png"
+            "StartConcertIcon.png",
+            "StarConcertIcon1.png",
+            "StarConcertIcon2.png",
+            "StarConcertIcon3.png",
+            "StarConcertIcon4.png"
         ]
     },
     "Flag_演唱会": {

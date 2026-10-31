@@ -1,0 +1,31 @@
+{
+    "Temp_Hallowen_rps_NC": {
+        "doc": "2026国服万圣活动石头剪刀布，已加入打歌收尾豪华午餐",
+        "roi": [
+            699,
+            536,
+            408,
+            184
+        ],
+        "recognition": "OCR",
+        "expected": "选择要出的手势",
+        "post_wait_freezes": {
+            "time": 500
+        },
+        "next": [
+            "Temp_HW_rps_rock_NC"
+        ]
+    },
+    "Temp_HW_rps_rock_NC": {
+        "doc": "2026国服万圣活动石头",
+        "roi": [
+            562,
+            55,
+            356,
+            361
+        ],
+        "recognition": "OCR",
+        "expected": "石头",
+        "action": "Click"
+    }
+}
