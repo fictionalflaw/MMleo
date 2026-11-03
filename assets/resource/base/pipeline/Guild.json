@@ -45,7 +45,7 @@
         "expected": "协会签到",
         "next": [
             "NO_协会签到",
-            "协会签到"
+            "[JumpBack]协会签到"
         ]
     },
     "协会签到": {
@@ -66,11 +66,7 @@
                 285
             ]
         },
-        "action": "Click",
-        "next": [
-            "NO_协会签到",
-            "协会签到"
-        ]
+        "action": "Click"
     },
     "NO_协会签到": {
         "doc": "标志是右上角没有退出icon",
@@ -99,8 +95,12 @@
         "recognition": "TemplateMatch",
         "template": "协会_隐藏.png",
         "action": "Click",
-        "next": ["偶像互动"],
-        "on_error": ["Press_ESC"]
+        "next": [
+            "偶像互动"
+        ],
+        "on_error": [
+            "Press_ESC"
+        ]
     },
     "偶像互动": {
         "doc": "偶像互动ing",

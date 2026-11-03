@@ -91,11 +91,19 @@
         ]
     },
     "Tale_活动故事_选择左上": {
+        "roi": [
+            0,
+            0,
+            359,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": "^\\活动故事$",
         "target": [
-            269,
-            130,
-            183,
-            146
+            245,
+            163,
+            256,
+            95
         ],
         "action": "Click",
         "post_wait_freezes": {
