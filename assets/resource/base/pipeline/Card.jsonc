@@ -190,14 +190,9 @@
     },
     "Card_等级提升_消耗1张经验券小": {
         "doc": "+1",
-        "roi": [
-            878,
-            241,
-            181,
-            148
-        ],
-        "recognition": "TemplateMatch",
-        "template": "经验券+1.png",
+        "roi": [932,288,76,58],
+        "recognition": "OCR",
+        "expected": "^\\+1$",
         "action": "Click",
         "post_wait_freezes": 2000,
         "next": ["Card_等级提升_确定"]

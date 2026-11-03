@@ -191,10 +191,32 @@
         "threshold": 0.6,
         "action": "Click",
         "next": [
+            "Flag_EndReading",
             "[JumpBack]ClickMenuIntale",
             "SkipInTale",
-            "[JumpBack]RequiredClickForMenu"
+            "[JumpBack]RequiredClickForMenu_NC"
         ]
+    },
+    "RequiredClickForMenu_NC": {
+        "timeout": 60000,
+        "doc": "呼出菜单，启动跳过，但是要先点击",
+        "roi": [
+            909,
+            578,
+            200,
+            142
+        ],
+        "recognition": "TemplateMatch",
+        "template": [
+            "talestar1.png",
+            "talestar2.png",
+            "talestar3.png",
+            "talestar_sp1.png",
+            "talestar_sp2.png",
+            "talestar_sp3.png"
+        ],
+        "threshold": 0.6,
+        "action": "Click"
     },
     "ClickMenuIntale": {
         "doc": "点击菜单图标，好执行后续跳过",
@@ -208,7 +230,6 @@
         "template": "菜单icon_tale.png",
         "action": "Click",
         "next": [
-            "Flag_EndReading",
             "SkipInTale"
         ]
     },

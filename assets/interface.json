@@ -254,6 +254,11 @@
             "name": "SoloLive",
             "entry": "Entry_SoloLive",
             "doc": "自动打一场个人演唱会（SoloLive），支持从主界面导航、打歌与结算后回到主界面"
+        },
+        {
+            "name": "PhotoBattle",
+            "entry": "Entry_Photobattle",
+            "doc": "自动PhotoBattle，支持主界面导航及写真界面直接启动"
         }
     ],
     "option": {

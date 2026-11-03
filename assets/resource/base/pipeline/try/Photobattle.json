@@ -1,0 +1,158 @@
+{
+    "Entry_Photobattle": {
+        "doc": "自动PhotoBattle。前置：已停在主界面。PhotoBattle主页→点投票，否则从主界面经菜单导航",
+        "next": [
+            "PB_Flag_已完成",
+            "PB_Flag_PB页",
+            "[JumpBack]PB_点菜单icon"
+        ]
+    },
+    "PB_Flag_已完成": {
+        "doc": "无明显标志，留空",
+        "roi": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "留空"
+        ],
+        "enabled": false
+    },
+    "PB_Flag_PB页": {
+        "doc": "已在PhotoBattle页（识别左上角写真对决字样）",
+        "roi": [
+            99,
+            80,
+            497,
+            195
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "写真对决"
+        ],
+        "next": [
+            "PB_点投票"
+        ]
+    },
+    "PB_点投票": {
+        "doc": "PB开始投票，叶子节点：投票数不足",
+        "roi": [
+            905,
+            501,
+            375,
+            219
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "投票"
+        ],
+        "action": "Click",
+        "next": [
+            "PB_Flag_投票End",
+            "[JumpBack]PB_送上Nice",
+            "[JumpBack]Click_正中下端_关闭",
+            "[JumpBack]点击屏幕获取奖励",
+            "[JumpBack]PB_投票奖励",
+            "[JumpBack]Temp_Hallowen_rps_NC"
+        ]
+    },
+    "PB_投票奖励": {
+        "doc": "点击屏幕背景混淆，易识别出错。加入该节点保容错",
+        "roi": [
+            389,
+            364,
+            481,
+            216
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "投票奖励",
+            "直接发放"
+        ],
+        "action": "Click"
+    },
+    "PB_Flag_投票End": {
+        "doc": "PB开始投票，叶子节点：投票数不足",
+        "roi": [
+            458,
+            223,
+            342,
+            172
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "投票权不足"
+        ],
+        "next": "Click_正中下端_关闭"
+    },
+    "PB_送上Nice": {
+        "doc": "PB投票界面内，默认点击正中[送上Nice]",
+        "roi": [
+            481,
+            413,
+            306,
+            174
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "送上Nice"
+        ],
+        "action": "Click",
+        "post_wait_freezes": {
+            "time": 500
+        }
+    },
+    "PB_点菜单icon": {
+        "doc": "点右上角菜单icon（复用 StartUp.CallOutMenu 的识别）",
+        "roi": [
+            1145,
+            0,
+            135,
+            126
+        ],
+        "recognition": "TemplateMatch",
+        "template": "菜单icon.png",
+        "action": "Click",
+        "post_wait_freezes": 3000,
+        "next": [
+            "PB_点MegaPhone入口"
+        ]
+    },
+    "PB_点MegaPhone入口": {
+        "doc": "在弹出菜单点MegaPhone",
+        "roi": [
+            17,
+            179,
+            381,
+            206
+        ],
+        "recognition": "OCR",
+        "expected": [
+            "MEGAPHONE",
+            "MEGA PHONE",
+            "MEGA",
+            "PHONE"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 1500,
+        "next": [
+            "PB_点PB入口"
+        ]
+    },
+    "PB_点PB入口": {
+        "doc": "在MEGAPHONE二级菜单菜单点PhotoBattle。叶子节点：点完经 [JumpBack] 回到Entry重新判断是否投完票",
+        "roi": [
+            713,
+            282,
+            304,
+            314
+        ],
+        "recognition": "OCR",
+        "expected": "写真对决",
+        "action": "Click",
+        "post_wait_freezes": 3000
+    }
+}

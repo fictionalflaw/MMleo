@@ -279,7 +279,7 @@
     "action": "Click",
     "template": "辅助工作_OFF.png",
     "post_wait_freezes":1000,
-    "threshold":0.95,
+    "threshold":0.93,
     "next": [
       "Click_推荐编队"
     ]

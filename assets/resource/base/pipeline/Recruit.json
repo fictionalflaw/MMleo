@@ -20,7 +20,9 @@
         "recognition": "OCR",
         "expected": "新卡片移入休息室提示",
         "focus": "卡片仓库已满，新卡片将移入休息室...",
-        "next": ["Click_正中下端_确认"]
+        "next": [
+            "Click_正中下端_确认"
+        ]
     },
     "OKInRecruit": {
         "doc": "点击招募决策的ok键，只推荐用于海选",
@@ -50,6 +52,7 @@
         "expected": "TOUCH SCREEN",
         "pre_wait_freezes": 2000,
         "action": "Click",
+        "post_wait_freezes": 2000,
         "next": [
             "新卡片移入休息室提示",
             "Flag_Recruit",
@@ -68,6 +71,7 @@
         ],
         "recognition": "OCR",
         "expected": "SKIP",
+        "pre_wait_freezes": 500,
         "action": "Click",
         "next": [
             "OK,在招募结算",
