@@ -5,8 +5,8 @@
     "license": "MIT",
     "mirrorchyan_rid": "MMleo",
     "mirrorchyan_multiplatform": true,
-    "mfa_min_version": "v2.6.7",
-    "mfa_max_version": "v2.6.7",
+    "mfa_min_version": "v2.16.2",
+    "mfa_max_version": "v2.16.2",
     "interface_version": 2,
     "controller": [
         {

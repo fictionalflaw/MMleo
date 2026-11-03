@@ -21,7 +21,7 @@ on:
 
 env:
   MaaFw_tag: v5.6.0
-  MFA_tag: v2.6.7
+  MFA_tag: v2.16.2
   app_name: MMleo
 
 permissions:
